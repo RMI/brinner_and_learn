@@ -1,0 +1,117 @@
+---
+title: "Test-Driven Development [TDD]"
+author: "Jackson"
+format:
+  revealjs:
+    theme: moon
+    slide-number: true
+    transition: fade
+    toc: true
+    toc-depth: 1
+    incremental: true
+---
+
+# What is Test-Driven Development?
+
+- A software development approach where unit-test code is written before functionality.
+- Follow the **<span style="color: red;">Red</span>-<span style="color: green;">Green</span>-Refactor** cycle:
+  1. **<span style="color: red;">Red</span>**: Write a failing test.
+  2. **<span style="color: green;">Green</span>**: Write the minimum code necessary to pass the test.
+  3. **Refactor**: Improve the code while ensuring tests still pass.
+
+---
+
+# Why Use TDD?
+
+- **Stay Focused**: Defining all requirements up-front helps you focus.
+- **Reduce Over-Engineering**: Only necessary code is written to pass tests.
+- **Improve Code Quality (over time)**: Forces us to be accountable in writing modular, testable code.
+- **Better Code Coverage (over time)**:
+    - well-tested code has a lower chance for bugs
+    - it can be more confidently refactored 
+
+---
+
+# When to Not Use TDD?
+
+- **Prototype Development**: Early-stage projects where requirements frequently change.
+- **Tight Deadlines or Hot-Fixes**: Writing tests first may slow down development.
+- **Simple Short-Lived Projects**: The overhead of TDD might not be justified.
+
+---
+
+# How to Implement TDD
+
+## Step 1: Write a Test (<span style="color: red;">Red</span> Phase)
+
+- Identify a small, testable unit of functionality.
+- Write a test that asserts the expected behavior.
+- Run the test (it should fail since the implementation doesn’t exist yet).
+
+::: {.fragment}
+``` python
+import pytest
+
+def test_addition():
+    assert add(2, 3) == 5  # Function doesn't exist yet
+
+```
+:::
+
+## Step 2: Write Minimal Code to Pass the Test (<span style="color: green;">Green</span> Phase)
+
+- Implement only the necessary code to make the test pass.
+
+::: {.fragment} 
+```python
+def add(a, b):
+    return a + b
+```
+:::
+
+- Run the test again (it should pass now).
+
+---
+
+## Step 3: Refactor the Code (Refactor Phase)
+
+- Clean up the implementation without changing behavior.
+- Ensure all tests still pass after refactoring.
+
+::: {.fragment}
+```python
+def add(a: int, b: int) -> int:
+    return a + b  # Adding types
+```
+:::
+
+---
+
+# TDD Best Practices
+
+- Write **small, focused** tests.
+- Keep the Red-Green-Refactor cycle **short and frequent**.
+- Name tests clearly to reflect behavior being tested.
+- Refactor **only when tests are passing**.
+- Maintain a **comprehensive test suite** over time.
+
+---
+
+# TDD In The Wild
+
+- A Pull Request that follows TDD: [https://github.com/RMI-PACTA/r2dii.analysis/pull/460](https://github.com/RMI-PACTA/r2dii.analysis/pull/460)
+- Live Demo
+
+# Summary
+
+- TDD is a development methodology based on writing tests before code.
+- It improves quality, maintainability, and confidence in code.
+- It may not be ideal for every situation (e.g., prototypes, extreme time constraints).
+- Follow the **Red-Green-Refactor** cycle to implement TDD effectively.
+
+---
+
+# Questions?
+
+Thank you for your time! 🚀
+
