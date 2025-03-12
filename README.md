@@ -8,9 +8,10 @@ To submit a new presentation, please open a PR into this repository with a file 
 
 ``` qmd
 ---
+engine: "knitr"
 title: "Title of Presentation"
 author: "First Last"
 ---
 ```
 
-See the [quarto documentation](https://quarto.org/docs/) for more information.
+See the [quarto documentation](https://quarto.org/docs/) for guidance on how to write Quarto presentation slides.
