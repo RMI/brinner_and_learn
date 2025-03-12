@@ -1,14 +1,7 @@
 ---
+engine: "knitr"
 title: "GitHub Best Practices"
 author: "Jackson Hoffart"
-format:
-  revealjs:
-    theme: moon
-    slide-number: true
-    transition: fade
-    toc: true
-    toc-depth: 1
-    incremental: true
 ---
 
 # General Rule of Thumb

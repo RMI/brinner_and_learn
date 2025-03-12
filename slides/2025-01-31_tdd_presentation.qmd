@@ -1,14 +1,7 @@
 ---
+engine: "knitr"
 title: "Test-Driven Development [TDD]"
-author: "Jackson"
-format:
-  revealjs:
-    theme: moon
-    slide-number: true
-    transition: fade
-    toc: true
-    toc-depth: 1
-    incremental: true
+author: "Jackson Hoffart"
 ---
 
 # What is Test-Driven Development?

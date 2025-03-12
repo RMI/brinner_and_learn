@@ -1,14 +1,7 @@
 ---
+engine: "knitr"
 title: "Effective Ticketing & the Definition of Done"
 author: "Jackson Hoffart"
-format:
-  revealjs:
-    theme: moon
-    slide-number: true
-    transition: fade
-    toc: true
-    toc-depth: 1
-    incremental: true
 ---
 # Rule of Thumb
 A good ticket should umambiguously transfer as much relevant context from your brain onto the ticket in the simplest and most concise way possible. 
