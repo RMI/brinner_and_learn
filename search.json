@@ -1,5 +1,45 @@
 [
   {
+    "objectID": "slides/2025-01-31_tdd_presentation.html",
+    "href": "slides/2025-01-31_tdd_presentation.html",
+    "title": "Test-Driven Development [TDD]",
+    "section": "",
+    "text": "A software development approach where unit-test code is written before functionality.\nFollow the Red-Green-Refactor cycle:\n\nRed: Write a failing test.\nGreen: Write the minimum code necessary to pass the test.\nRefactor: Improve the code while ensuring tests still pass.",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 1: Write a Test (Red Phase)",
+    "text": "Step 1: Write a Test (Red Phase)\n\nIdentify a small, testable unit of functionality.\nWrite a test that asserts the expected behavior.\nRun the test (it should fail since the implementation doesn’t exist yet).\n\n\nimport pytest\n\ndef test_addition():\n    assert add(2, 3) == 5  # Function doesn't exist yet",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 2: Write Minimal Code to Pass the Test (Green Phase)",
+    "text": "Step 2: Write Minimal Code to Pass the Test (Green Phase)\n\nImplement only the necessary code to make the test pass.\n\n\ndef add(a, b):\n    return a + b\n\n\nRun the test again (it should pass now).",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 3: Refactor the Code (Refactor Phase)",
+    "text": "Step 3: Refactor the Code (Refactor Phase)\n\nClean up the implementation without changing behavior.\nEnsure all tests still pass after refactoring.\n\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b  # Adding types",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
     "objectID": "slides/2025-02-11_pr_practices.html",
     "href": "slides/2025-02-11_pr_practices.html",
     "title": "GitHub Best Practices",
@@ -80,6 +120,16 @@
     ]
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
     "objectID": "slides/2025-03-11_tickets.html",
     "href": "slides/2025-03-11_tickets.html",
     "title": "Effective Ticketing & the Definition of Done",
@@ -147,56 +197,6 @@
     "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
     "crumbs": [
       "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html",
-    "href": "slides/2025-01-31_tdd_presentation.html",
-    "title": "Test-Driven Development [TDD]",
-    "section": "",
-    "text": "A software development approach where unit-test code is written before functionality.\nFollow the Red-Green-Refactor cycle:\n\nRed: Write a failing test.\nGreen: Write the minimum code necessary to pass the test.\nRefactor: Improve the code while ensuring tests still pass.",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 1: Write a Test (Red Phase)",
-    "text": "Step 1: Write a Test (Red Phase)\n\nIdentify a small, testable unit of functionality.\nWrite a test that asserts the expected behavior.\nRun the test (it should fail since the implementation doesn’t exist yet).\n\n\nimport pytest\n\ndef test_addition():\n    assert add(2, 3) == 5  # Function doesn't exist yet",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 2: Write Minimal Code to Pass the Test (Green Phase)",
-    "text": "Step 2: Write Minimal Code to Pass the Test (Green Phase)\n\nImplement only the necessary code to make the test pass.\n\n\ndef add(a, b):\n    return a + b\n\n\nRun the test again (it should pass now).",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 3: Refactor the Code (Refactor Phase)",
-    "text": "Step 3: Refactor the Code (Refactor Phase)\n\nClean up the implementation without changing behavior.\nEnsure all tests still pass after refactoring.\n\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b  # Adding types",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
     ]
   }
 ]
