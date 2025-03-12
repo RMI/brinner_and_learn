@@ -1,15 +1,5 @@
 [
   {
-    "objectID": "slides/2025-01-31_tdd_presentation.html",
-    "href": "slides/2025-01-31_tdd_presentation.html",
-    "title": "Test-Driven Development [TDD]",
-    "section": "",
-    "text": "A software development approach where unit-test code is written before functionality.\nFollow the Red-Green-Refactor cycle:\n\nRed: Write a failing test.\nGreen: Write the minimum code necessary to pass the test.\nRefactor: Improve the code while ensuring tests still pass.",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
     "objectID": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
     "href": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
     "title": "Test-Driven Development [TDD]",
@@ -37,16 +27,6 @@
     "text": "Step 3: Refactor the Code (Refactor Phase)\n\nClean up the implementation without changing behavior.\nEnsure all tests still pass after refactoring.\n\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b  # Adding types",
     "crumbs": [
       "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html",
-    "href": "slides/2025-02-11_pr_practices.html",
-    "title": "GitHub Best Practices",
-    "section": "",
-    "text": "A pull request is a request for someone’s time and expertise. Be respectful of that by making your PR as clear, concise and well-prepared as possible.",
-    "crumbs": [
-      "GitHub Best Practices"
     ]
   },
   {
@@ -130,16 +110,6 @@
     ]
   },
   {
-    "objectID": "slides/2025-03-11_tickets.html",
-    "href": "slides/2025-03-11_tickets.html",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "",
-    "text": "A good ticket should umambiguously transfer as much relevant context from your brain onto the ticket in the simplest and most concise way possible.",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
     "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
     "href": "slides/2025-03-11_tickets.html#feature-tickets",
     "title": "Effective Ticketing & the Definition of Done",
@@ -184,7 +154,7 @@
     "href": "slides/2025-03-11_tickets.html#setup",
     "title": "Effective Ticketing & the Definition of Done",
     "section": "Setup",
-    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\n\nChecking out a PR locally\ngh pr checkout 14",
+    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
     "crumbs": [
       "Effective Ticketing & the Definition of Done"
     ]
