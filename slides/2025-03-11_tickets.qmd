@@ -1,0 +1,86 @@
+---
+title: "Effective Ticketing & the Definition of Done"
+author: "Jackson Hoffart"
+---
+# Rule of Thumb
+A good ticket should umambiguously transfer as much relevant context from your brain onto the ticket in the simplest and most concise way possible. 
+
+# Creating a Good Ticket
+
+- Title should clearly specify the output, rather than a vague description of the task:
+  - e.g. "User can reset their password" is **better** than "Improve authentication"
+- Use labels (e.g. feature, bug, BREAKING CHANGE, documentation, style, refactor, test, etc.)
+
+## Feature Tickets
+- For features, try to include a user story:
+  - e.g. "As a registered user, I might forget my password and want to regain access to my account securely."
+- When possible, supplement the user story with unambiguous acceptance criteria
+
+---
+
+## Bug Tickets
+- For bugs, be as detailed as possible!
+  - Often the limiting factor for fixing a bug is reproducing it.
+- For example:
+  - Environment setup (OS, browser, app version, etc.)
+  - Reproduction Steps (What precise actions lead to the bug?)
+  - Expected behaviour (What should have happened?)
+  - Actual behaviour (What actually happened?)
+  - Screenshots, logs, etc.
+
+# Acceptance Criteria & Definition of Done
+
+## Acceptance Criteria
+- What must be true for the issue to be considered complete?
+  - Written as bullet points
+  - [Example](https://rmi.monday.com/boards/8039986596/pulses/8427683528)
+
+## Definition of Done:
+  - All acceptance criteria are met
+  - Tests and checks pass
+  - Documentation is updated when relevant
+  - Code is reviewed and merged!
+
+---
+
+# Feature Branches & Naming Conventions
+
+- Branching naming conventions:
+  - Feature branches should have their corresponding ticket number prepended
+  - E.g. if I am closing GH issue #14, I might call the branch `14-add_api_key_authentication`
+  - This isn't always relevant, especially with Monday tickets, however will be relevant again once we use Jira
+
+---
+
+# Demo: `gh` CLI Tool
+
+## Setup
+``` sh
+brew install gh  # macOS
+``
+
+### Authenticating
+``
+gh auth login
+``
+
+### Cloning a Repo
+```sh
+gh repo clone RMI/web-api-poc
+```
+
+### Checking out a PR locally
+``` sh
+gh pr checkout 14
+```
+
+---
+
+## Recap
+
+- Write clear, structured tickets
+- Define acceptance criteria & done criteria
+- Use meaningful feature branch names
+- `gh` CLI simplifies GitHub workflows
+
+**Questions?**

@@ -1,0 +1,99 @@
+---
+title: "GitHub Best Practices"
+author: "Jackson Hoffart"
+---
+
+# General Rule of Thumb
+
+A pull request is a request for someone's time and expertise. Be respectful of that by making your PR as clear, concise and well-prepared as possible. 
+
+# Protect Long-Lived Branches
+
+## Enable branch protection rules
+- Protect `main` (and any other long-lived branches)
+- Require pull requests before merging
+- Require minimum 1 approving review
+- Enforce status checks (CI/CD pipelines, linting, tests)
+
+---
+
+# Branching Strategies
+
+## GitHub Flow
+- One long-lived branch: `main`
+- `feature` branch → PR → Merge to `main`
+- Simple
+- Best for continuous delivery
+- Deploy immediately after merge to `main`
+
+## GitFlow
+- Long-lived branches: `main`, `develop`
+- Short-lived branches: `release`, `hotfix`, `feature`
+- `feature` branch -> PR -> Merge to `develop`
+- `release` branch or `hotfix` -> PR -> Merge to `main` and `develop`
+- Better for large-scale projects, many devs, scheduled releases
+
+---
+
+# Anatomy of a Bad Pull Request
+
+## 🚫 What makes a PR bad?
+- Large & difficult to review
+- Many unrelated changes
+- Poor or no description
+- Unclear commit history
+- Fails CI/CD checks
+- Lacks necessary tests
+
+## ✅ How to improve PRs
+- Keep PRs small and focused
+- Provide a clear summary & context
+- Write meaningful commit messages
+- Ensure automated checks pass before requesting review
+- Add relevant tests & documentation
+- Explain how a reviewer can test your changes
+
+---
+
+# Anatomy of a Bad Review
+## 🚫 Common bad practices
+- Superficial LGTM approvals
+- Excessively nitpicky comments
+- Review lacks a clear status (ie. "Approved", "Request Changes", "Close Recommendation")
+
+## ✅ How to review effectively
+- Clearly state your status: "Approved", "Request Changes", "Close Recommendation"
+- Nitpicky or non-blocking comments should be clearly marked
+- Be constructive and specific
+- Validate logic, security, performance
+- Check for coding standards and test coverage
+- Ensure documentation is updated when necessary
+
+---
+
+# Demo: Submitting a Great PR
+- Create a new branch & make changes
+- Write clear commit messages
+- Open a PR with a well-written description
+- Clearly identify the corresponding GitHub issues or Jira ticket
+- Assign reviewers and respond to feedback
+- Merge your own PRs when approved
+- [Example PR](https://github.com/RMI-PACTA/r2dii.analysis/pull/460?new_mergebox=true)
+
+---
+
+# Demo: Reviewing a Pull Request Well
+- Check for CI/CD failures
+- Visually inspect changes (e.g. using GitHub diff view)
+- Review code logic and security concerns
+- Provide clear and actionable feedback
+- Approve or request changes with explanations
+- Confirm proper documentation is in place
+
+---
+
+# Final Thoughts
+🔹 Keep branches clean and protected  
+🔹 Use PRs as a collaboration tool  
+🔹 Follow a branching strategy that fits your workflow  
+🔹 Make PRs and reviews effective by being clear, concise, and constructive  

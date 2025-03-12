@@ -1,0 +1,28 @@
+project:
+  type: website
+
+website:
+  title: "SPD's Brinner and Learn Series"
+  sidebar:
+    style: "docked"
+    search: true
+    tools:
+      - icon: github
+        href: https://github.com/rmi/brinner_and_learn
+    contents:
+      - index.qmd
+      - file: slides/2025-01-31_tdd_presentation.qmd
+        target: test_driven_development
+      - file: slides/2025-02-11_pr_practices.qmd
+        target: pull_requests
+      - file: slides/2025-03-11_tickets.qmd
+        target: tickets
+
+format:
+  html:
+    theme:
+      dark: darkly
+      light: flatly
+    css: styles.css
+    toc: false
+    link-external-newwindow: true
