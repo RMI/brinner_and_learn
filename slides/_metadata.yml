@@ -1,0 +1,12 @@
+format:
+  revealjs:
+    theme: [dark, custom.scss]
+    link-external-newwindow: true
+    transition: slide
+    incremental: true
+execute:
+  eval: false
+  echo: true
+knitr:
+  opts_chunk:
+    comment: "#>"
