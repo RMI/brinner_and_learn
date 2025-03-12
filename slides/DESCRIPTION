@@ -1,0 +1,13 @@
+Type: Book
+Package: brinner-and-learn
+Title: The Brinner and Learn Series
+Version: 0.0.1
+Authors@R: 
+    person("Jackson Hoffart", , , "jackson.hoffart@gmail.com", role = c("aut", "cre", "cph"))
+URL: https://rmi.github.io/brinner_and_learn,
+    https://github.com/rmi/brinner_and_learn
+Depends:
+    R (>= 3.1.0)
+Encoding: UTF-8
+Imports: 
+    rmarkdown

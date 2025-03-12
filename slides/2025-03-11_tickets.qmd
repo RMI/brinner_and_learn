@@ -1,4 +1,5 @@
 ---
+engine: "knitr"
 title: "Effective Ticketing & the Definition of Done"
 author: "Jackson Hoffart"
 ---
