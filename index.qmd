@@ -1,0 +1,14 @@
+---
+title: Welcome
+date: now
+date-format: "YYYY-MM-DD HH:mm"
+---
+
+This page hosts all slides for presentations given during SPD's Brinner and Learn series.
+
+Each chapter title to the left is a link to a slide deck.
+
+-   These slides are being developed *by the SPD team*.
+-   Each deck will open in its own tab.
+-   You may want to type "s" at the start of each deck to open the *s*peaker notes.
+-   Some of these slides may end up being adopted as a more formal SPD [practice](https://rmi.github.io/practices).
