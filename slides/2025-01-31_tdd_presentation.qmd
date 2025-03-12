@@ -1,5 +1,4 @@
 ---
-engine: "knitr"
 title: "Test-Driven Development [TDD]"
 author: "Jackson Hoffart"
 ---

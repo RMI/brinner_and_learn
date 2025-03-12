@@ -1,5 +1,4 @@
 ---
-engine: "knitr"
 title: "GitHub Best Practices"
 author: "Jackson Hoffart"
 ---
