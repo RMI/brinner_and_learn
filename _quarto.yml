@@ -17,6 +17,8 @@ website:
         target: pull_requests
       - file: slides/2025-03-11_tickets.qmd
         target: tickets
+      - file: slides/2025-04-08_data_pipeline_manifest.qmd
+        target: data_pipeline_manifest
 
 format:
   html:
