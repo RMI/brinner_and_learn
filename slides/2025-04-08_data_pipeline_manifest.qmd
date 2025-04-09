@@ -117,7 +117,7 @@ PACTA's Data Preparation
 
 # What does it look like?
 
-[manifest.json](https://github.com/RMI/brinner_and_learn/tree/main/live_demos/2025-04-08_data_pipeline_manifest_demo/manifest.jsom)
+[manifest.json](https://github.com/RMI/brinner_and_learn/blob/main/live_demos/2025-04-08_data_pipeline_manifest_demo/manifest.json)
 
 ---
 
