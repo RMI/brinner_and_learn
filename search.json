@@ -30,6 +30,16 @@
     ]
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
     "objectID": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
     "href": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
     "title": "GitHub Best Practices",
@@ -97,16 +107,6 @@
     "text": "✅ How to review effectively\n\nClearly state your status: “Approved”, “Request Changes”, “Close Recommendation”\nNitpicky or non-blocking comments should be clearly marked\nBe constructive and specific\nValidate logic, security, performance\nCheck for coding standards and test coverage\nEnsure documentation is updated when necessary",
     "crumbs": [
       "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
-    "crumbs": [
-      "Welcome"
     ]
   },
   {
