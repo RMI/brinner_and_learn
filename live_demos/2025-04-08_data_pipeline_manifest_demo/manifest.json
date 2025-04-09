@@ -1,0 +1,602 @@
+{
+  "parameters": {
+    "config_name": "2023Q4_azure",
+    "raw_config": {
+      "preflight_data_path": "",
+      "update_currencies": true,
+      "export_sqlite_files": true,
+      "export_archives": true,
+      "masterdata_ownership_filename": "2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_ownership_2023Q4.csv",
+      "masterdata_debt_filename": "2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_debt_2023Q4.csv",
+      "ar_company_id__factset_entity_id_filename": "2024-02-14_AI_RMI_Bespoke_Company_Data_Products_Company_ID_List_2023Q4.csv",
+      "factset_financial_data_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_financial_data.rds",
+      "factset_entity_info_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_info.rds",
+      "factset_entity_financing_data_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_financing_data.rds",
+      "factset_fund_data_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_fund_data.rds",
+      "factset_isin_to_fund_table_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_isin_to_fund_table.rds",
+      "factset_iss_emissions_data_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_iss_emissions.rds",
+      "factset_issue_code_bridge_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_issue_code_bridge.rds",
+      "factset_industry_map_bridge_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_industry_map_bridge.rds",
+      "factset_manual_pacta_sector_override_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_manual_sector_override.rds",
+      "imf_quarter_timestamp": "2023-Q4",
+      "pacta_financial_timestamp": "2023Q4",
+      "market_share_target_reference_year": 2023,
+      "time_horizon": 5,
+      "scenario_sources_list": ["GECO2023", "ISF2023", "WEO2023"],
+      "sector_list": ["Automotive", "Power", "Oil&Gas", "Coal"],
+      "other_sector_list": ["Steel", "Aviation", "Cement"],
+      "zero_emission_factor_techs": ["Electric", "HydroCap", "NuclearCap", "RenewablesCap"],
+      "green_techs": ["FuelCell", "Electric", "Hybrid", "RenewablesCap", "HydroCap", "NuclearCap", "FuelCell_HDV", "Electric_HDV", "Hybrid_HDV"],
+      "scenario_raw_data_to_include": ["geco_2023", "isf_2023", "weo_2023"],
+      "tech_exclude": ["OtherCap", "OtherFF", "Coking Plant", "Sintering Plant", "Direct Or Smelting Reduction Plant", "Pelletizing Plant", "Grinding Plant", "Passenger / Freight"],
+      "scenario_geographies_list": ["Global", "NonOECD", "OECD"],
+      "global_aggregate_scenario_sources_list": "WEO2023",
+      "global_aggregate_sector_list": "Power",
+      "inherits": "2023Q4",
+      "data_prep_outputs_path": "/mnt/outputs",
+      "asset_impact_data_path": "/mnt/asset-impact/2024-02-15_AI_RMI_2023Q4",
+      "factset_data_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z"
+    },
+    "config": {
+      "preflight_data_path": "/mnt/outputs/2023Q4_20240228T144514Z",
+      "update_currencies": true,
+      "export_sqlite_files": true,
+      "export_archives": true,
+      "masterdata_ownership_filename": "2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_ownership_2023Q4.csv",
+      "masterdata_debt_filename": "2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_debt_2023Q4.csv",
+      "ar_company_id__factset_entity_id_filename": "2024-02-14_AI_RMI_Bespoke_Company_Data_Products_Company_ID_List_2023Q4.csv",
+      "factset_financial_data_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_financial_data.rds",
+      "factset_entity_info_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_info.rds",
+      "factset_entity_financing_data_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_financing_data.rds",
+      "factset_fund_data_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_fund_data.rds",
+      "factset_isin_to_fund_table_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_isin_to_fund_table.rds",
+      "factset_iss_emissions_data_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_iss_emissions.rds",
+      "factset_issue_code_bridge_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_issue_code_bridge.rds",
+      "factset_industry_map_bridge_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_industry_map_bridge.rds",
+      "factset_manual_pacta_sector_override_filename": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_manual_sector_override.rds",
+      "imf_quarter_timestamp": "2023-Q4",
+      "pacta_financial_timestamp": "2023Q4",
+      "market_share_target_reference_year": 2023,
+      "time_horizon": 5,
+      "scenario_sources_list": ["GECO2023", "ISF2023", "WEO2023"],
+      "sector_list": ["Automotive", "Power", "Oil&Gas", "Coal"],
+      "other_sector_list": ["Steel", "Aviation", "Cement"],
+      "zero_emission_factor_techs": ["Electric", "HydroCap", "NuclearCap", "RenewablesCap"],
+      "green_techs": ["FuelCell", "Electric", "Hybrid", "RenewablesCap", "HydroCap", "NuclearCap", "FuelCell_HDV", "Electric_HDV", "Hybrid_HDV"],
+      "scenario_raw_data_to_include": ["geco_2023", "isf_2023", "weo_2023"],
+      "tech_exclude": ["OtherCap", "OtherFF", "Coking Plant", "Sintering Plant", "Direct Or Smelting Reduction Plant", "Pelletizing Plant", "Grinding Plant", "Passenger / Freight"],
+      "scenario_geographies_list": ["Global", "NonOECD", "OECD"],
+      "global_aggregate_scenario_sources_list": "WEO2023",
+      "global_aggregate_sector_list": "Power",
+      "inherits": "2023Q4",
+      "data_prep_outputs_path": "/mnt/outputs/2023Q4_20240228T144514Z",
+      "asset_impact_data_path": "/mnt/asset-impact/2024-02-15_AI_RMI_2023Q4",
+      "factset_data_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z"
+    },
+    "input_filepaths": {
+      "masterdata_ownership_path": "/mnt/asset-impact/2024-02-15_AI_RMI_2023Q4/2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_ownership_2023Q4.csv",
+      "masterdata_debt_path": "/mnt/asset-impact/2024-02-15_AI_RMI_2023Q4/2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_debt_2023Q4.csv",
+      "ar_company_id__factset_entity_id_path": "/mnt/asset-impact/2024-02-15_AI_RMI_2023Q4/2024-02-14_AI_RMI_Bespoke_Company_Data_Products_Company_ID_List_2023Q4.csv",
+      "factset_financial_data_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_financial_data.rds",
+      "factset_entity_info_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_info.rds",
+      "factset_entity_financing_data_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_financing_data.rds",
+      "factset_fund_data_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_fund_data.rds",
+      "factset_isin_to_fund_table_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_isin_to_fund_table.rds",
+      "factset_iss_emissions_data_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_iss_emissions.rds",
+      "factset_issue_code_bridge_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_issue_code_bridge.rds",
+      "factset_industry_map_bridge_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_industry_map_bridge.rds",
+      "factset_manual_pacta_sector_override_path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_manual_sector_override.rds",
+      "currencies_preflight_data_path": "/mnt/outputs/2023Q4_20240228T144514Z/currencies.rds",
+      "index_regions_preflight_data_path": "/mnt/outputs/2023Q4_20240228T144514Z/index_regions.rds"
+    },
+    "timestamps": {
+      "imf_quarter_timestamp": "2023-Q4",
+      "factset_data_identifier": "timestamp-20231231T000000Z_pulled-20240217T135833Z",
+      "ent_entity_affiliates_last_update": "2024-02-16T18:38:42Z",
+      "pacta_financial_timestamp": "2023Q4"
+    },
+    "scenarios": {
+      "scenario_sources_list": ["GECO2023", "ISF2023", "WEO2023"],
+      "scenario_geographies_list": ["Global", "NonOECD", "OECD"],
+      "global_aggregate_scenario_sources_list": "WEO2023"
+    },
+    "sectors": {
+      "sector_list": ["Automotive", "Power", "Oil&Gas", "Coal"],
+      "other_sector_list": ["Steel", "Aviation", "Cement"],
+      "global_aggregate_sector_list": "Power"
+    },
+    "years": {
+      "market_share_target_reference_year": 2023,
+      "time_horizon": 5,
+      "relevant_years": [2023, 2024, 2025, 2026, 2027, 2028]
+    },
+    "technologies": {
+      "zero_emission_factor_techs": ["Electric", "HydroCap", "NuclearCap", "RenewablesCap"],
+      "green_techs": ["FuelCell", "Electric", "Hybrid", "RenewablesCap", "HydroCap", "NuclearCap", "FuelCell_HDV", "Electric_HDV", "Hybrid_HDV"],
+      "tech_exclude": ["OtherCap", "OtherFF", "Coking Plant", "Sintering Plant", "Direct Or Smelting Reduction Plant", "Pelletizing Plant", "Grinding Plant", "Passenger / Freight"]
+    },
+    "package_news": {
+      "pacta.data.preparation": "# pacta.data.preparation 0.1.0.9003\n\n* *breaking change* - `write_manifest()` now takes a pair of vectors with filepaths to input and output files, rather than a set of directories (#340).\n\n# pacta.data.preparation 0.1.0.9002\n\n* *breaking change* - `prepare_entity_info()` has a new mandatory argument `factset_manual_pacta_sector_override` because the internally accessible `factset_manual_pacta_sector_override` has been removed (#338).\n\n* *breaking change* - `factset_manual_pacta_sector_override` has been removed and is now exported by [workflow.factset](https://github.com/RMI-PACTA/workflow.factset) (#338).\n\n* *breaking change* - `prepare_entity_info()` has a new mandatory argument `factset_industry_map_bridge` because the internally accessible  `factset_industry_map_bridge` has been removed (#336).\n\n* *breaking change* - `factset_industry_map_bridge` has been removed and is now exported by [workflow.factset](https://github.com/RMI-PACTA/workflow.factset) (#336). \n\n* `factset_issue_code_bridge` has been removed and is now exported by [workflow.factset](https://github.com/RMI-PACTA/workflow.factset) (#335). \n\n* *breaking change* - `write_manifest()` arguments have changed to allow passing an input directory specifically for FactSet data\n\n* FactSet database connection functions have been removed and migrated to https://github.com/RMI-PACTA/workflow.factset\n\n* release version of {dbplyr} 2.4.0 or greater is now required\n\n* `import_ar_advanced_company_indicators()` now also imports the `is_ultimate_listed_parent` column (only for individual companies, not the entire ownership tree, e.g. `` `Ownership Level` == 0``) from the somewhat new \"Company Ownership\" tab. This breaks compatibility with older PAMS datasets that do not have this tab.\n\n# pacta.data.preparation 0.1.0\n\n* Gained functions `quarter_to_factset_timestamp()` and `quarter_to_imf_timestamp()`, that convert PACTA style quarter string references (e.g. \"2021Q4\") to the equivalent FactSet and IMF references (e.g. \"2021-12-31\" and \"2021-Q4\" respectively)\n\n* Data scraping functions (`get_currency_exchange_rates()`, `get_ishares_index_data()`, `process_ishares_index_data()`, and `index_regions`) have been removed and extracted to a new [{pacta.data.scraping} package](https://github.com/RMI-PACTA/pacta.data.scraping)\n\n* Gained functions: (`get_factset_entity_financing_data()`, `get_factset_entity_info()`, `get_factset_financial_data()`, `get_factset_fund_data()`, `get_factset_isin_to_fund_table()`, `get_factset_iss_emissions_data()`, `write_manifest()`, and `dataprep_abcd_scen_connection()`)\n\n* `prepare_masterdata` gained functionality to handle Power technologies both with and without `\"Cap` suffix (#285). \n\n* `factset_issue_code_bridge` gained updated mapping of FactSet `asset_type_code` to PACTA `asset_type` (#261). \n\n* Several changes to facilitate a new share ownership methodology: (#268)\n  * `one_adr_eq` value from the `own_v5_own_sec_adr_ord_ratio` table is included in the `get_factset_financial_data()` output\n  * new function `calc_shares_all_classes()` added\n  * `prepare_financial_data()` now calculates and exports `current_shares_outstanding_all_classes` column according to the new share ownership methodology, summing the outstanding shares of all relevant equity classes for a given entity\n  * now depends on dplyr (>= 1.1.0)\n  * {knitr} and {rmarkdown} have been added to Suggests to support vignette rendering\n  * new \"Share ownership weight attribution method\" vignette. see `vignette(\"share_ownership_methodology\")`\n\n* Workflow script and Dockerfile removed/extracted into a new [workflow.data.preparation](https://github.com/RMI-PACTA/workflow.data.preparation) repo.\n\n* Bond roll-up is now calculated. Holdings are roll-ed up with priority to the FactSet defined credit parent, followed by the AI defined credit parent (#243). \n\n* Gained functions `prepare_masterdata`, `prepare_financial_data` and `prepare_entity_info` (#235, #236, #237).\n\n# pacta.data.preparation 0.0.1\n\n* Added a `NEWS.md` file to track changes to the package.",
+      "pacta.scenario.preparation": "# pacta.scenario.preparation (development version)\n\n# pacta.scenario.preparation 0.2.0\n\n* Data sourcing bugs fixed in `weo_2022` and `geco_2022`.\n\n# pacta.scenario.preparation 0.1.0\n\n* Gained the dataset `scenario_source_pacta_geography_bridge`.\n\n* Gained the WIP dataset `weo_2022`.\n\n* Gained the WIP dataset `geco_2022`.\n\n# pacta.scenario.preparation 0.0.1\n\n* Added a `NEWS.md` file to track changes to the package."
+    }
+  },
+  "inputs_manifest": {
+    "2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_ownership_2023Q4.csv": {
+      "file name": "2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_ownership_2023Q4.csv",
+      "file extension": "csv",
+      "file path": "/mnt/asset-impact/2024-02-15_AI_RMI_2023Q4/2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_ownership_2023Q4.csv",
+      "file size": "29.9 MB",
+      "file last modified": "2024-02-17T22:30:24+00:00",
+      "filehash": "34a85245796f85610999382ea09fcf15"
+    },
+    "2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_debt_2023Q4.csv": {
+      "file name": "2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_debt_2023Q4.csv",
+      "file extension": "csv",
+      "file path": "/mnt/asset-impact/2024-02-15_AI_RMI_2023Q4/2024-02-14_AI_RMI Bespoke_Company Data Products_masterdata_debt_2023Q4.csv",
+      "file size": "16.9 MB",
+      "file last modified": "2024-02-17T22:30:25+00:00",
+      "filehash": "bb1ef11b7cf8c512d4e1c2960eb7cde8"
+    },
+    "2024-02-14_AI_RMI_Bespoke_Company_Data_Products_Company_ID_List_2023Q4.csv": {
+      "file name": "2024-02-14_AI_RMI_Bespoke_Company_Data_Products_Company_ID_List_2023Q4.csv",
+      "file extension": "csv",
+      "file path": "/mnt/asset-impact/2024-02-15_AI_RMI_2023Q4/2024-02-14_AI_RMI_Bespoke_Company_Data_Products_Company_ID_List_2023Q4.csv",
+      "file size": "4.7 MB",
+      "file last modified": "2024-02-17T22:30:25+00:00",
+      "filehash": "bfaddb474cbdd04bcd73dc456afedf41"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_financial_data.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_financial_data.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_financial_data.rds",
+      "file size": "286.5 MB",
+      "file last modified": "2024-02-17T14:10:05+00:00",
+      "filehash": "2cab730130ca61adab5cd8da537f0bd8"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_info.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_info.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_info.rds",
+      "file size": "375.3 MB",
+      "file last modified": "2024-02-17T14:20:46+00:00",
+      "filehash": "9337662aa5982585f3f6c6924cc984f0"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_financing_data.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_financing_data.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_entity_financing_data.rds",
+      "file size": "687.2 kB",
+      "file last modified": "2024-02-17T14:21:07+00:00",
+      "filehash": "9bf7fc8f55f64d1446ba85443cf09aa9"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_fund_data.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_fund_data.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_fund_data.rds",
+      "file size": "21.4 MB",
+      "file last modified": "2024-02-17T14:48:52+00:00",
+      "filehash": "1203b40fe77cdf9efad0abff8fa7585c"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_isin_to_fund_table.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_isin_to_fund_table.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_isin_to_fund_table.rds",
+      "file size": "2.7 MB",
+      "file last modified": "2024-02-17T14:49:07+00:00",
+      "filehash": "104acbc64ce4ef1c25427d886f1a2331"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_iss_emissions.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_iss_emissions.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_iss_emissions.rds",
+      "file size": "434.6 kB",
+      "file last modified": "2024-02-17T14:49:11+00:00",
+      "filehash": "118feec1eda9f33b939fc331c0fa8ba0"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_issue_code_bridge.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_issue_code_bridge.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_issue_code_bridge.rds",
+      "file size": "801 B",
+      "file last modified": "2024-02-17T14:49:24+00:00",
+      "filehash": "fd41dd91a0a9458279f874a78e7a2275"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_industry_map_bridge.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_industry_map_bridge.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_industry_map_bridge.rds",
+      "file size": "2.2 kB",
+      "file last modified": "2024-02-17T14:49:25+00:00",
+      "filehash": "c60c70667b9d13f70e6c156f9566f522"
+    },
+    "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_manual_sector_override.rds": {
+      "file name": "timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_manual_sector_override.rds",
+      "file extension": "rds",
+      "file path": "/mnt/factset-extracted/factset-pacta_timestamp-20231231T000000Z_pulled-20240217T135833Z/timestamp-20231231T000000Z_pulled-20240217T135833Z_factset_manual_sector_override.rds",
+      "file size": "8.5 kB",
+      "file last modified": "2024-02-17T14:49:24+00:00",
+      "filehash": "cb24be7eee6688a69fc204bd32016781"
+    },
+    "currencies.rds": {
+      "file name": "currencies.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/currencies.rds",
+      "file size": "1.5 kB",
+      "file last modified": "2024-02-28T14:45:22+00:00",
+      "filehash": "c6dc2320c244ae627f0e5605f99ecf6f"
+    },
+    "index_regions.rds": {
+      "file name": "index_regions.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/index_regions.rds",
+      "file size": "676 B",
+      "file last modified": "2024-02-28T14:45:22+00:00",
+      "filehash": "6b75f86f092aff7960b1c49fc72a9f0b"
+    }
+  },
+  "outputs_manifest": {
+    "abcd_flags_bonds.rds": {
+      "file name": "abcd_flags_bonds.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/abcd_flags_bonds.rds",
+      "file size": "444.5 kB",
+      "file last modified": "2024-02-28T14:56:34+00:00",
+      "filehash": "29e681b5846d08e99494d99cc1bf0bfd"
+    },
+    "abcd_flags_equity.rds": {
+      "file name": "abcd_flags_equity.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/abcd_flags_equity.rds",
+      "file size": "10.9 MB",
+      "file last modified": "2024-02-28T14:56:15+00:00",
+      "filehash": "97377c1f2376b874d5a12a94ce03f80f"
+    },
+    "bonds_abcd_scenario_GECO2023.rds": {
+      "file name": "bonds_abcd_scenario_GECO2023.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/bonds_abcd_scenario_GECO2023.rds",
+      "file size": "13.3 MB",
+      "file last modified": "2024-02-28T16:57:49+00:00",
+      "filehash": "815be3163d767b9a5635dfce72a63b79"
+    },
+    "bonds_abcd_scenario_ISF2023.rds": {
+      "file name": "bonds_abcd_scenario_ISF2023.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/bonds_abcd_scenario_ISF2023.rds",
+      "file size": "4.3 MB",
+      "file last modified": "2024-02-28T17:09:25+00:00",
+      "filehash": "61fbbd4b88d869a924a156d924df6daa"
+    },
+    "bonds_abcd_scenario_WEO2023.rds": {
+      "file name": "bonds_abcd_scenario_WEO2023.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/bonds_abcd_scenario_WEO2023.rds",
+      "file size": "24.8 MB",
+      "file last modified": "2024-02-28T17:34:33+00:00",
+      "filehash": "e4b94e7c595daf965a385464bf45009e"
+    },
+    "bonds_abcd_scenario.rds": {
+      "file name": "bonds_abcd_scenario.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/bonds_abcd_scenario.rds",
+      "file size": "42.3 MB",
+      "file last modified": "2024-02-28T17:35:06+00:00",
+      "filehash": "6582ae68d267bf43d524957755fa69bb"
+    },
+    "bonds_abcd_scenario.sqlite": {
+      "file name": "bonds_abcd_scenario.sqlite",
+      "file extension": "sqlite",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/bonds_abcd_scenario.sqlite",
+      "file size": "2 GB",
+      "file last modified": "2024-02-28T17:40:46+00:00",
+      "filehash": "bf6cf746bc4d4e7a42c55c5bafdf9e3d"
+    },
+    "currencies.rds": {
+      "file name": "currencies.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/currencies.rds",
+      "file size": "1.5 kB",
+      "file last modified": "2024-02-28T14:45:22+00:00",
+      "filehash": "c6dc2320c244ae627f0e5605f99ecf6f"
+    },
+    "entity_financing.rds": {
+      "file name": "entity_financing.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/entity_financing.rds",
+      "file size": "687.2 kB",
+      "file last modified": "2024-02-28T14:48:04+00:00",
+      "filehash": "9a0aebfcef6a2f9d597faa0a934b7e37"
+    },
+    "entity_info.rds": {
+      "file name": "entity_info.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/entity_info.rds",
+      "file size": "377.3 MB",
+      "file last modified": "2024-02-28T14:50:21+00:00",
+      "filehash": "e9a42392fb0199790014bc6f1c072dc4"
+    },
+    "entity_info.sqlite": {
+      "file name": "entity_info.sqlite",
+      "file extension": "sqlite",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/entity_info.sqlite",
+      "file size": "1.9 GB",
+      "file last modified": "2024-02-28T17:37:36+00:00",
+      "filehash": "8222fed2a70ed942b256d58e2e8d4bc2"
+    },
+    "equity_abcd_scenario_GECO2023.rds": {
+      "file name": "equity_abcd_scenario_GECO2023.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/equity_abcd_scenario_GECO2023.rds",
+      "file size": "24.2 MB",
+      "file last modified": "2024-02-28T15:25:01+00:00",
+      "filehash": "28c687c57bebe43ab160aeba9af41636"
+    },
+    "equity_abcd_scenario_ISF2023.rds": {
+      "file name": "equity_abcd_scenario_ISF2023.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/equity_abcd_scenario_ISF2023.rds",
+      "file size": "8.3 MB",
+      "file last modified": "2024-02-28T15:50:28+00:00",
+      "filehash": "aa9de1bc9ec2fe304e6d11c83391f5a1"
+    },
+    "equity_abcd_scenario_WEO2023.rds": {
+      "file name": "equity_abcd_scenario_WEO2023.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/equity_abcd_scenario_WEO2023.rds",
+      "file size": "44.7 MB",
+      "file last modified": "2024-02-28T16:44:48+00:00",
+      "filehash": "a67491b297d9615b1c144183ebdf88c7"
+    },
+    "equity_abcd_scenario.rds": {
+      "file name": "equity_abcd_scenario.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/equity_abcd_scenario.rds",
+      "file size": "77.2 MB",
+      "file last modified": "2024-02-28T16:45:59+00:00",
+      "filehash": "678ab7ff5c33d888e75dc9eeeee6fd45"
+    },
+    "equity_abcd_scenario.sqlite": {
+      "file name": "equity_abcd_scenario.sqlite",
+      "file extension": "sqlite",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/equity_abcd_scenario.sqlite",
+      "file size": "4.3 GB",
+      "file last modified": "2024-02-28T17:39:51+00:00",
+      "filehash": "b739707503c79200224ed3c5f0716f2f"
+    },
+    "financial_data.rds": {
+      "file name": "financial_data.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/financial_data.rds",
+      "file size": "17.3 MB",
+      "file last modified": "2024-02-28T14:47:55+00:00",
+      "filehash": "b353885c68442579dfd67f106eb96d31"
+    },
+    "fund_data.rds": {
+      "file name": "fund_data.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/fund_data.rds",
+      "file size": "21.5 MB",
+      "file last modified": "2024-02-28T14:56:40+00:00",
+      "filehash": "72fbacc195d3f3bdab1e0f14b457d0b2"
+    },
+    "index_regions.rds": {
+      "file name": "index_regions.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/index_regions.rds",
+      "file size": "676 B",
+      "file last modified": "2024-02-28T14:45:22+00:00",
+      "filehash": "6b75f86f092aff7960b1c49fc72a9f0b"
+    },
+    "isin_to_fund_table.rds": {
+      "file name": "isin_to_fund_table.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/isin_to_fund_table.rds",
+      "file size": "2.7 MB",
+      "file last modified": "2024-02-28T14:56:52+00:00",
+      "filehash": "00012599693bf0388216cf37355df281"
+    },
+    "iss_average_sector_emission_intensities.rds": {
+      "file name": "iss_average_sector_emission_intensities.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/iss_average_sector_emission_intensities.rds",
+      "file size": "883 B",
+      "file last modified": "2024-02-28T14:58:09+00:00",
+      "filehash": "8861936e2798cd25b3ded77b138153cc"
+    },
+    "iss_entity_emission_intensities.rds": {
+      "file name": "iss_entity_emission_intensities.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/iss_entity_emission_intensities.rds",
+      "file size": "175.6 kB",
+      "file last modified": "2024-02-28T14:56:53+00:00",
+      "filehash": "a679f05ea844ce6a95e5988f374fd133"
+    },
+    "masterdata_debt_datastore.rds": {
+      "file name": "masterdata_debt_datastore.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/masterdata_debt_datastore.rds",
+      "file size": "1.5 MB",
+      "file last modified": "2024-02-28T14:54:14+00:00",
+      "filehash": "0c57babd39fb8ff128afbdd5d4ddded0"
+    },
+    "masterdata_ownership_datastore.rds": {
+      "file name": "masterdata_ownership_datastore.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/masterdata_ownership_datastore.rds",
+      "file size": "2.8 MB",
+      "file last modified": "2024-02-28T14:53:30+00:00",
+      "filehash": "8afefde9cbf82b25ffe5989f792fe404"
+    },
+    "total_fund_list.rds": {
+      "file name": "total_fund_list.rds",
+      "file extension": "rds",
+      "file path": "/mnt/outputs/2023Q4_20240228T144514Z/total_fund_list.rds",
+      "file size": "49 kB",
+      "file last modified": "2024-02-28T14:56:45+00:00",
+      "filehash": "7f8496c4d61279ddd76059594f7426c9"
+    }
+  },
+  "git": {
+    "local_git_tag": "no git tags found",
+    "local_git_hash": "414029e84d647ed6cb5ca2340f2e9a7b55ce15a4",
+    "local_git_status": "git status is clean"
+  },
+  "sessionInfo": {
+    "platform": {
+      "version": "R version 4.3.2 (2023-10-31)",
+      "os": "Ubuntu 22.04.3 LTS",
+      "system": "x86_64, linux-gnu",
+      "ui": "X11",
+      "language": "(EN)",
+      "collate": "en_US.UTF-8",
+      "ctype": "en_US.UTF-8",
+      "tz": "Etc/UTC",
+      "date": "2024-02-28",
+      "pandoc": "3.1.1 @ /usr/local/bin/pandoc"
+    },
+    "packages": [
+      {
+        "package": "DBI",
+        "ondiskversion": "1.2.2",
+        "loadedversion": "1.2.2",
+        "path": "/usr/local/lib/R/site-library/DBI",
+        "loadedpath": "/usr/local/lib/R/site-library/DBI",
+        "attached": true,
+        "is_base": false,
+        "date": "2024-02-16",
+        "source": "RSPM",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "dplyr",
+        "ondiskversion": "1.1.4",
+        "loadedversion": "1.1.4",
+        "path": "/usr/local/lib/R/site-library/dplyr",
+        "loadedpath": "/usr/local/lib/R/site-library/dplyr",
+        "attached": true,
+        "is_base": false,
+        "date": "2023-11-17",
+        "source": "RSPM (R 4.3.0)",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "pacta.data.preparation",
+        "ondiskversion": "0.1.0.9003",
+        "loadedversion": "0.1.0.9003",
+        "path": "/usr/local/lib/R/site-library/pacta.data.preparation",
+        "loadedpath": "/usr/local/lib/R/site-library/pacta.data.preparation",
+        "attached": true,
+        "is_base": false,
+        "date": "2024-02-28",
+        "source": "Github (RMI-PACTA/pacta.data.preparation@01c72fc038c7952469f3fd63d06add7ed6227d5f)",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "pacta.data.scraping",
+        "ondiskversion": "0.1.0.9000",
+        "loadedversion": "0.1.0.9000",
+        "path": "/usr/local/lib/R/site-library/pacta.data.scraping",
+        "loadedpath": "/usr/local/lib/R/site-library/pacta.data.scraping",
+        "attached": true,
+        "is_base": false,
+        "date": "2024-02-28",
+        "source": "Github (RMI-PACTA/pacta.data.scraping@91302af74dee7dae8a4a303b84d7237c7a6bdf4a)",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "pacta.scenario.preparation",
+        "ondiskversion": "0.2.0.9000",
+        "loadedversion": "0.2.0.9000",
+        "path": "/usr/local/lib/R/site-library/pacta.scenario.preparation",
+        "loadedpath": "/usr/local/lib/R/site-library/pacta.scenario.preparation",
+        "attached": true,
+        "is_base": false,
+        "date": "2024-02-28",
+        "source": "Github (RMI-PACTA/pacta.scenario.preparation@51dbb2ae13cad9c33f8d6b195f95d354a2a99ae6)",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "readr",
+        "ondiskversion": "2.1.5",
+        "loadedversion": "2.1.5",
+        "path": "/usr/local/lib/R/site-library/readr",
+        "loadedpath": "/usr/local/lib/R/site-library/readr",
+        "attached": true,
+        "is_base": false,
+        "date": "2024-01-10",
+        "source": "RSPM (R 4.3.0)",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "rlang",
+        "ondiskversion": "1.1.3",
+        "loadedversion": "1.1.3",
+        "path": "/usr/local/lib/R/site-library/rlang",
+        "loadedpath": "/usr/local/lib/R/site-library/rlang",
+        "attached": true,
+        "is_base": false,
+        "date": "2024-01-10",
+        "source": "RSPM (R 4.3.0)",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "RSQLite",
+        "ondiskversion": "2.3.5",
+        "loadedversion": "2.3.5",
+        "path": "/usr/local/lib/R/site-library/RSQLite",
+        "loadedpath": "/usr/local/lib/R/site-library/RSQLite",
+        "attached": true,
+        "is_base": false,
+        "date": "2024-01-21",
+        "source": "RSPM (R 4.3.0)",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "stringr",
+        "ondiskversion": "1.5.1",
+        "loadedversion": "1.5.1",
+        "path": "/usr/local/lib/R/site-library/stringr",
+        "loadedpath": "/usr/local/lib/R/site-library/stringr",
+        "attached": true,
+        "is_base": false,
+        "date": "2023-11-14",
+        "source": "RSPM (R 4.3.0)",
+        "library": "/usr/local/lib/R/site-library"
+      },
+      {
+        "package": "tidyr",
+        "ondiskversion": "1.3.1",
+        "loadedversion": "1.3.1",
+        "path": "/usr/local/lib/R/site-library/tidyr",
+        "loadedpath": "/usr/local/lib/R/site-library/tidyr",
+        "attached": true,
+        "is_base": false,
+        "date": "2024-01-24",
+        "source": "RSPM (R 4.3.0)",
+        "library": "/usr/local/lib/R/site-library"
+      }
+    ],
+    "external": {
+      "cairo": "1.16.0",
+      "cairoFT": "",
+      "pango": "1.50.6",
+      "png": "1.6.37",
+      "jpeg": "8.0",
+      "tiff": "LIBTIFF, Version 4.3.0",
+      "tcl": "",
+      "curl": "7.81.0",
+      "zlib": "1.2.11",
+      "bzlib": "1.0.8, 13-Jul-2019",
+      "xz": "5.2.5",
+      "PCRE": "10.39 2021-10-29",
+      "ICU": "70.1",
+      "TRE": "TRE 0.8.0 R_fixes (BSD)",
+      "iconv": "glibc 2.35",
+      "readline": "8.1",
+      "BLAS": "/usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3",
+      "lapack": "/usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so",
+      "lapack_version": "3.10.0"
+    }
+  },
+  "creation_time_date": "2024-02-28 17:44 UTC"
+}

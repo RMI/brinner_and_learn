@@ -1,0 +1,127 @@
+---
+engine: "knitr"
+title: "Data Pipeline Manifest"
+author: "CJ Yetman"
+---
+
+# What is a Data Pipeline Manifest?
+
+- I looked for good examples, standards, recommendations...
+  - I didn't find any! 😂
+- There are many other uses of manifest (or similar) files in other programming contexts:
+  1. web extensions
+  2. chrome extensions
+  3. package.json in NPM (JS) packages
+- Typically, they define all the things needed to build something.
+
+---
+
+# So, what is a Data Pipeline Manifest to me?
+
+- Like a build manifest, but somewhat in reverse
+  - everything I would need to know to re-build the same exact dataset
+- born out of a need to explain or verify specific data points in datasets I had created
+
+---
+
+# Reproducability is key to fixing/understanding things
+
+- very common in software development / bug fixing
+- same goes for data, if you can't do it you can't explain it
+
+---
+
+# How does a manifest file help?
+
+- helps answers questions to guide your investigation
+  - is the data unmodified?
+  - is everything there?
+  - what were the input files?
+  - what was used to build it?
+  - what happened in the black box?
+
+---
+
+# Output files
+
+- are all the files there?
+	a. Filenames
+	b. Directory structure
+- do the files contain what is expected?
+	a. File extension
+	b. File format
+	c. Schema
+	d. Encoding
+
+---
+
+# Output files continued
+
+- have the files changed?
+	a. Timestamp (created, last modified, ?)
+	b. File size
+	c. File hash
+
+---
+
+# Input data
+
+- where (exactly) did the data come from, or how can I get it?
+	a. Publisher/Source
+	b. Version 
+	c. URL/link to the data
+	d. URL that describes and/or links to the data
+	e. Timestamp of download
+	f. Location of local archive
+	g. All the same output file metadata from before
+
+---
+
+# Input environment
+
+- what was the exact environment the data pipeline run in?
+	a. Platform/architecture
+	b. OS and version
+	c. Environment variables
+	d. language and version
+
+---
+
+# Dependencies
+
+- what are all the exact dependencies that were used?
+	a. Packages
+	b. Versions
+	c. Dev or modified versions?
+
+---
+
+# Code
+
+- what is the exact version of the code that was used?
+	a. Repo
+	b. Version
+	c. Git sha
+	d. Git status clean?
+
+---
+
+# Practical example
+
+PACTA's Data Preparation
+
+[https://github.com/RMI-PACTA/pacta.data.preparation/blob/main/R/write_manifest.R](https://github.com/RMI-PACTA/pacta.data.preparation/blob/main/R/write_manifest.R)
+[https://github.com/RMI-PACTA/workflow.data.preparation/blob/main/config.yml](https://github.com/RMI-PACTA/workflow.data.preparation/blob/main/config.yml)
+
+---
+
+# What does it look like?
+
+[manifest.json](https://github.com/RMI/brinner_and_learn/tree/main/live_demos/2025-04-08_data_pipeline_manifest_demo/manifest.jsom)
+
+---
+
+# Questions?
+
+Thank you for your time! 🚀
+
