@@ -65,6 +65,8 @@ author: "CJ Yetman"
 ---
 
 # Input data
+
+- where (exactly) did the data come from, or how can I get it?
 	a. Publisher/Source
 	b. Version 
 	c. URL/link to the data
@@ -76,6 +78,8 @@ author: "CJ Yetman"
 ---
 
 # Input environment
+
+- what was the exact environment the data pipeline run in?
 	a. Platform/architecture
 	b. OS and version
 	c. Environment variables
@@ -84,6 +88,8 @@ author: "CJ Yetman"
 ---
 
 # Dependencies
+
+- what are all the exact dependencies that were used?
 	a. Packages
 	b. Versions
 	c. Dev or modified versions?
@@ -91,6 +97,8 @@ author: "CJ Yetman"
 ---
 
 # Code
+
+- what is the exact version of the code that was used?
 	a. Repo
 	b. Version
 	c. Git sha
@@ -102,14 +110,14 @@ author: "CJ Yetman"
 
 PACTA's Data Preparation
 
-https://github.com/RMI-PACTA/pacta.data.preparation/blob/main/R/write_manifest.R
-https://github.com/RMI-PACTA/workflow.data.preparation/blob/main/config.yml
+[https://github.com/RMI-PACTA/pacta.data.preparation/blob/main/R/write_manifest.R](https://github.com/RMI-PACTA/pacta.data.preparation/blob/main/R/write_manifest.R)
+[https://github.com/RMI-PACTA/workflow.data.preparation/blob/main/config.yml](https://github.com/RMI-PACTA/workflow.data.preparation/blob/main/config.yml)
 
 ---
 
 # What does it look like?
 
-manifest.json
+[manifest.json](https://github.com/RMI/brinner_and_learn/tree/main/live_demos/2025-04-08_data_pipeline_manifest_demo/manifest.jsom)
 
 ---
 
