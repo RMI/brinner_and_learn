@@ -1,0 +1,120 @@
+---
+title: "Python Testing 101: Writing Your First Unit Tests"
+format: revealjs
+editor: visual
+---
+
+## What is a Unit Test?
+
+-   A unit test checks that a *small unit* of code works as expected.
+-   Usually a single function or method.
+-   Helps you catch bugs early, refactor confidently, and build better software.
+
+------------------------------------------------------------------------
+
+## Why Should Data Scientists Care?
+
+-   Prevent breaking your analysis pipeline accidentally.
+-   Add guardrails for complex logic (e.g., custom transforms).
+-   Make code easier to reuse and maintain.
+
+------------------------------------------------------------------------
+
+## Unit Testing Workflow
+
+- Write failing test -> Run with `pytest` (It should fail)
+- Write just enough code to pass -> Re-run `pytest`
+- See it pass 🎉
+- Refactor code if needed
+- Repeat 🔁 
+
+## Best Practices
+
+- 🧪 Test one case per test, keep them small!
+- 🔁 Test edge cases and common use
+- 🧼 Use clear naming: `test_functionname_case`
+- 📦 Structure code so logic is in testable functions (not in notebooks!)
+
+## Code Structure for Testing
+
+Before testing:
+- Your code should live in a `.py` file, e.g. `my_module.py`
+- Tests should go in a separate file: `test_my_module.py`
+
+``` bash
+project/
+├── my_module.py
+├── test_my_module.py
+```
+
+## Let's Write a Failing Test
+
+`test_my_module.py`:
+
+``` python
+from my_module import multiply_by_two
+
+def test_multiply_by_two():
+    assert multiply_by_two(3) == 6
+```
+
+## Run it with pytest
+``` bash
+pytest
+```
+
+Expect output like:
+``` bash
+>       assert multiply_by_two(3) == 6
+E       NameError: name 'multiply_by_two' is not defined
+```
+
+⬆️ Good! The test is failing as expected.
+
+## Write Just Enough Code to Pass
+
+`my_module.py`:
+``` python
+def multiply_by_two(x):
+    return x * 2
+```
+
+Re-run pytest:
+``` bash
+collected 1 item
+test_my_module.py .                                    [100%]
+```
+
+✅ Green means good!
+
+## Common Anti-Patterns to Avoid
+
+🚫 **Too much in one test**
+- Hard to precisely understand what failed and why
+
+🚫 **Testing implementation details**
+- Tests should focus on what your function *does* and *outputs*, not *how* it does it
+
+🚫 **Skipping tests for 'just a script'**
+- Scripts evolve fast
+— Make testable functions early and part of your default workflow
+
+🚫 **Functions that are hard to test**
+- If a function:
+  - Has side effects
+  - Does too many things
+  - Depends on global state
+  
+➡️ It might need to be **split into smaller pieces**
+
+💡 *If it’s hard to write a simple test, your function may need refactoring!*
+
+## What's Next?
+
+- Try testing:
+  - Edge cases (0, negative numbers, empty lists, incorrect input types)
+  - Your own utility functions
+
+- Explore:
+  - Test coverage (pytest-cov)
+  - Mocks and temporary files
