@@ -1,0 +1,95 @@
+---
+engine: "knitr"
+title: "12 Factor Applications (Pt 1)"
+author: "Alex Axthelm"
+---
+
+# Introduction
+
+## Motivation
+
+- Developing and Deploying Apps can be difficult
+- The 12 Factor App methodology provides guidelines that ensure
+  - clarity,
+  - scalability, 
+  - maintainability
+- Benefits both developers and operations teams.
+
+---
+
+## Why are 12 Factor Apps Important?
+
+- **Consistency and predictability** in application behavior.
+- Simplifies the development lifecycle.
+- Eases the process of deploying, scaling, and maintaining applications.
+- Promotes collaboration between development and operations (DevOps).
+
+---
+
+## Best Practices
+
+A lot of these concepts are things that are considered best practices, but
+collected together.
+
+- You are probably already do a bunch of these things
+- You may not know you do it (it just feels right)
+- You may not know why you do it (it just seems to work)
+- You may do it because you were told to (it isn't broken)
+
+---
+
+## Benefits for Developers
+
+- Clear guidelines for application structure and behavior.
+- Simplified onboarding and reduced cognitive load.
+- Easier debugging and local development.
+- Predictable dependencies and environments.
+
+---
+
+## Benefits for DevOps/Operations
+
+- Streamlined deployment and automated management.
+- Improved reliability and faster issue resolution.
+- Easier monitoring and logging.
+
+---
+
+## The 12 Factors (Brief Overview)
+
+1. **Codebase**: One codebase tracked in version control, many deploys.
+2. **Dependencies**: Explicitly declare and isolate dependencies.
+3. **Config**: Store configuration in the environment.
+4. **Backing Services**: Treat backing services as attached resources.
+5. **Build, Release, Run**: Strictly separate build and run stages.
+6. **Processes**: Execute the app as one or more stateless processes.
+
+---
+
+## The 12 Factors (Brief Overview)
+
+7. **Port Binding**: Export services via port binding.
+8. **Concurrency**: Scale out via the process model.
+9. **Disposability**: Maximize robustness with fast startup and graceful shutdown.
+10. **Dev/Prod Parity**: Keep development, staging, and production similar.
+11. **Logs**: Treat logs as event streams.
+12. **Admin Processes**: Run admin tasks as one-off processes.
+
+---
+
+## Examples of Common Pitfalls
+
+- Configuration hardcoded in source code.
+- Dependencies not clearly defined or versioned.
+- Stateful processes causing unpredictable behavior.
+- Significant differences between development and production environments.
+
+---
+
+## Getting Started with 12 Factor Apps
+
+- **Review** your current projects against the 12 factors.
+- **Incrementally adopt** factors as you enhance or refactor projects.
+- Foster collaboration and awareness across development and operations teams.
+
+---
