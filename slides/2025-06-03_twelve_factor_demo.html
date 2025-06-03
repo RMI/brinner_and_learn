@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.7.31">
 
   <meta name="author" content="Jackson Hoffart">
-  <title>SPD's Brinner and Learn Series – Test-Driven Development [TDD]</title>
+  <title>SPD's Brinner and Learn Series – 12 Factor App Analysis: web-api-poc</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,72 +28,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-      }
-    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-    div.sourceCode
-      { color: #f8f8f2;  }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #f8f8f2; } /* Normal */
-    code span.al { color: #f07178; } /* Alert */
-    code span.an { color: #d4d0ab; } /* Annotation */
-    code span.at { color: #00e0e0; } /* Attribute */
-    code span.bn { color: #d4d0ab; } /* BaseN */
-    code span.bu { color: #abe338; } /* BuiltIn */
-    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #abe338; } /* Char */
-    code span.cn { color: #ffd700; } /* Constant */
-    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
-    code span.cv { color: #ffd700; } /* CommentVar */
-    code span.do { color: #f8f8f2; } /* Documentation */
-    code span.dt { color: #ffa07a; } /* DataType */
-    code span.dv { color: #d4d0ab; } /* DecVal */
-    code span.er { color: #f07178; text-decoration: underline; } /* Error */
-    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
-    code span.fl { color: #d4d0ab; } /* Float */
-    code span.fu { color: #ffa07a; } /* Function */
-    code span.im { color: #abe338; } /* Import */
-    code span.in { color: #d4d0ab; } /* Information */
-    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
-    code span.op { color: #ffa07a; } /* Operator */
-    code span.ot { color: #00e0e0; } /* Other */
-    code span.pp { color: #dcc6e0; } /* Preprocessor */
-    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
-    code span.sc { color: #abe338; } /* SpecialChar */
-    code span.ss { color: #abe338; } /* SpecialString */
-    code span.st { color: #abe338; } /* String */
-    code span.va { color: #00e0e0; } /* Variable */
-    code span.vs { color: #abe338; } /* VerbatimString */
-    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5fa723a4ee799f64e44b6fe0747a0a63.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -193,7 +127,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Test-Driven Development [TDD]</h1>
+  <h1 class="title">12 Factor App Analysis: web-api-poc</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -205,134 +139,253 @@ Jackson Hoffart
 
 </section>
 <section>
-<section id="what-is-test-driven-development" class="title-slide slide level1 center">
-<h1>What is Test-Driven Development?</h1>
+<section id="factor-app-analysis-web-api-poc" class="title-slide slide level1 center">
+<h1>12-Factor App Analysis: web-api-poc</h1>
 <ul>
-<li class="fragment">A software development approach where unit-test code is written before functionality.</li>
-<li class="fragment">Follow the <strong><span style="color: red;">Red</span>-<span style="color: green;">Green</span>-Refactor</strong> cycle:
-<ol type="1">
-<li class="fragment"><strong><span style="color: red;">Red</span></strong>: Write a failing test.</li>
-<li class="fragment"><strong><span style="color: green;">Green</span></strong>: Write the minimum code necessary to pass the test.</li>
-<li class="fragment"><strong>Refactor</strong>: Improve the code while ensuring tests still pass.</li>
-</ol></li>
+<li class="fragment">12FA is a modern methodology for building scalable web applications</li>
+<li class="fragment">Best practices for cloud-native applications</li>
+<li class="fragment">Enables reliable, scalable apps that deploy and run in modern cloud environments</li>
+<li class="fragment">Developed by Heroku founders</li>
 </ul>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="why-use-tdd" class="title-slide slide level1 center">
-<h1>Why Use TDD?</h1>
+<section id="i.-one-codebase-many-deploys" class="title-slide slide level1 center">
+<h1>I. One codebase, many deploys</h1>
+<p>✅ <strong>Implementation in <a href="https://github.com/RMI/web-api-poc">web-api-poc</a>:</strong></p>
 <ul>
-<li class="fragment"><strong>Stay Focused</strong>: Defining all requirements up-front helps you focus.</li>
-<li class="fragment"><strong>Reduce Over-Engineering</strong>: Only necessary code is written to pass tests.</li>
-<li class="fragment"><strong>Improve Code Quality (over time)</strong>: Forces us to be accountable in writing modular, testable code.</li>
-<li class="fragment"><strong>Better Code Coverage (over time)</strong>:
+<li class="fragment">A version controlled repository with multiple services
 <ul>
-<li class="fragment">well-tested code has a lower chance for bugs</li>
-<li class="fragment">it can be more confidently refactored</li>
+<li class="fragment"><code>/database</code></li>
+<li class="fragment"><code>/api</code></li>
+<li class="fragment"><code>/frontend</code></li>
 </ul></li>
 </ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Single source of truth, consistency across envrionments</li>
+<li class="fragment">Simplified collaboration (versioning, branching, merging)</li>
+<li class="fragment">Clear application boundaries between different apps/ components in a distributed system</li>
+<li class="fragment"></li>
+</ul>
+<aside class="notes">
+<p>If the “app” is split across multiple repositories, it isn’t an “app” it’s a distributed system. Each component in a distributed system is itself an app, and should follow 12FA.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="when-to-not-use-tdd" class="title-slide slide level1 center">
-<h1>When to Not Use TDD?</h1>
+<section id="ii.-declare-and-isolate-dependencies" class="title-slide slide level1 center">
+<h1>II. Declare and isolate dependencies</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
 <ul>
-<li class="fragment"><strong>Prototype Development</strong>: Early-stage projects where requirements frequently change.</li>
-<li class="fragment"><strong>Tight Deadlines or Hot-Fixes</strong>: Writing tests first may slow down development.</li>
-<li class="fragment"><strong>Simple Short-Lived Projects</strong>: The overhead of TDD might not be justified.</li>
+<li class="fragment">Python dependencies managed with <code>pyproject.toml</code></li>
+<li class="fragment">JS dependencies managed with <code>packages.json</code></li>
+<li class="fragment">Docker containers isolate dependencies</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Eliminates “works on my machine” problems</li>
+<li class="fragment">Ensures consistent builds across environments</li>
+<li class="fragment">Makes dependency updates explicit and trackable</li>
 </ul>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="how-to-implement-tdd" class="title-slide slide level1 center">
-<h1>How to Implement TDD</h1>
-
-</section>
-<section id="step-1-write-a-test-red-phase" class="slide level2">
-<h2>Step 1: Write a Test (<span style="color: red;">Red</span> Phase)</h2>
+<section id="iii.-config-in-the-environment" class="title-slide slide level1 center">
+<h1>III. Config in the environment</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
 <ul>
-<li class="fragment">Identify a small, testable unit of functionality.</li>
-<li class="fragment">Write a test that asserts the expected behavior.</li>
-<li class="fragment">Run the test (it should fail since the implementation doesn’t exist yet).</li>
+<li class="fragment">Environment variables used for configuration:
+<ul>
+<li class="fragment">DB service: <code>POC_DB_PORT</code></li>
+<li class="fragment">API service: <code>POC_API_LOG_LEVEL</code>, <code>POC_API_KEY</code>, <code>POC_API_PORT</code></li>
+<li class="fragment">Frontend service: <code>POC_FRONTEND_PORT</code></li>
+</ul></li>
 </ul>
-<div class="fragment">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> pytest</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a><span class="kw">def</span> test_addition():</span>
-<span id="cb1-4"><a></a>    <span class="cf">assert</span> add(<span class="dv">2</span>, <span class="dv">3</span>) <span class="op">==</span> <span class="dv">5</span>  <span class="co"># Function doesn't exist yet</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="step-2-write-minimal-code-to-pass-the-test-green-phase" class="slide level2">
-<h2>Step 2: Write Minimal Code to Pass the Test (<span style="color: green;">Green</span> Phase)</h2>
+<p><strong>Benefits:</strong></p>
 <ul>
-<li class="fragment">Implement only the necessary code to make the test pass.</li>
-</ul>
-<div class="fragment">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">def</span> add(a, b):</span>
-<span id="cb2-2"><a></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li class="fragment">Run the test again (it should pass now).</li>
-</ul>
-</section>
-<section id="step-3-refactor-the-code-refactor-phase" class="slide level2">
-<h2>Step 3: Refactor the Code (Refactor Phase)</h2>
-<ul>
-<li class="fragment">Clean up the implementation without changing behavior.</li>
-<li class="fragment">Ensure all tests still pass after refactoring.</li>
-</ul>
-<div class="fragment">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> add(a: <span class="bu">int</span>, b: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb3-2"><a></a>    <span class="cf">return</span> a <span class="op">+</span> b  <span class="co"># Adding types</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="tdd-best-practices" class="title-slide slide level1 center">
-<h1>TDD Best Practices</h1>
-<ul>
-<li class="fragment">Write <strong>small, focused</strong> tests.</li>
-<li class="fragment">Keep the Red-Green-Refactor cycle <strong>short and frequent</strong>.</li>
-<li class="fragment">Name tests clearly to reflect behavior being tested.</li>
-<li class="fragment">Refactor <strong>only when tests are passing</strong>.</li>
-<li class="fragment">Maintain a <strong>comprehensive test suite</strong> over time.</li>
+<li class="fragment">Deploy same code to different environments without rebuilding app</li>
+<li class="fragment">Easily switch between development, staging, and production</li>
 </ul>
 </section>
 <section class="slide level2">
 
 </section></section>
-<section id="tdd-in-the-wild" class="title-slide slide level1 center">
-<h1>TDD In The Wild</h1>
+<section>
+<section id="iv.-backing-services-as-attached-resources" class="title-slide slide level1 center">
+<h1>IV. Backing services as attached resources</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
 <ul>
-<li class="fragment">A Pull Request that follows TDD: <a href="https://github.com/RMI-PACTA/r2dii.analysis/pull/460">https://github.com/RMI-PACTA/r2dii.analysis/pull/460</a></li>
-<li class="fragment">Live Demo</li>
+<li class="fragment">Database as a separate service in Docker Compose</li>
+<li class="fragment">API connects to database via connection string with environment variables</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Swap backing services without code changes</li>
+<li class="fragment">Aso helpful services like caching, logging, authentication, etc.</li>
+<li class="fragment">Enable local development with simplified test services</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="v.-strictly-separate-build-release-and-run-stages" class="title-slide slide level1 center">
+<h1>V. Strictly separate build, release and run stages</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
+<ul>
+<li class="fragment"><strong>Build:</strong> Docker builds using Dockerfiles</li>
+<li class="fragment"><strong>Release:</strong> Images tagged and pushed to registry</li>
+<li class="fragment"><strong>Run:</strong> Docker Compose starts services with config</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Ensures immutable releases (no changes at runtime)</li>
+<li class="fragment">Enables reliable rollbacks to previous versions</li>
+<li class="fragment">Makes deployment process consistent and repeatable</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="vi.-execute-the-app-as-one-or-more-stateless-processes" class="title-slide slide level1 center">
+<h1>VI. Execute the app as one or more stateless processes</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
+<ul>
+<li class="fragment">API service is stateless (FastAPI)</li>
+<li class="fragment">PostgreSQL database handles state</li>
+<li class="fragment">No shared memory or local file storage for application state</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Crash-resistant: processes can restart without data loss</li>
+<li class="fragment">Horizontally scalable: add more instances under load</li>
+<li class="fragment">Simplified deployment and operations</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section id="vii.-export-services-via-port-binding" class="title-slide slide level1 center">
+<h1>VII. Export services via port binding</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
+<ul>
+<li class="fragment">API binds to configurable port (<code>POC_API_PORT</code>)</li>
+<li class="fragment">Database binds to configurable port (<code>POC_DB_PORT</code>)</li>
+<li class="fragment">Frontend served via Nginx on configurable port (<code>POC_FRONTEND_PORT</code>)</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Self-contained services including their own served</li>
+<li class="fragment">Simple deployments: each service can be consistently run across environments</li>
+<li class="fragment"><h2 id="any-app-can-act-as-a-standalone-service-or-a-backing-service-for-another-app">Any app can act as a standalone service, or a backing service for another app</h2></li>
 </ul>
 </section>
 
 <section>
+<section id="viii.-scale-out-via-the-process-model" class="title-slide slide level1 center">
+<h1>VIII. Scale out via the process model</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
+<ul>
+<li class="fragment">Services split into separate containers</li>
+<li class="fragment">FastAPI supports concurrent requests</li>
+<li class="fragment">Multiple instances could be deployed behind a load balancer</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Scale horizontally by adding more process instances</li>
+<li class="fragment">Different components can scale at different rates</li>
+<li class="fragment">Handle varying loads efficiently</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="ix.-maximize-robustness-with-fast-startup-and-graceful-shutdown" class="title-slide slide level1 center">
+<h1>IX. Maximize robustness with fast startup and graceful shutdown</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
+<ul>
+<li class="fragment">Docker containers are disposable by design</li>
+<li class="fragment">FastAPI starts quickly</li>
+<li class="fragment">Database uses health checks to ensure readiness</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Enables rapid elasticity (scale up/down quickly)</li>
+<li class="fragment">Supports blue-green deployments with zero downtime</li>
+<li class="fragment">Robust against infrastructure failures</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="x.-keep-development-staging-and-production-as-similar-as-possible" class="title-slide slide level1 center">
+<h1>X. Keep development, staging, and production as similar as possible</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
+<ul>
+<li class="fragment">Same Docker containers used in all environments</li>
+<li class="fragment">Docker Compose creates consistent development environment</li>
+<li class="fragment">Environment variables control environment-specific settings</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Catch bugs earlier in development cycle</li>
+<li class="fragment">Continuous deployment becomes more reliable</li>
+<li class="fragment">Eliminates “it works in development” issues</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="xi.-treat-logs-as-event-streams" class="title-slide slide level1 center">
+<h1>XI. Treat logs as event streams</h1>
+<p>✅ <strong>Implementation in web-api-poc:</strong></p>
+<ul>
+<li class="fragment">API service logs to stdout/stderr</li>
+<li class="fragment">Docker captures logs from containers</li>
+<li class="fragment">stdout/stderr logs can be captured with tools like Azure Monitor</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li class="fragment">Centralized log management without application changes</li>
+<li class="fragment">Real-time monitoring and alerting capabilities</li>
+<li class="fragment">Easier troubleshooting across distributed systems</li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="xii.-run-adminmanagement-tasks-as-one-off-processes" class="title-slide slide level1 center">
+<h1>XII. Run admin/management tasks as one-off processes</h1>
+<p>Not really implemented at the moment! There is no concept of an admin task in this demo repository.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
 <section id="summary" class="title-slide slide level1 center">
 <h1>Summary</h1>
-<ul>
-<li class="fragment">TDD is a development methodology based on writing tests before code.</li>
-<li class="fragment">It improves quality, maintainability, and confidence in code.</li>
-<li class="fragment">It may not be ideal for every situation (e.g., prototypes, extreme time constraints).</li>
-<li class="fragment">Follow the <strong>Red-Green-Refactor</strong> cycle to implement TDD effectively.</li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section id="questions" class="title-slide slide level1 center">
-<h1>Questions?</h1>
-<p>Thank you for your time! 🚀</p>
+<p>This was an example of how a relatively simple web application can be built using the 12-Factor App methodology. While one might argue that not all of these factors are always important, having a default way of building web applications can reduce cognitive load and make it easier to onboard new developers or build new robust applications.</p>
 
 
 </section>
