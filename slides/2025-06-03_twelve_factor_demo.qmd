@@ -17,16 +17,17 @@ author: "Jackson Hoffart"
 
 ✅ **Implementation in [web-api-poc](https://github.com/RMI/web-api-poc):**
 
-- Single GitHub repository with multiple services
+- A version controlled repository with multiple services
   - `/database`
   - `/api`
   - `/frontend`
 
 **Benefits:**
 
-- Prevents version drift across environments
-- Simplifies deployments and rollbacks
-- Enables clear tracking of all changes
+- Single source of truth, consistency across envrionments
+- Simplified collaboration (versioning, branching, merging)
+- Clear application boundaries between different apps/ components in a distributed system
+- 
 
 ::: {.notes}
 If the "app" is split across multiple repositories, it isn't an "app" it's a distributed system.
@@ -123,10 +124,9 @@ Each component in a distributed system is itself an app, and should follow 12FA.
 
 **Benefits:**
 
-- Services can be composed and reused in different environments
-- Local development mirrors production environment
-- Easier integration testing and deployment
-
+- Self-contained services including their own served
+- Simple deployments: each service can be consistently run across environments
+- Any app can act as a standalone service, or a backing service for another app
 ---
 
 # VIII. Scale out via the process model
