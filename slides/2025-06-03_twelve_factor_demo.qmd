@@ -1,0 +1,206 @@
+---
+engine: "knitr"
+title: "12 Factor App Analysis: web-api-poc"
+author: "Jackson Hoffart"
+---
+
+# 12-Factor App Analysis: web-api-poc
+
+  - 12FA is a modern methodology for building scalable web applications
+  - Best practices for cloud-native applications
+  - Enables reliable, scalable apps that deploy and run in modern cloud environments
+  - Developed by Heroku founders
+
+---
+
+# I. One codebase,  many deploys
+
+✅ **Implementation in [web-api-poc](https://github.com/RMI/web-api-poc):**
+
+- A version controlled repository with multiple services
+  - `/database`
+  - `/api`
+  - `/frontend`
+
+**Benefits:**
+
+- Single source of truth, consistency across envrionments
+- Simplified collaboration (versioning, branching, merging)
+- Clear application boundaries between different apps/ components in a distributed system
+- 
+
+::: {.notes}
+If the "app" is split across multiple repositories, it isn't an "app" it's a distributed system.
+Each component in a distributed system is itself an app, and should follow 12FA.
+:::
+---
+
+# II. Declare and isolate dependencies
+
+✅ **Implementation in web-api-poc:**
+
+- Python dependencies managed with `pyproject.toml`
+- JS dependencies managed with `packages.json`
+- Docker containers isolate dependencies
+
+**Benefits:**
+
+- Eliminates "works on my machine" problems
+- Ensures consistent builds across environments
+- Makes dependency updates explicit and trackable
+
+---
+
+# III. Config in the environment
+
+✅ **Implementation in web-api-poc:**
+
+- Environment variables used for configuration:
+  - DB service: `POC_DB_PORT`
+  - API service: `POC_API_LOG_LEVEL`, `POC_API_KEY`, `POC_API_PORT`
+  - Frontend service: `POC_FRONTEND_PORT`
+
+**Benefits:**
+
+- Deploy same code to different environments without rebuilding app
+- Easily switch between development, staging, and production
+
+---
+
+# IV. Backing services as attached resources
+
+✅ **Implementation in web-api-poc:**
+
+- Database as a separate service in Docker Compose
+- API connects to database via connection string with environment variables
+
+**Benefits:**
+
+- Swap backing services without code changes
+- Aso helpful services like caching, logging, authentication, etc.
+- Enable local development with simplified test services
+
+---
+
+# V. Strictly separate build, release and run stages
+
+✅ **Implementation in web-api-poc:**
+
+- **Build:** Docker builds using Dockerfiles
+- **Release:** Images tagged and pushed to registry
+- **Run:** Docker Compose starts services with config
+
+**Benefits:**
+
+- Ensures immutable releases (no changes at runtime)
+- Enables reliable rollbacks to previous versions
+- Makes deployment process consistent and repeatable
+
+---
+
+# VI. Execute the app as one or more stateless processes
+
+✅ **Implementation in web-api-poc:**
+
+- API service is stateless (FastAPI)
+- PostgreSQL database handles state
+- No shared memory or local file storage for application state
+
+**Benefits:**
+
+- Crash-resistant: processes can restart without data loss
+- Horizontally scalable: add more instances under load
+- Simplified deployment and operations
+
+---
+
+# VII. Export services via port binding
+
+✅ **Implementation in web-api-poc:**
+
+- API binds to configurable port (`POC_API_PORT`)
+- Database binds to configurable port (`POC_DB_PORT`)
+- Frontend served via Nginx on configurable port (`POC_FRONTEND_PORT`)
+
+**Benefits:**
+
+- Self-contained services including their own served
+- Simple deployments: each service can be consistently run across environments
+- Any app can act as a standalone service, or a backing service for another app
+---
+
+# VIII. Scale out via the process model
+
+✅ **Implementation in web-api-poc:**
+
+- Services split into separate containers
+- FastAPI supports concurrent requests
+- Multiple instances could be deployed behind a load balancer
+
+**Benefits:**
+
+- Scale horizontally by adding more process instances
+- Different components can scale at different rates
+- Handle varying loads efficiently
+
+---
+
+# IX. Maximize robustness with fast startup and graceful shutdown
+
+✅ **Implementation in web-api-poc:**
+
+- Docker containers are disposable by design
+- FastAPI starts quickly
+- Database uses health checks to ensure readiness
+
+**Benefits:**
+
+- Enables rapid elasticity (scale up/down quickly)
+- Supports blue-green deployments with zero downtime
+- Robust against infrastructure failures
+
+---
+
+# X. Keep development, staging, and production as similar as possible
+
+✅ **Implementation in web-api-poc:**
+
+- Same Docker containers used in all environments
+- Docker Compose creates consistent development environment
+- Environment variables control environment-specific settings
+
+**Benefits:**
+
+- Catch bugs earlier in development cycle
+- Continuous deployment becomes more reliable
+- Eliminates "it works in development" issues
+
+---
+
+# XI. Treat logs as event streams
+
+✅ **Implementation in web-api-poc:**
+
+- API service logs to stdout/stderr
+- Docker captures logs from containers
+- stdout/stderr logs can be captured with tools like Azure Monitor
+
+**Benefits:**
+
+- Centralized log management without application changes
+- Real-time monitoring and alerting capabilities
+- Easier troubleshooting across distributed systems
+
+---
+
+# XII. Run admin/management tasks as one-off processes
+
+Not really implemented at the moment! There is no concept of an admin task in this demo repository.
+
+---
+
+# Summary
+
+This was an example of how a relatively simple web application can be built using the 12-Factor App methodology.
+While one might argue that not all of these factors are always important, having a default way of building web 
+applications can reduce cognitive load and make it easier to onboard new developers or build new robust applications.
