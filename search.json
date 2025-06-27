@@ -10,6 +10,129 @@
     ]
   },
   {
+    "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
+    "href": "slides/2025-03-11_tickets.html#feature-tickets",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Feature Tickets",
+    "text": "Feature Tickets\n\nFor features, try to include a user story:\n\ne.g. “As a registered user, I might forget my password and want to regain access to my account securely.”\n\nWhen possible, supplement the user story with unambiguous acceptance criteria",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#bug-tickets",
+    "href": "slides/2025-03-11_tickets.html#bug-tickets",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Bug Tickets",
+    "text": "Bug Tickets\n\nFor bugs, be as detailed as possible!\n\nOften the limiting factor for fixing a bug is reproducing it.\n\nFor example:\n\nEnvironment setup (OS, browser, app version, etc.)\nReproduction Steps (What precise actions lead to the bug?)\nExpected behaviour (What should have happened?)\nActual behaviour (What actually happened?)\nScreenshots, logs, etc.",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#acceptance-criteria",
+    "href": "slides/2025-03-11_tickets.html#acceptance-criteria",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Acceptance Criteria",
+    "text": "Acceptance Criteria\n\nWhat must be true for the issue to be considered complete?\n\nWritten as bullet points\nExample",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#definition-of-done",
+    "href": "slides/2025-03-11_tickets.html#definition-of-done",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Definition of Done:",
+    "text": "Definition of Done:\n\nAll acceptance criteria are met\nTests and checks pass\nDocumentation is updated when relevant\nCode is reviewed and merged!",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#setup",
+    "href": "slides/2025-03-11_tickets.html#setup",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Setup",
+    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#recap",
+    "href": "slides/2025-03-11_tickets.html#recap",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Recap",
+    "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#motivation",
+    "href": "slides/2025-05-06_12FactorPt1.html#motivation",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Motivation",
+    "text": "Motivation\n\nDeveloping and Deploying Apps can be difficult\nThe 12 Factor App methodology provides guidelines that ensure\n\nclarity,\nscalability,\nmaintainability\n\nBenefits both developers and operations teams."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
+    "href": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Why are 12 Factor Apps Important?",
+    "text": "Why are 12 Factor Apps Important?\n\nConsistency and predictability in application behavior.\nSimplifies the development lifecycle.\nEases the process of deploying, scaling, and maintaining applications.\nPromotes collaboration between development and operations (DevOps)."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#best-practices",
+    "href": "slides/2025-05-06_12FactorPt1.html#best-practices",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Best Practices",
+    "text": "Best Practices\nA lot of these concepts are things that are considered best practices, but collected together.\n\nYou are probably already do a bunch of these things\nYou may not know you do it (it just feels right)\nYou may not know why you do it (it just seems to work)\nYou may do it because you were told to (it isn’t broken)"
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
+    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Benefits for Developers",
+    "text": "Benefits for Developers\n\nClear guidelines for application structure and behavior.\nSimplified onboarding and reduced cognitive load.\nEasier debugging and local development.\nPredictable dependencies and environments."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
+    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Benefits for DevOps/Operations",
+    "text": "Benefits for DevOps/Operations\n\nStreamlined deployment and automated management.\nImproved reliability and faster issue resolution.\nEasier monitoring and logging."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
+    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "The 12 Factors (Brief Overview)",
+    "text": "The 12 Factors (Brief Overview)\n\nCodebase: One codebase tracked in version control, many deploys.\nDependencies: Explicitly declare and isolate dependencies.\nConfig: Store configuration in the environment.\nBacking Services: Treat backing services as attached resources.\nBuild, Release, Run: Strictly separate build and run stages.\nProcesses: Execute the app as one or more stateless processes."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
+    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "The 12 Factors (Brief Overview)",
+    "text": "The 12 Factors (Brief Overview)\n\nPort Binding: Export services via port binding.\nConcurrency: Scale out via the process model.\nDisposability: Maximize robustness with fast startup and graceful shutdown.\nDev/Prod Parity: Keep development, staging, and production similar.\nLogs: Treat logs as event streams.\nAdmin Processes: Run admin tasks as one-off processes."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
+    "href": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Examples of Common Pitfalls",
+    "text": "Examples of Common Pitfalls\n\nConfiguration hardcoded in source code.\nDependencies not clearly defined or versioned.\nStateful processes causing unpredictable behavior.\nSignificant differences between development and production environments."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
+    "href": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Getting Started with 12 Factor Apps",
+    "text": "Getting Started with 12 Factor Apps\n\nReview your current projects against the 12 factors.\nIncrementally adopt factors as you enhance or refactor projects.\nFoster collaboration and awareness across development and operations teams."
+  },
+  {
     "objectID": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
     "href": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
     "title": "GitHub Best Practices",
@@ -107,66 +230,6 @@
     "text": "Step 3: Refactor the Code (Refactor Phase)\n\nClean up the implementation without changing behavior.\nEnsure all tests still pass after refactoring.\n\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b  # Adding types",
     "crumbs": [
       "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
-    "href": "slides/2025-03-11_tickets.html#feature-tickets",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Feature Tickets",
-    "text": "Feature Tickets\n\nFor features, try to include a user story:\n\ne.g. “As a registered user, I might forget my password and want to regain access to my account securely.”\n\nWhen possible, supplement the user story with unambiguous acceptance criteria",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#bug-tickets",
-    "href": "slides/2025-03-11_tickets.html#bug-tickets",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Bug Tickets",
-    "text": "Bug Tickets\n\nFor bugs, be as detailed as possible!\n\nOften the limiting factor for fixing a bug is reproducing it.\n\nFor example:\n\nEnvironment setup (OS, browser, app version, etc.)\nReproduction Steps (What precise actions lead to the bug?)\nExpected behaviour (What should have happened?)\nActual behaviour (What actually happened?)\nScreenshots, logs, etc.",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#acceptance-criteria",
-    "href": "slides/2025-03-11_tickets.html#acceptance-criteria",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Acceptance Criteria",
-    "text": "Acceptance Criteria\n\nWhat must be true for the issue to be considered complete?\n\nWritten as bullet points\nExample",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#definition-of-done",
-    "href": "slides/2025-03-11_tickets.html#definition-of-done",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Definition of Done:",
-    "text": "Definition of Done:\n\nAll acceptance criteria are met\nTests and checks pass\nDocumentation is updated when relevant\nCode is reviewed and merged!",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#setup",
-    "href": "slides/2025-03-11_tickets.html#setup",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Setup",
-    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#recap",
-    "href": "slides/2025-03-11_tickets.html#recap",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Recap",
-    "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
     ]
   }
 ]

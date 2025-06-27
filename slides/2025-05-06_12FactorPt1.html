@@ -9,8 +9,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.32">
 
-  <meta name="author" content="Jackson Hoffart">
-  <title>SPD's Brinner and Learn Series – GitHub Best Practices</title>
+  <meta name="author" content="Alex Axthelm">
+  <title>SPD's Brinner and Learn Series – 12 Factor Applications (Pt 1)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -127,164 +127,115 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">GitHub Best Practices</h1>
+  <h1 class="title">12 Factor Applications (Pt 1)</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Jackson Hoffart 
+Alex Axthelm 
 </div>
 </div>
 </div>
 
 </section>
-<section id="general-rule-of-thumb" class="title-slide slide level1 center">
-<h1>General Rule of Thumb</h1>
-<p>A pull request is a request for someone’s time and expertise. Be respectful of that by making your PR as clear, concise and well-prepared as possible.</p>
-</section>
-
 <section>
-<section id="protect-long-lived-branches" class="title-slide slide level1 center">
-<h1>Protect Long-Lived Branches</h1>
+<section id="introduction" class="title-slide slide level1 center">
+<h1>Introduction</h1>
 
 </section>
-<section id="enable-branch-protection-rules" class="slide level2">
-<h2>Enable branch protection rules</h2>
+<section id="motivation" class="slide level2">
+<h2>Motivation</h2>
 <ul>
-<li class="fragment">Protect <code>main</code> (and any other long-lived branches)</li>
-<li class="fragment">Require pull requests before merging</li>
-<li class="fragment">Require minimum 1 approving review</li>
-<li class="fragment">Enforce status checks (CI/CD pipelines, linting, tests)</li>
+<li class="fragment">Developing and Deploying Apps can be difficult</li>
+<li class="fragment">The 12 Factor App methodology provides guidelines that ensure
+<ul>
+<li class="fragment">clarity,</li>
+<li class="fragment">scalability,</li>
+<li class="fragment">maintainability</li>
+</ul></li>
+<li class="fragment">Benefits both developers and operations teams.</li>
+</ul>
+</section>
+<section id="why-are-12-factor-apps-important" class="slide level2">
+<h2>Why are 12 Factor Apps Important?</h2>
+<ul>
+<li class="fragment"><strong>Consistency and predictability</strong> in application behavior.</li>
+<li class="fragment">Simplifies the development lifecycle.</li>
+<li class="fragment">Eases the process of deploying, scaling, and maintaining applications.</li>
+<li class="fragment">Promotes collaboration between development and operations (DevOps).</li>
+</ul>
+</section>
+<section id="best-practices" class="slide level2">
+<h2>Best Practices</h2>
+<p>A lot of these concepts are things that are considered best practices, but collected together.</p>
+<ul>
+<li class="fragment">You are probably already do a bunch of these things</li>
+<li class="fragment">You may not know you do it (it just feels right)</li>
+<li class="fragment">You may not know why you do it (it just seems to work)</li>
+<li class="fragment">You may do it because you were told to (it isn’t broken)</li>
+</ul>
+</section>
+<section id="benefits-for-developers" class="slide level2">
+<h2>Benefits for Developers</h2>
+<ul>
+<li class="fragment">Clear guidelines for application structure and behavior.</li>
+<li class="fragment">Simplified onboarding and reduced cognitive load.</li>
+<li class="fragment">Easier debugging and local development.</li>
+<li class="fragment">Predictable dependencies and environments.</li>
+</ul>
+</section>
+<section id="benefits-for-devopsoperations" class="slide level2">
+<h2>Benefits for DevOps/Operations</h2>
+<ul>
+<li class="fragment">Streamlined deployment and automated management.</li>
+<li class="fragment">Improved reliability and faster issue resolution.</li>
+<li class="fragment">Easier monitoring and logging.</li>
+</ul>
+</section>
+<section id="the-12-factors-brief-overview" class="slide level2">
+<h2>The 12 Factors (Brief Overview)</h2>
+<ol type="1">
+<li class="fragment"><strong>Codebase</strong>: One codebase tracked in version control, many deploys.</li>
+<li class="fragment"><strong>Dependencies</strong>: Explicitly declare and isolate dependencies.</li>
+<li class="fragment"><strong>Config</strong>: Store configuration in the environment.</li>
+<li class="fragment"><strong>Backing Services</strong>: Treat backing services as attached resources.</li>
+<li class="fragment"><strong>Build, Release, Run</strong>: Strictly separate build and run stages.</li>
+<li class="fragment"><strong>Processes</strong>: Execute the app as one or more stateless processes.</li>
+</ol>
+</section>
+<section id="the-12-factors-brief-overview-1" class="slide level2">
+<h2>The 12 Factors (Brief Overview)</h2>
+<ol start="7" type="1">
+<li class="fragment"><strong>Port Binding</strong>: Export services via port binding.</li>
+<li class="fragment"><strong>Concurrency</strong>: Scale out via the process model.</li>
+<li class="fragment"><strong>Disposability</strong>: Maximize robustness with fast startup and graceful shutdown.</li>
+<li class="fragment"><strong>Dev/Prod Parity</strong>: Keep development, staging, and production similar.</li>
+<li class="fragment"><strong>Logs</strong>: Treat logs as event streams.</li>
+<li class="fragment"><strong>Admin Processes</strong>: Run admin tasks as one-off processes.</li>
+</ol>
+</section>
+<section id="examples-of-common-pitfalls" class="slide level2">
+<h2>Examples of Common Pitfalls</h2>
+<ul>
+<li class="fragment">Configuration hardcoded in source code.</li>
+<li class="fragment">Dependencies not clearly defined or versioned.</li>
+<li class="fragment">Stateful processes causing unpredictable behavior.</li>
+<li class="fragment">Significant differences between development and production environments.</li>
+</ul>
+</section>
+<section id="getting-started-with-12-factor-apps" class="slide level2">
+<h2>Getting Started with 12 Factor Apps</h2>
+<ul>
+<li class="fragment"><strong>Review</strong> your current projects against the 12 factors.</li>
+<li class="fragment"><strong>Incrementally adopt</strong> factors as you enhance or refactor projects.</li>
+<li class="fragment">Foster collaboration and awareness across development and operations teams.</li>
 </ul>
 </section>
 <section class="slide level2">
 
-</section></section>
-<section>
-<section id="branching-strategies" class="title-slide slide level1 center">
-<h1>Branching Strategies</h1>
 
-</section>
-<section id="github-flow" class="slide level2">
-<h2>GitHub Flow</h2>
-<ul>
-<li class="fragment">One long-lived branch: <code>main</code></li>
-<li class="fragment"><code>feature</code> branch → PR → Merge to <code>main</code></li>
-<li class="fragment">Simple</li>
-<li class="fragment">Best for continuous delivery</li>
-<li class="fragment">Deploy immediately after merge to <code>main</code></li>
-</ul>
-</section>
-<section id="gitflow" class="slide level2">
-<h2>GitFlow</h2>
-<ul>
-<li class="fragment">Long-lived branches: <code>main</code>, <code>develop</code></li>
-<li class="fragment">Short-lived branches: <code>release</code>, <code>hotfix</code>, <code>feature</code></li>
-<li class="fragment"><code>feature</code> branch -&gt; PR -&gt; Merge to <code>develop</code></li>
-<li class="fragment"><code>release</code> branch or <code>hotfix</code> -&gt; PR -&gt; Merge to <code>main</code> and <code>develop</code></li>
-<li class="fragment">Better for large-scale projects, many devs, scheduled releases</li>
-</ul>
-</section>
-<section class="slide level2">
 
 </section></section>
-<section>
-<section id="anatomy-of-a-bad-pull-request" class="title-slide slide level1 center">
-<h1>Anatomy of a Bad Pull Request</h1>
-
-</section>
-<section id="what-makes-a-pr-bad" class="slide level2">
-<h2>🚫 What makes a PR bad?</h2>
-<ul>
-<li class="fragment">Large &amp; difficult to review</li>
-<li class="fragment">Many unrelated changes</li>
-<li class="fragment">Poor or no description</li>
-<li class="fragment">Unclear commit history</li>
-<li class="fragment">Fails CI/CD checks</li>
-<li class="fragment">Lacks necessary tests</li>
-</ul>
-</section>
-<section id="how-to-improve-prs" class="slide level2">
-<h2>✅ How to improve PRs</h2>
-<ul>
-<li class="fragment">Keep PRs small and focused</li>
-<li class="fragment">Provide a clear summary &amp; context</li>
-<li class="fragment">Write meaningful commit messages</li>
-<li class="fragment">Ensure automated checks pass before requesting review</li>
-<li class="fragment">Add relevant tests &amp; documentation</li>
-<li class="fragment">Explain how a reviewer can test your changes</li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="anatomy-of-a-bad-review" class="title-slide slide level1 center">
-<h1>Anatomy of a Bad Review</h1>
-
-</section>
-<section id="common-bad-practices" class="slide level2">
-<h2>🚫 Common bad practices</h2>
-<ul>
-<li class="fragment">Superficial LGTM approvals</li>
-<li class="fragment">Excessively nitpicky comments</li>
-<li class="fragment">Review lacks a clear status (ie. “Approved”, “Request Changes”, “Close Recommendation”)</li>
-</ul>
-</section>
-<section id="how-to-review-effectively" class="slide level2">
-<h2>✅ How to review effectively</h2>
-<ul>
-<li class="fragment">Clearly state your status: “Approved”, “Request Changes”, “Close Recommendation”</li>
-<li class="fragment">Nitpicky or non-blocking comments should be clearly marked</li>
-<li class="fragment">Be constructive and specific</li>
-<li class="fragment">Validate logic, security, performance</li>
-<li class="fragment">Check for coding standards and test coverage</li>
-<li class="fragment">Ensure documentation is updated when necessary</li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="demo-submitting-a-great-pr" class="title-slide slide level1 center">
-<h1>Demo: Submitting a Great PR</h1>
-<ul>
-<li class="fragment">Create a new branch &amp; make changes</li>
-<li class="fragment">Write clear commit messages</li>
-<li class="fragment">Open a PR with a well-written description</li>
-<li class="fragment">Clearly identify the corresponding GitHub issues or Jira ticket</li>
-<li class="fragment">Assign reviewers and respond to feedback</li>
-<li class="fragment">Merge your own PRs when approved</li>
-<li class="fragment"><a href="https://github.com/RMI-PACTA/r2dii.analysis/pull/460?new_mergebox=true">Example PR</a></li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="demo-reviewing-a-pull-request-well" class="title-slide slide level1 center">
-<h1>Demo: Reviewing a Pull Request Well</h1>
-<ul>
-<li class="fragment">Check for CI/CD failures</li>
-<li class="fragment">Visually inspect changes (e.g.&nbsp;using GitHub diff view)</li>
-<li class="fragment">Review code logic and security concerns</li>
-<li class="fragment">Provide clear and actionable feedback</li>
-<li class="fragment">Approve or request changes with explanations</li>
-<li class="fragment">Confirm proper documentation is in place</li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section id="final-thoughts" class="title-slide slide level1 center">
-<h1>Final Thoughts</h1>
-<p>🔹 Keep branches clean and protected<br>
-🔹 Use PRs as a collaboration tool<br>
-🔹 Follow a branching strategy that fits your workflow<br>
-🔹 Make PRs and reviews effective by being clear, concise, and constructive</p>
-
-
-</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
