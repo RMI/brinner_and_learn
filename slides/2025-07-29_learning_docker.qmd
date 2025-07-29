@@ -8,7 +8,7 @@ author: "Jackson Hoffart"
 
 - 🚀 Docker makes our code portable & consistent across environments.
 - 🔄 We aim to "build once & run anywhere" — local, cloud, CI/CD, etc.
-- 🏗️ Containers help solve dependency conflicts and simplify collaboration.
+- 🏗️ Docker containers help solve dependency conflicts and simplify collaboration.
 
 ::: {.notes}
 The high level pitch. The slide goal is to motivate why Docker matters for data scientists: portability, consistency, and reducing "dependency hell."
@@ -17,18 +17,22 @@ The high level pitch. The slide goal is to motivate why Docker matters for data 
 ---
 
 
-# The "It works on my machine" Problem
+# "But, it works on my machine"
 
-- ❓ Show of hands: ever had code that runs fine locally but fails elsewhere?
+- ❓ Has anyone ever had code that runs perfectly locally but fails elsewhere?
 - ❗ Reproducibility is hard across machines, OS versions, or teammates
-- ✅ Docker helps us create self-contained and portable environments that work anywhere**
+- ✅ Docker helps us create self-contained and portable environments that work anywhere<sup>1</sup>
+
+::: {.fragment}
+<sup>1</sup> Sort of.
+:::
 
 ::: {.notes}
 Audience should connect emotionally to the problem — emphasize pain points they’ve likely experienced. The idea is to set Docker up as the solution to a shared frustration.
 :::
 ---
 
-# What is Docker?
+# So, what is Docker?
 
 - A **containerization** platform
 - Bundles code, libraries, and environment into one unit
