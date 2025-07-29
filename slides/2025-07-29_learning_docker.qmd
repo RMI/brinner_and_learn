@@ -1,0 +1,126 @@
+---
+engine: "knitr"
+title: "Learning Docker"
+author: "Jackson Hoffart"
+---
+
+# Learning Docker
+
+- 🚀 Docker makes our code portable & consistent across environments.
+- 🔄 We aim to "build once & run anywhere" — local, cloud, CI/CD, etc.
+- 🏗️ Containers help solve dependency conflicts and simplify collaboration.
+
+::: {.notes}
+The high level pitch. The slide goal is to motivate why Docker matters for data scientists: portability, consistency, and reducing "dependency hell."
+:::
+
+---
+
+
+# The "It works on my machine" Problem
+
+- ❓ Show of hands: ever had code that runs fine locally but fails elsewhere?
+- ❗ Reproducibility is hard across machines, OS versions, or teammates
+- ✅ Docker helps us create self-contained and portable environments that work anywhere**
+
+::: {.notes}
+Audience should connect emotionally to the problem — emphasize pain points they’ve likely experienced. The idea is to set Docker up as the solution to a shared frustration.
+:::
+---
+
+# What is Docker?
+
+- A **containerization** platform
+- Bundles code, libraries, and environment into one unit
+- Think of it as a "lightweight virtual computer"
+- Ensures consistency and reproducibility
+
+::: {.notes}
+Introduce Docker at a high level. Key takeaway: Docker packages everything your Python script needs to run — dependencies, system libraries, etc.
+:::
+---
+
+# Core Concepts
+
+- **Image**: The blueprint (like a saved environment)
+- **Container**: A running instance of an image
+- **Dockerfile**: Instructions for how to build an image
+- **Registry**: Where images are stored/shared (e.g. Docker Hub, GHCR)
+
+::: {.notes}
+Audience gets a first look at key terms. You can use analogies like: image = cake recipe, container = actual cake, Dockerfile = recipe card.
+:::
+---
+
+# Dockerfile: The Recipe
+
+```Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "script.py"]
+```
+
+::: {.notes}
+Goal: Show that defining a Docker image is just writing a simple file. Emphasize how readable and reproducible this is.
+:::
+
+# Build & Run Your Container
+``` bash
+docker build -t my-python-app .
+docker run my-python-app
+```
+
+- `build`: creates an **image** from a **Dockerfile**
+- `run`: launches the **container** using that **image**
+
+::: {.notes}
+Demystify the commands. Help them remember: Build = prepare environment, Run = execute your code inside it.
+:::
+
+
+# Common Data Science Use Cases
+- Share Jupyter notebooks with all dependencies
+- Run scheduled pipelines reliably
+- Train models in consistent environments
+- Ensure old analyses still work later
+- Integrate easily with CI/CD pipelines
+
+::: {.notes}
+Make Docker real for them. These are specific use cases they’ll care about. Invite them to imagine using Docker in their own projects.
+:::
+
+# Pro tips: Docker Best Practices
+- 📌 Pin all dependency versions
+- 📁 Use .dockerignore
+- 🧱 Layer instructions efficiently
+- 🏷️ Tag images clearly
+- 🔒 Avoid root unless absolutely necessary
+
+::: {.notes}
+Expose the "pro tips" that help them avoid common pitfalls as they start using Docker. These tips build good habits early.
+:::
+
+# Summary
+
+- ✅ Docker solves "it works on my machine"
+- ✅ Simple, readable files to define environments
+- ✅ Great fit for Python data science workflows
+- ✅ Paves the way for production & collaboration
+
+::: {.notes}
+Reinforce the core takeaways before Q&A. Remind them: Docker is simple to start with, and pays dividends quickly.
+:::
+
+# Q&A
+- 💬 Questions, use cases, confusions?
+
+::: {.notes}
+Allow time for discussion or a quick group demo. Optionally offer to live-debug a student’s Dockerfile.
+:::
+
+# Resources
+- Docker tutorial for beginners: https://docker-curriculum.com/
+- Docker documentation: https://docs.docker.com/
