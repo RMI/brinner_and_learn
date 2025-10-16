@@ -19,6 +19,8 @@ website:
         target: tickets
       - file: slides/2025-04-08_data_pipeline_manifest.qmd
         target: data_pipeline_manifest
+      - file: slides/2025-10-21_text_encoding.qmd
+        target: text_encoding
 
 format:
   html:
