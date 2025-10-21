@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://RMI.github.io/brinner_and_learn/index.html</loc>
-    <lastmod>2025-08-04T10:23:08.119Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-07-29_learning_docker.html</loc>
-    <lastmod>2025-08-04T10:23:08.122Z</lastmod>
-  </url>
-  <url>
-    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-05-06_12FactorPt1.html</loc>
-    <lastmod>2025-08-04T10:23:08.121Z</lastmod>
+    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-01-31_tdd_presentation.html</loc>
+    <lastmod>2025-10-21T11:53:17.466Z</lastmod>
   </url>
   <url>
     <loc>https://RMI.github.io/brinner_and_learn/slides/2025-03-11_tickets.html</loc>
-    <lastmod>2025-08-04T10:23:08.121Z</lastmod>
+    <lastmod>2025-10-21T11:53:17.466Z</lastmod>
   </url>
   <url>
-    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-06-03_twelve_factor_demo.html</loc>
-    <lastmod>2025-08-04T10:23:08.121Z</lastmod>
+    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-10-21_text_encoding.html</loc>
+    <lastmod>2025-10-21T11:53:17.467Z</lastmod>
   </url>
   <url>
-    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-01-31_tdd_presentation.html</loc>
-    <lastmod>2025-08-04T10:23:08.121Z</lastmod>
+    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-07-29_learning_docker.html</loc>
+    <lastmod>2025-10-21T11:53:17.467Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-05-06_12FactorPt1.html</loc>
+    <lastmod>2025-10-21T11:53:17.466Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RMI.github.io/brinner_and_learn/index.html</loc>
+    <lastmod>2025-10-21T11:53:17.464Z</lastmod>
   </url>
   <url>
     <loc>https://RMI.github.io/brinner_and_learn/slides/2025-02-11_pr_practices.html</loc>
-    <lastmod>2025-08-04T10:23:08.121Z</lastmod>
+    <lastmod>2025-10-21T11:53:17.466Z</lastmod>
   </url>
   <url>
     <loc>https://RMI.github.io/brinner_and_learn/slides/2025-04-08_data_pipeline_manifest.html</loc>
-    <lastmod>2025-08-04T10:23:08.121Z</lastmod>
+    <lastmod>2025-10-21T11:53:17.466Z</lastmod>
   </url>
   <url>
     <loc>https://RMI.github.io/brinner_and_learn/slides/2025-04-24_python_testing_101.html</loc>
-    <lastmod>2025-08-04T10:23:08.121Z</lastmod>
+    <lastmod>2025-10-21T11:53:17.466Z</lastmod>
+  </url>
+  <url>
+    <loc>https://RMI.github.io/brinner_and_learn/slides/2025-06-03_twelve_factor_demo.html</loc>
+    <lastmod>2025-10-21T11:53:17.466Z</lastmod>
   </url>
 </urlset>

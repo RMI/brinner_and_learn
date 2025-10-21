@@ -6,11 +6,14 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <meta name="author" content="Jackson Hoffart">
-  <title>SPD's Brinner and Learn Series – GitHub Best Practices</title>
+  <meta name="author" content="CJ Yetman">
+  <title>SPD's Brinner and Learn Series – Text Encoding</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -127,161 +130,280 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">GitHub Best Practices</h1>
+  <h1 class="title">Text Encoding</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Jackson Hoffart 
+CJ Yetman 
 </div>
 </div>
 </div>
 
 </section>
-<section id="general-rule-of-thumb" class="title-slide slide level1 center">
-<h1>General Rule of Thumb</h1>
-<p>A pull request is a request for someone’s time and expertise. Be respectful of that by making your PR as clear, concise and well-prepared as possible.</p>
-</section>
-
 <section>
-<section id="protect-long-lived-branches" class="title-slide slide level1 center">
-<h1>Protect Long-Lived Branches</h1>
-
-</section>
-<section id="enable-branch-protection-rules" class="slide level2">
-<h2>Enable branch protection rules</h2>
+<section id="communicating-with-computers" class="title-slide slide level1 center">
+<h1>Communicating with computers</h1>
 <ul>
-<li class="fragment">Protect <code>main</code> (and any other long-lived branches)</li>
-<li class="fragment">Require pull requests before merging</li>
-<li class="fragment">Require minimum 1 approving review</li>
-<li class="fragment">Enforce status checks (CI/CD pipelines, linting, tests)</li>
+<li class="fragment">“computers speak in 1’s and 0’s”</li>
+<li class="fragment">humans (typically) read/write in some script</li>
+<li class="fragment">challenge: try saying “Hello World” in binary</li>
 </ul>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="branching-strategies" class="title-slide slide level1 center">
-<h1>Branching Strategies</h1>
+<section id="text-encoding" class="title-slide slide level1 center">
+<h1>Text Encoding</h1>
+<ul>
+<li class="fragment">a “code” for translating between binary and characters</li>
+<li class="fragment">e.g.&nbsp;1101001 == i</li>
+</ul>
+<aside class="notes">
 
-</section>
-<section id="github-flow" class="slide level2">
-<h2>GitHub Flow</h2>
-<ul>
-<li class="fragment">One long-lived branch: <code>main</code></li>
-<li class="fragment"><code>feature</code> branch → PR → Merge to <code>main</code></li>
-<li class="fragment">Simple</li>
-<li class="fragment">Best for continuous delivery</li>
-<li class="fragment">Deploy immediately after merge to <code>main</code></li>
-</ul>
-</section>
-<section id="gitflow" class="slide level2">
-<h2>GitFlow</h2>
-<ul>
-<li class="fragment">Long-lived branches: <code>main</code>, <code>develop</code></li>
-<li class="fragment">Short-lived branches: <code>release</code>, <code>hotfix</code>, <code>feature</code></li>
-<li class="fragment"><code>feature</code> branch -&gt; PR -&gt; Merge to <code>develop</code></li>
-<li class="fragment"><code>release</code> branch or <code>hotfix</code> -&gt; PR -&gt; Merge to <code>main</code> and <code>develop</code></li>
-<li class="fragment">Better for large-scale projects, many devs, scheduled releases</li>
-</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="anatomy-of-a-bad-pull-request" class="title-slide slide level1 center">
-<h1>Anatomy of a Bad Pull Request</h1>
+<section id="ascii" class="title-slide slide level1 center">
+<h1>ASCII</h1>
+<ul>
+<li class="fragment">American Standard Code for Information Interchange</li>
+<li class="fragment">first published 1963</li>
+<li class="fragment">characteristics: 7-bit, 127 characters, some control characters</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/ASCII_Table_%28suitable_for_printing%29.svg/2560px-ASCII_Table_%28suitable_for_printing%29.svg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="ASCII Table"><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/ASCII_Table_%28suitable_for_printing%29.svg/2560px-ASCII_Table_%28suitable_for_printing%29.svg.png" alt="ASCII Table"></a></p>
+<figcaption>ASCII Table</figcaption>
+</figure>
+</div>
+<aside class="notes">
 
-</section>
-<section id="what-makes-a-pr-bad" class="slide level2">
-<h2>🚫 What makes a PR bad?</h2>
-<ul>
-<li class="fragment">Large &amp; difficult to review</li>
-<li class="fragment">Many unrelated changes</li>
-<li class="fragment">Poor or no description</li>
-<li class="fragment">Unclear commit history</li>
-<li class="fragment">Fails CI/CD checks</li>
-<li class="fragment">Lacks necessary tests</li>
-</ul>
-</section>
-<section id="how-to-improve-prs" class="slide level2">
-<h2>✅ How to improve PRs</h2>
-<ul>
-<li class="fragment">Keep PRs small and focused</li>
-<li class="fragment">Provide a clear summary &amp; context</li>
-<li class="fragment">Write meaningful commit messages</li>
-<li class="fragment">Ensure automated checks pass before requesting review</li>
-<li class="fragment">Add relevant tests &amp; documentation</li>
-<li class="fragment">Explain how a reviewer can test your changes</li>
-</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="anatomy-of-a-bad-review" class="title-slide slide level1 center">
-<h1>Anatomy of a Bad Review</h1>
+<section id="where-are-they-used" class="title-slide slide level1 center">
+<h1>Where are they used?</h1>
+<ul>
+<li class="fragment">reading/writing text based files</li>
+<li class="fragment">console/terminal/shell display</li>
+<li class="fragment">data (e.g.&nbsp;CSV), source code, config files</li>
+</ul>
+<aside class="notes">
 
-</section>
-<section id="common-bad-practices" class="slide level2">
-<h2>🚫 Common bad practices</h2>
-<ul>
-<li class="fragment">Superficial LGTM approvals</li>
-<li class="fragment">Excessively nitpicky comments</li>
-<li class="fragment">Review lacks a clear status (ie. “Approved”, “Request Changes”, “Close Recommendation”)</li>
-</ul>
-</section>
-<section id="how-to-review-effectively" class="slide level2">
-<h2>✅ How to review effectively</h2>
-<ul>
-<li class="fragment">Clearly state your status: “Approved”, “Request Changes”, “Close Recommendation”</li>
-<li class="fragment">Nitpicky or non-blocking comments should be clearly marked</li>
-<li class="fragment">Be constructive and specific</li>
-<li class="fragment">Validate logic, security, performance</li>
-<li class="fragment">Check for coding standards and test coverage</li>
-<li class="fragment">Ensure documentation is updated when necessary</li>
-</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="demo-submitting-a-great-pr" class="title-slide slide level1 center">
-<h1>Demo: Submitting a Great PR</h1>
+<section id="what-encodings-exist" class="title-slide slide level1 center">
+<h1>What encodings exist?</h1>
 <ul>
-<li class="fragment">Create a new branch &amp; make changes</li>
-<li class="fragment">Write clear commit messages</li>
-<li class="fragment">Open a PR with a well-written description</li>
-<li class="fragment">Clearly identify the corresponding GitHub issues or Jira ticket</li>
-<li class="fragment">Assign reviewers and respond to feedback</li>
-<li class="fragment">Merge your own PRs when approved</li>
-<li class="fragment"><a href="https://github.com/RMI-PACTA/r2dii.analysis/pull/460?new_mergebox=true">Example PR</a></li>
+<li class="fragment">many!</li>
+<li class="fragment">ASCII (American Standard Code for Information Interchange)</li>
+<li class="fragment">Windows-1252</li>
+<li class="fragment">UTF-8 (Unicode Transformation Format – 8-bit)
+<ul>
+<li class="fragment">created in 1992</li>
+<li class="fragment">uses 1-4 8-bit bytes: capable of encoding all 1,112,064 Unicode characters</li>
+</ul></li>
 </ul>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="demo-reviewing-a-pull-request-well" class="title-slide slide level1 center">
-<h1>Demo: Reviewing a Pull Request Well</h1>
+<section id="what-happened-why-is-it-a-problem" class="title-slide slide level1 center">
+<h1>What happened? Why is it a problem?</h1>
 <ul>
-<li class="fragment">Check for CI/CD failures</li>
-<li class="fragment">Visually inspect changes (e.g.&nbsp;using GitHub diff view)</li>
-<li class="fragment">Review code logic and security concerns</li>
-<li class="fragment">Provide clear and actionable feedback</li>
-<li class="fragment">Approve or request changes with explanations</li>
-<li class="fragment">Confirm proper documentation is in place</li>
+<li class="fragment">localized/nationalized versions of ASCII would share most characters in common, but assign other locally useful characters to several code points reserved for “national use”</li>
+<li class="fragment">without a standard to stick to, lots of overlap occurred</li>
+<li class="fragment">new standards like Windows-1252 and UTF-8 did the same… used ASCII as a basis for backwards-compatibility sake, and then added more on top of it, which made overlaps possible/likely</li>
+<li class="fragment">BOM (byte order mark) - potential solution, but has it’s own problems</li>
+<li class="fragment">now it’s very hard to know 100% for sure what encoding was used to encode a file!</li>
 </ul>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
 </section></section>
-<section id="final-thoughts" class="title-slide slide level1 center">
-<h1>Final Thoughts</h1>
-<p>🔹 Keep branches clean and protected<br>
-🔹 Use PRs as a collaboration tool<br>
-🔹 Follow a branching strategy that fits your workflow<br>
-🔹 Make PRs and reviews effective by being clear, concise, and constructive</p>
+<section>
+<section id="what-problems-am-i-likely-to-see" class="title-slide slide level1 center">
+<h1>What problems am I likely to see?</h1>
+<ul>
+<li class="fragment">text you read in is garbled, i.e.&nbsp;Mojibake</li>
+<li class="fragment">characters replaced by very similar looking alternate characters</li>
+<li class="fragment">text you see on screen in the Console or Viewer doesn’t match what you read in or write out</li>
+<li class="fragment">comparing strings fails to match when it “should”</li>
+</ul>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="what-can-i-do-about-it" class="title-slide slide level1 center">
+<h1>What can I do about it?</h1>
+<ul>
+<li class="fragment">Set default text encoding (for saving) to UTF-8</li>
+<li class="fragment">Set file encoding explicitly when reading or writing files</li>
+<li class="fragment">Set a standard and stick to it (e.g.&nbsp;UTF-8)</li>
+<li class="fragment">be conscious about it!</li>
+</ul>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="demo-time" class="title-slide slide level1 center">
+<h1>Demo time</h1>
+<p><code>live_demos/2025-10-21_text_encoding_demo/encodings_experiment.R</code></p>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+<ul>
+<li class="fragment">💬 Questions, use cases, confusions?</li>
+</ul>
+<aside class="notes">
+<p>Allow time for discussion or a quick group demo. Optionally offer to live-debug a student’s Dockerfile.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+
+<section id="resources" class="title-slide slide level1 center">
+<h1>Resources</h1>
+<ul>
+<li class="fragment">ASCII article on Wikipedia: https://en.wikipedia.org/wiki/ASCII</li>
+<li class="fragment">ASCII table shown above: https://en.wikipedia.org/wiki/ASCII#/media/File:ASCII_Table_(suitable_for_printing).svg</li>
+<li class="fragment">UNICODE</li>
+<li class="fragment">Mojibake - https://en.wikipedia.org/wiki/Mojibake</li>
+</ul>
 
 
 </section>
@@ -711,6 +833,38 @@ Jackson Hoffart
         }
       });
       </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
     
 
 </body></html>

@@ -1,12 +1,92 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 1: Write a Test (Red Phase)",
+    "text": "Step 1: Write a Test (Red Phase)\n\nIdentify a small, testable unit of functionality.\nWrite a test that asserts the expected behavior.\nRun the test (it should fail since the implementation doesn’t exist yet).\n\n\nimport pytest\n\ndef test_addition():\n    assert add(2, 3) == 5  # Function doesn't exist yet",
     "crumbs": [
-      "Welcome"
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 2: Write Minimal Code to Pass the Test (Green Phase)",
+    "text": "Step 2: Write Minimal Code to Pass the Test (Green Phase)\n\nImplement only the necessary code to make the test pass.\n\n\ndef add(a, b):\n    return a + b\n\n\nRun the test again (it should pass now).",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 3: Refactor the Code (Refactor Phase)",
+    "text": "Step 3: Refactor the Code (Refactor Phase)\n\nClean up the implementation without changing behavior.\nEnsure all tests still pass after refactoring.\n\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b  # Adding types",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
+    "href": "slides/2025-03-11_tickets.html#feature-tickets",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Feature Tickets",
+    "text": "Feature Tickets\n\nFor features, try to include a user story:\n\ne.g. “As a registered user, I might forget my password and want to regain access to my account securely.”\n\nWhen possible, supplement the user story with unambiguous acceptance criteria",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#bug-tickets",
+    "href": "slides/2025-03-11_tickets.html#bug-tickets",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Bug Tickets",
+    "text": "Bug Tickets\n\nFor bugs, be as detailed as possible!\n\nOften the limiting factor for fixing a bug is reproducing it.\n\nFor example:\n\nEnvironment setup (OS, browser, app version, etc.)\nReproduction Steps (What precise actions lead to the bug?)\nExpected behaviour (What should have happened?)\nActual behaviour (What actually happened?)\nScreenshots, logs, etc.",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#acceptance-criteria",
+    "href": "slides/2025-03-11_tickets.html#acceptance-criteria",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Acceptance Criteria",
+    "text": "Acceptance Criteria\n\nWhat must be true for the issue to be considered complete?\n\nWritten as bullet points\nExample",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#definition-of-done",
+    "href": "slides/2025-03-11_tickets.html#definition-of-done",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Definition of Done:",
+    "text": "Definition of Done:\n\nAll acceptance criteria are met\nTests and checks pass\nDocumentation is updated when relevant\nCode is reviewed and merged!",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#setup",
+    "href": "slides/2025-03-11_tickets.html#setup",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Setup",
+    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#recap",
+    "href": "slides/2025-03-11_tickets.html#recap",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Recap",
+    "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
     ]
   },
   {
@@ -73,93 +153,13 @@
     "text": "Getting Started with 12 Factor Apps\n\nReview your current projects against the 12 factors.\nIncrementally adopt factors as you enhance or refactor projects.\nFoster collaboration and awareness across development and operations teams."
   },
   {
-    "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
-    "href": "slides/2025-03-11_tickets.html#feature-tickets",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Feature Tickets",
-    "text": "Feature Tickets\n\nFor features, try to include a user story:\n\ne.g. “As a registered user, I might forget my password and want to regain access to my account securely.”\n\nWhen possible, supplement the user story with unambiguous acceptance criteria",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
     "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#bug-tickets",
-    "href": "slides/2025-03-11_tickets.html#bug-tickets",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Bug Tickets",
-    "text": "Bug Tickets\n\nFor bugs, be as detailed as possible!\n\nOften the limiting factor for fixing a bug is reproducing it.\n\nFor example:\n\nEnvironment setup (OS, browser, app version, etc.)\nReproduction Steps (What precise actions lead to the bug?)\nExpected behaviour (What should have happened?)\nActual behaviour (What actually happened?)\nScreenshots, logs, etc.",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#acceptance-criteria",
-    "href": "slides/2025-03-11_tickets.html#acceptance-criteria",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Acceptance Criteria",
-    "text": "Acceptance Criteria\n\nWhat must be true for the issue to be considered complete?\n\nWritten as bullet points\nExample",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#definition-of-done",
-    "href": "slides/2025-03-11_tickets.html#definition-of-done",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Definition of Done:",
-    "text": "Definition of Done:\n\nAll acceptance criteria are met\nTests and checks pass\nDocumentation is updated when relevant\nCode is reviewed and merged!",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#setup",
-    "href": "slides/2025-03-11_tickets.html#setup",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Setup",
-    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#recap",
-    "href": "slides/2025-03-11_tickets.html#recap",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Recap",
-    "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 1: Write a Test (Red Phase)",
-    "text": "Step 1: Write a Test (Red Phase)\n\nIdentify a small, testable unit of functionality.\nWrite a test that asserts the expected behavior.\nRun the test (it should fail since the implementation doesn’t exist yet).\n\n\nimport pytest\n\ndef test_addition():\n    assert add(2, 3) == 5  # Function doesn't exist yet",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 2: Write Minimal Code to Pass the Test (Green Phase)",
-    "text": "Step 2: Write Minimal Code to Pass the Test (Green Phase)\n\nImplement only the necessary code to make the test pass.\n\n\ndef add(a, b):\n    return a + b\n\n\nRun the test again (it should pass now).",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 3: Refactor the Code (Refactor Phase)",
-    "text": "Step 3: Refactor the Code (Refactor Phase)\n\nClean up the implementation without changing behavior.\nEnsure all tests still pass after refactoring.\n\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b  # Adding types",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
+      "Welcome"
     ]
   },
   {
