@@ -1,0 +1,132 @@
+---
+engine: "knitr"
+title: "Text Encoding"
+author: "CJ Yetman"
+---
+
+# Communicating with computers
+
+- "computers speak in 1's and 0's"
+- humans (typically) read/write in some script
+- challenge: try saying "Hello World" in binary
+
+::: {.notes}
+
+:::
+
+---
+
+# Text Encoding
+
+- a “code” for translating between binary and characters
+- e.g. 1101001 == i
+
+::: {.notes}
+
+:::
+
+---
+
+# ASCII
+
+- American Standard Code for Information Interchange
+- first published 1963
+- characteristics: 7-bit, 127 characters, some control characters
+
+![ASCII Table](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/ASCII_Table_%28suitable_for_printing%29.svg/2560px-ASCII_Table_%28suitable_for_printing%29.svg.png){.lightbox}
+
+::: {.notes}
+
+:::
+
+---
+
+# Where are they used?
+
+- reading/writing text based files
+- console/terminal/shell display
+- data (e.g. CSV), source code, config files
+
+::: {.notes}
+
+:::
+
+---
+
+# What encodings exist?
+
+-	many!
+-	ASCII (American Standard Code for Information Interchange)
+-	Windows-1252
+-	UTF-8 (Unicode Transformation Format – 8-bit)
+    -	created in 1992
+    -	uses 1-4 8-bit bytes: capable of encoding all 1,112,064 Unicode characters
+
+::: {.notes}
+
+:::
+
+---
+
+# What happened? Why is it a problem?
+
+-	localized/nationalized versions of ASCII would share most characters in common, but assign other locally useful characters to several code points reserved for "national use"
+-	without a standard to stick to, lots of overlap occurred
+-	new standards like Windows-1252 and UTF-8 did the same… used ASCII as a basis for backwards-compatibility sake, and then added more on top of it, which made overlaps possible/likely
+-	BOM (byte order mark) - potential solution, but has it’s own problems
+-	now it’s very hard to know 100% for sure what encoding was used to encode a file!
+
+::: {.notes}
+
+:::
+
+---
+
+# What problems am I likely to see?
+
+-	text you read in is garbled, i.e. Mojibake
+  - characters replaced by very similar looking alternate characters
+-	text you see on screen in the Console or Viewer doesn’t match what you read in or write out
+-	comparing strings fails to match when it “should”
+
+::: {.notes}
+
+:::
+
+---
+
+# What can I do about it?
+
+-	Set default text encoding (for saving) to UTF-8
+-	Set file encoding explicitly when reading or writing files
+-	Set a standard and stick to it (e.g. UTF-8)
+- be conscious about it!
+
+::: {.notes}
+
+:::
+
+---
+
+# Demo time
+
+`live_demos/2025-10-21_text_encoding_demo/encodings_experiment.R`
+
+::: {.notes}
+
+:::
+
+---
+
+# Q&A
+- 💬 Questions, use cases, confusions?
+
+::: {.notes}
+Allow time for discussion or a quick group demo. Optionally offer to live-debug a student’s Dockerfile.
+:::
+
+# Resources
+- ASCII article on Wikipedia: https://en.wikipedia.org/wiki/ASCII
+- ASCII table shown above: https://en.wikipedia.org/wiki/ASCII#/media/File:ASCII_Table_(suitable_for_printing).svg
+- UNICODE
+- Mojibake - https://en.wikipedia.org/wiki/Mojibake
