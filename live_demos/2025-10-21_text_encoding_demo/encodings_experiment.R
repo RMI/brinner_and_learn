@@ -1,12 +1,11 @@
-
 # get the path to an example CSV file from the readr package
 csv_file <- readr::readr_example("mtcars.csv")
-
 
 # read the CSV with base R's read.csv function with default options
 read.csv(csv_file)
 
 # check what the default option for read.csv's fileEncoding option
+# read.csv(csv_file, fileEncoding = ???)
 getOption("encoding")
 Sys.getlocale("LC_CTYPE")
 
@@ -23,7 +22,6 @@ write.csv(csv_data, file.path(tempdir(), "utf8.csv"), fileEncoding = "UTF-8")
 
 
 
-
 # try the readr packages equivalents
 readr::read_csv(csv_file)
 
@@ -35,7 +33,6 @@ readr::write_csv(csv_data, file.path(tempdir(), "unknown_encoding_readr.csv"))
 
 
 
-
 # guess the encoding of a file
 # stringi::stri_enc_detect()
 readr::guess_encoding(csv_file)
@@ -44,8 +41,14 @@ readr::guess_encoding(csv_file, n_max = -1, threshold = 0.8)
 
 readr::guess_encoding(file.path(tempdir(), "unknown_encoding_readr.csv"))
 
-readr::guess_encoding("a\n\u00b5\u00b5")
-readr::guess_encoding("a\n\u00b5\u00b5", threshold = 0.09)
+"a\n\u00b5\u00bc"
+readr::guess_encoding("a\n\u00b5\u00bc")
+readr::guess_encoding("a\n\u00b5\u00bc", threshold = 0.09)
+readr::read_csv(file = I("a\n\u00b5\u00bc"))
+readr::read_csv(
+  file = I("a\n\u00b5\u00bc"),
+  locale = readr::locale(encoding = "EUC-JP")
+)
 
 
 
@@ -110,6 +113,3 @@ readr::guess_encoding(tmpfile)
 readr::read_csv(tmpfile, locale = readr::locale(encoding = "windows-1250"))
 readr::read_csv(tmpfile, locale = readr::locale(encoding = "UTF-8"))
 
-
-# check the locale/encoding of your Console
-Sys.getlocale("LC_CTYPE")

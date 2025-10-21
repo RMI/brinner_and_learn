@@ -29,7 +29,8 @@ author: "CJ Yetman"
 
 # ASCII
 
-- when/why
+- American Standard Code for Information Interchange
+- first published 1963
 - characteristics: 7-bit, 127 characters, some control characters
 
 ![ASCII Table](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/ASCII_Table_%28suitable_for_printing%29.svg/2560px-ASCII_Table_%28suitable_for_printing%29.svg.png){.lightbox}
@@ -56,13 +57,10 @@ author: "CJ Yetman"
 
 -	many!
 -	ASCII (American Standard Code for Information Interchange)
-  -	first published 1963
-  -	originally based on the English alphabet
-  -	encodes 128 specified characters into seven-bit integers
 -	Windows-1252
 -	UTF-8 (Unicode Transformation Format – 8-bit)
-  -	created in 1992
-  -	uses 1-4 8-bit bytes: capable of encoding all 1,112,064 Unicode
+    -	created in 1992
+    -	uses 1-4 8-bit bytes: capable of encoding all 1,112,064 Unicode characters
 
 ::: {.notes}
 
@@ -112,7 +110,7 @@ author: "CJ Yetman"
 
 # Demo time
 
-encodings_experiment.R
+`live_demos/2025-10-21_text_encoding_demo/encodings_experiment.R`
 
 ::: {.notes}
 
