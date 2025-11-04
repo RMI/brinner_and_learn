@@ -1,0 +1,115 @@
+---
+engine: "knitr"
+title: "OKRs 101"
+subtitle: "Driving Decarbonization through Focused Impact"
+author: "Jackson Hoffart"
+---
+
+## 🏎️ Will it make the car go faster?
+
+- Red Bull's Formula 1 Racing team asks one question before every decision:  
+- **“Will it make the car go faster?”**
+
+- If the answer is no, it’s **not a priority**.  
+- Everyone from the pit crew to the strategist knows the same goal.
+
+- For RMI, that question might be more like:  
+- **“Will it drive decarbonization?”**
+
+- This question helps us focus our energy and creativity on work that accelerates impact — the equivalent of making our car go faster.
+
+---
+
+## 🎯 Why are we talking about OKRs?
+
+**Objectives** and **Key Results** help bridge our day-to-day work with SPD’s broader mission:
+
+ - *Enabling public and private sector actors to make energy transition decisions using SPD products.*
+
+- They:
+  - Define what to prioritize and (often more crucially) **what not to**.  
+  - Help every team member align on outcomes that *move the needle*.  
+  - Connect organization, team, and personal objectives to measurable outcomes.  
+
+---
+
+## ⚙️ OKR Fundamentals
+
+Good OKRs always focus on **outcomes** and not activities.
+
+- **Objective:** What we want to achieve 
+- **Key Results:** How we’ll measure success 
+- Each KR must be measurable and collectively signal achievement of the Objective.
+
+---
+
+## 🧩 Anatomy of a Good OKR
+
+- Example Objective:  
+  - *Ensure every SPD product delivers impact and engagement, not just technical completion.*
+
+- Key Results:
+  - All new project concepts validated with real users (0–1.0)  
+  - All new project proposals budgeted for comms & design (0–1.0)  
+  - All product launches include a “splash” marketing moment (0–1.0)  
+  - Collaboration process defined with Influence team (0–1.0)
+
+---
+
+## 🧮 Stretch and Grade
+
+If you always hit 100%, your goals aren’t ambitious enough.
+
+- Key Results shouldn’t be binary “done/not done.”  
+- We use a **0–1.0 scale** to track progress.  
+- **~0.7** indicates we’re at the right level of stretch — ambitious but achievable.  
+- OKRs are designed to **push learning**, not **punish shortfalls**.
+
+---
+
+## ⚠️ Common Pitfalls
+
+- OKRs should be:
+  - Few in number  
+  - Measurable  
+  - Focused on **value**, not **activity**  
+
+- Avoid:
+  - Confusing outputs: 🚫 “deploy web application to production and publish blog post”)
+  - with outcomes: ✅ "X% of pilot users log in more than twice within the first month”)
+  - Setting too many OKRs — **focus is power**  
+  - Writing vague or unmeasurable goals (“do more research”)  
+
+---
+
+## 🏗️ How SPD Uses OKRs
+
+- We decide what’s most important each quarter  
+- We measure progress toward outcomes, not outputs  
+- We keep workload realistic to prevent burnout  
+- We maintain alignment and velocity across the team  
+
+---
+
+## 🧭 How Are OKRs Different From OOMs?
+
+| Concept | Purpose |
+|----------|----------|
+| **OOMs** | Report organizational milestones & long-term yearly targets |
+| **OKRs** | Ground each quarter in actionable, measurable goals that connect to daily work and sprint backlogs |
+
+---
+
+## 💻 Hands-On — OKRs in Jira Goals
+
+- [Demo time!](https://home.atlassian.com/o/a7020167-8d93-404e-b47c-22b23b71ef75/goals?cloudId=311023b8-9893-499f-bd2d-b49593c1499e&tql=(archived%20%3D%20false)&viewTab=all)
+
+
+---
+
+## 📚 Resources
+
+- [Google OKR Guidance](https://rework.withgoogle.com/intl/en/guides/set-goals-with-okrs)
+- [Google OKR Video](https://youtu.be/mJB83EZtAjc)
+
+---

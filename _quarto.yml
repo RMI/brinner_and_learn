@@ -21,6 +21,8 @@ website:
         target: data_pipeline_manifest
       - file: slides/2025-10-21_text_encoding.qmd
         target: text_encoding
+      - file: slides/2025-11-04_okrs.qmd
+        target: okrs
 
 format:
   html:
