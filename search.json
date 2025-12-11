@@ -130,74 +130,137 @@
     ]
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#what-is-a-unit-test",
-    "href": "slides/2025-04-24_python_testing_101.html#what-is-a-unit-test",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "What is a Unit Test?",
-    "text": "What is a Unit Test?\n\nA unit test checks that a small unit of code works as expected.\nUsually a single function or method.\nHelps you catch bugs early, refactor confidently, and build better software."
+    "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
+    "href": "slides/2025-03-11_tickets.html#feature-tickets",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Feature Tickets",
+    "text": "Feature Tickets\n\nFor features, try to include a user story:\n\ne.g. “As a registered user, I might forget my password and want to regain access to my account securely.”\n\nWhen possible, supplement the user story with unambiguous acceptance criteria",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#why-should-data-scientists-care",
-    "href": "slides/2025-04-24_python_testing_101.html#why-should-data-scientists-care",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Why Should Data Scientists Care?",
-    "text": "Why Should Data Scientists Care?\n\nPrevent breaking your analysis pipeline accidentally.\nAdd guardrails for complex logic (e.g., custom transforms).\nMake code easier to reuse and maintain."
+    "objectID": "slides/2025-03-11_tickets.html#bug-tickets",
+    "href": "slides/2025-03-11_tickets.html#bug-tickets",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Bug Tickets",
+    "text": "Bug Tickets\n\nFor bugs, be as detailed as possible!\n\nOften the limiting factor for fixing a bug is reproducing it.\n\nFor example:\n\nEnvironment setup (OS, browser, app version, etc.)\nReproduction Steps (What precise actions lead to the bug?)\nExpected behaviour (What should have happened?)\nActual behaviour (What actually happened?)\nScreenshots, logs, etc.",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#unit-testing-workflow",
-    "href": "slides/2025-04-24_python_testing_101.html#unit-testing-workflow",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Unit Testing Workflow",
-    "text": "Unit Testing Workflow\n\nWrite failing test -&gt; Run with pytest (It should fail)\nWrite just enough code to pass -&gt; Re-run pytest\nSee it pass 🎉\nRefactor code if needed\nRepeat 🔁"
+    "objectID": "slides/2025-03-11_tickets.html#acceptance-criteria",
+    "href": "slides/2025-03-11_tickets.html#acceptance-criteria",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Acceptance Criteria",
+    "text": "Acceptance Criteria\n\nWhat must be true for the issue to be considered complete?\n\nWritten as bullet points\nExample",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#best-practices",
-    "href": "slides/2025-04-24_python_testing_101.html#best-practices",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "objectID": "slides/2025-03-11_tickets.html#definition-of-done",
+    "href": "slides/2025-03-11_tickets.html#definition-of-done",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Definition of Done:",
+    "text": "Definition of Done:\n\nAll acceptance criteria are met\nTests and checks pass\nDocumentation is updated when relevant\nCode is reviewed and merged!",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#setup",
+    "href": "slides/2025-03-11_tickets.html#setup",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Setup",
+    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#recap",
+    "href": "slides/2025-03-11_tickets.html#recap",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Recap",
+    "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#motivation",
+    "href": "slides/2025-05-06_12FactorPt1.html#motivation",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Motivation",
+    "text": "Motivation\n\nDeveloping and Deploying Apps can be difficult\nThe 12 Factor App methodology provides guidelines that ensure\n\nclarity,\nscalability,\nmaintainability\n\nBenefits both developers and operations teams."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
+    "href": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Why are 12 Factor Apps Important?",
+    "text": "Why are 12 Factor Apps Important?\n\nConsistency and predictability in application behavior.\nSimplifies the development lifecycle.\nEases the process of deploying, scaling, and maintaining applications.\nPromotes collaboration between development and operations (DevOps)."
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#best-practices",
+    "href": "slides/2025-05-06_12FactorPt1.html#best-practices",
+    "title": "12 Factor Applications (Pt 1)",
     "section": "Best Practices",
-    "text": "Best Practices\n\n🧪 Test one case per test, keep them small!\n🔁 Test edge cases and common use\n🧼 Use clear naming: test_functionname_case\n📦 Structure code so logic is in testable functions (not in notebooks!)"
+    "text": "Best Practices\nA lot of these concepts are things that are considered best practices, but collected together.\n\nYou are probably already do a bunch of these things\nYou may not know you do it (it just feels right)\nYou may not know why you do it (it just seems to work)\nYou may do it because you were told to (it isn’t broken)"
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#code-structure-for-testing",
-    "href": "slides/2025-04-24_python_testing_101.html#code-structure-for-testing",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Code Structure for Testing",
-    "text": "Code Structure for Testing\nBefore testing: - Your code should live in a .py file, e.g. my_module.py - Tests should go in a separate file: test_my_module.py\nproject/\n├── my_module.py\n├── test_my_module.py"
+    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
+    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Benefits for Developers",
+    "text": "Benefits for Developers\n\nClear guidelines for application structure and behavior.\nSimplified onboarding and reduced cognitive load.\nEasier debugging and local development.\nPredictable dependencies and environments."
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#lets-write-a-failing-test",
-    "href": "slides/2025-04-24_python_testing_101.html#lets-write-a-failing-test",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Let’s Write a Failing Test",
-    "text": "Let’s Write a Failing Test\ntest_my_module.py:\nfrom my_module import multiply_by_two\n\ndef test_multiply_by_two():\n    assert multiply_by_two(3) == 6"
+    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
+    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Benefits for DevOps/Operations",
+    "text": "Benefits for DevOps/Operations\n\nStreamlined deployment and automated management.\nImproved reliability and faster issue resolution.\nEasier monitoring and logging."
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#run-it-with-pytest",
-    "href": "slides/2025-04-24_python_testing_101.html#run-it-with-pytest",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Run it with pytest",
-    "text": "Run it with pytest\npytest\nExpect output like:\n&gt;       assert multiply_by_two(3) == 6\nE       NameError: name 'multiply_by_two' is not defined\n⬆️ Good! The test is failing as expected."
+    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
+    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "The 12 Factors (Brief Overview)",
+    "text": "The 12 Factors (Brief Overview)\n\nCodebase: One codebase tracked in version control, many deploys.\nDependencies: Explicitly declare and isolate dependencies.\nConfig: Store configuration in the environment.\nBacking Services: Treat backing services as attached resources.\nBuild, Release, Run: Strictly separate build and run stages.\nProcesses: Execute the app as one or more stateless processes."
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#write-just-enough-code-to-pass",
-    "href": "slides/2025-04-24_python_testing_101.html#write-just-enough-code-to-pass",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Write Just Enough Code to Pass",
-    "text": "Write Just Enough Code to Pass\nmy_module.py:\ndef multiply_by_two(x):\n    return x * 2\nRe-run pytest:\ncollected 1 item\ntest_my_module.py .                                    [100%]\n✅ Green means good!"
+    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
+    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "The 12 Factors (Brief Overview)",
+    "text": "The 12 Factors (Brief Overview)\n\nPort Binding: Export services via port binding.\nConcurrency: Scale out via the process model.\nDisposability: Maximize robustness with fast startup and graceful shutdown.\nDev/Prod Parity: Keep development, staging, and production similar.\nLogs: Treat logs as event streams.\nAdmin Processes: Run admin tasks as one-off processes."
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#common-anti-patterns-to-avoid",
-    "href": "slides/2025-04-24_python_testing_101.html#common-anti-patterns-to-avoid",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Common Anti-Patterns to Avoid",
-    "text": "Common Anti-Patterns to Avoid\n🚫 Too much in one test - Hard to precisely understand what failed and why\n🚫 Testing implementation details - Tests should focus on what your function does and outputs, not how it does it\n🚫 Skipping tests for ‘just a script’ - Scripts evolve fast — Make testable functions early and part of your default workflow\n🚫 Functions that are hard to test - If a function: - Has side effects - Does too many things - Depends on global state\n➡️ It might need to be split into smaller pieces\n💡 If it’s hard to write a simple test, your function may need refactoring!"
+    "objectID": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
+    "href": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Examples of Common Pitfalls",
+    "text": "Examples of Common Pitfalls\n\nConfiguration hardcoded in source code.\nDependencies not clearly defined or versioned.\nStateful processes causing unpredictable behavior.\nSignificant differences between development and production environments."
   },
   {
-    "objectID": "slides/2025-04-24_python_testing_101.html#whats-next",
-    "href": "slides/2025-04-24_python_testing_101.html#whats-next",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "What’s Next?",
-    "text": "What’s Next?\n\nTry testing:\n\nEdge cases (0, negative numbers, empty lists, incorrect input types)\nYour own utility functions\n\nExplore:\n\nTest coverage (pytest-cov)\nMocks and temporary files"
+    "objectID": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
+    "href": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Getting Started with 12 Factor Apps",
+    "text": "Getting Started with 12 Factor Apps\n\nReview your current projects against the 12 factors.\nIncrementally adopt factors as you enhance or refactor projects.\nFoster collaboration and awareness across development and operations teams."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
+    "crumbs": [
+      "Welcome"
+    ]
   },
   {
     "objectID": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
@@ -270,136 +333,133 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
-    "crumbs": [
-      "Welcome"
-    ]
+    "objectID": "slides/2025-04-24_python_testing_101.html#what-is-a-unit-test",
+    "href": "slides/2025-04-24_python_testing_101.html#what-is-a-unit-test",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "What is a Unit Test?",
+    "text": "What is a Unit Test?\n\nA unit test checks that a small unit of code works as expected.\nUsually a single function or method.\nHelps you catch bugs early, refactor confidently, and build better software."
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#motivation",
-    "href": "slides/2025-05-06_12FactorPt1.html#motivation",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Motivation",
-    "text": "Motivation\n\nDeveloping and Deploying Apps can be difficult\nThe 12 Factor App methodology provides guidelines that ensure\n\nclarity,\nscalability,\nmaintainability\n\nBenefits both developers and operations teams."
+    "objectID": "slides/2025-04-24_python_testing_101.html#why-should-data-scientists-care",
+    "href": "slides/2025-04-24_python_testing_101.html#why-should-data-scientists-care",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Why Should Data Scientists Care?",
+    "text": "Why Should Data Scientists Care?\n\nPrevent breaking your analysis pipeline accidentally.\nAdd guardrails for complex logic (e.g., custom transforms).\nMake code easier to reuse and maintain."
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
-    "href": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Why are 12 Factor Apps Important?",
-    "text": "Why are 12 Factor Apps Important?\n\nConsistency and predictability in application behavior.\nSimplifies the development lifecycle.\nEases the process of deploying, scaling, and maintaining applications.\nPromotes collaboration between development and operations (DevOps)."
+    "objectID": "slides/2025-04-24_python_testing_101.html#unit-testing-workflow",
+    "href": "slides/2025-04-24_python_testing_101.html#unit-testing-workflow",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Unit Testing Workflow",
+    "text": "Unit Testing Workflow\n\nWrite failing test -&gt; Run with pytest (It should fail)\nWrite just enough code to pass -&gt; Re-run pytest\nSee it pass 🎉\nRefactor code if needed\nRepeat 🔁"
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#best-practices",
-    "href": "slides/2025-05-06_12FactorPt1.html#best-practices",
-    "title": "12 Factor Applications (Pt 1)",
+    "objectID": "slides/2025-04-24_python_testing_101.html#best-practices",
+    "href": "slides/2025-04-24_python_testing_101.html#best-practices",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
     "section": "Best Practices",
-    "text": "Best Practices\nA lot of these concepts are things that are considered best practices, but collected together.\n\nYou are probably already do a bunch of these things\nYou may not know you do it (it just feels right)\nYou may not know why you do it (it just seems to work)\nYou may do it because you were told to (it isn’t broken)"
+    "text": "Best Practices\n\n🧪 Test one case per test, keep them small!\n🔁 Test edge cases and common use\n🧼 Use clear naming: test_functionname_case\n📦 Structure code so logic is in testable functions (not in notebooks!)"
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
-    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Benefits for Developers",
-    "text": "Benefits for Developers\n\nClear guidelines for application structure and behavior.\nSimplified onboarding and reduced cognitive load.\nEasier debugging and local development.\nPredictable dependencies and environments."
+    "objectID": "slides/2025-04-24_python_testing_101.html#code-structure-for-testing",
+    "href": "slides/2025-04-24_python_testing_101.html#code-structure-for-testing",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Code Structure for Testing",
+    "text": "Code Structure for Testing\nBefore testing: - Your code should live in a .py file, e.g. my_module.py - Tests should go in a separate file: test_my_module.py\nproject/\n├── my_module.py\n├── test_my_module.py"
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
-    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Benefits for DevOps/Operations",
-    "text": "Benefits for DevOps/Operations\n\nStreamlined deployment and automated management.\nImproved reliability and faster issue resolution.\nEasier monitoring and logging."
+    "objectID": "slides/2025-04-24_python_testing_101.html#lets-write-a-failing-test",
+    "href": "slides/2025-04-24_python_testing_101.html#lets-write-a-failing-test",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Let’s Write a Failing Test",
+    "text": "Let’s Write a Failing Test\ntest_my_module.py:\nfrom my_module import multiply_by_two\n\ndef test_multiply_by_two():\n    assert multiply_by_two(3) == 6"
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
-    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "The 12 Factors (Brief Overview)",
-    "text": "The 12 Factors (Brief Overview)\n\nCodebase: One codebase tracked in version control, many deploys.\nDependencies: Explicitly declare and isolate dependencies.\nConfig: Store configuration in the environment.\nBacking Services: Treat backing services as attached resources.\nBuild, Release, Run: Strictly separate build and run stages.\nProcesses: Execute the app as one or more stateless processes."
+    "objectID": "slides/2025-04-24_python_testing_101.html#run-it-with-pytest",
+    "href": "slides/2025-04-24_python_testing_101.html#run-it-with-pytest",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Run it with pytest",
+    "text": "Run it with pytest\npytest\nExpect output like:\n&gt;       assert multiply_by_two(3) == 6\nE       NameError: name 'multiply_by_two' is not defined\n⬆️ Good! The test is failing as expected."
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
-    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "The 12 Factors (Brief Overview)",
-    "text": "The 12 Factors (Brief Overview)\n\nPort Binding: Export services via port binding.\nConcurrency: Scale out via the process model.\nDisposability: Maximize robustness with fast startup and graceful shutdown.\nDev/Prod Parity: Keep development, staging, and production similar.\nLogs: Treat logs as event streams.\nAdmin Processes: Run admin tasks as one-off processes."
+    "objectID": "slides/2025-04-24_python_testing_101.html#write-just-enough-code-to-pass",
+    "href": "slides/2025-04-24_python_testing_101.html#write-just-enough-code-to-pass",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Write Just Enough Code to Pass",
+    "text": "Write Just Enough Code to Pass\nmy_module.py:\ndef multiply_by_two(x):\n    return x * 2\nRe-run pytest:\ncollected 1 item\ntest_my_module.py .                                    [100%]\n✅ Green means good!"
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
-    "href": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Examples of Common Pitfalls",
-    "text": "Examples of Common Pitfalls\n\nConfiguration hardcoded in source code.\nDependencies not clearly defined or versioned.\nStateful processes causing unpredictable behavior.\nSignificant differences between development and production environments."
+    "objectID": "slides/2025-04-24_python_testing_101.html#common-anti-patterns-to-avoid",
+    "href": "slides/2025-04-24_python_testing_101.html#common-anti-patterns-to-avoid",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Common Anti-Patterns to Avoid",
+    "text": "Common Anti-Patterns to Avoid\n🚫 Too much in one test - Hard to precisely understand what failed and why\n🚫 Testing implementation details - Tests should focus on what your function does and outputs, not how it does it\n🚫 Skipping tests for ‘just a script’ - Scripts evolve fast — Make testable functions early and part of your default workflow\n🚫 Functions that are hard to test - If a function: - Has side effects - Does too many things - Depends on global state\n➡️ It might need to be split into smaller pieces\n💡 If it’s hard to write a simple test, your function may need refactoring!"
   },
   {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
-    "href": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Getting Started with 12 Factor Apps",
-    "text": "Getting Started with 12 Factor Apps\n\nReview your current projects against the 12 factors.\nIncrementally adopt factors as you enhance or refactor projects.\nFoster collaboration and awareness across development and operations teams."
+    "objectID": "slides/2025-04-24_python_testing_101.html#whats-next",
+    "href": "slides/2025-04-24_python_testing_101.html#whats-next",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "What’s Next?",
+    "text": "What’s Next?\n\nTry testing:\n\nEdge cases (0, negative numbers, empty lists, incorrect input types)\nYour own utility functions\n\nExplore:\n\nTest coverage (pytest-cov)\nMocks and temporary files"
   },
   {
-    "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
-    "href": "slides/2025-03-11_tickets.html#feature-tickets",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Feature Tickets",
-    "text": "Feature Tickets\n\nFor features, try to include a user story:\n\ne.g. “As a registered user, I might forget my password and want to regain access to my account securely.”\n\nWhen possible, supplement the user story with unambiguous acceptance criteria",
+    "objectID": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "What are dotfiles?",
+    "text": "What are dotfiles?\n\nConfiguration files that live in your $HOME directory\nUsually start with a dot (so they’re “hidden”):\n\n.bashrc, .zshrc\n.gitconfig\n.config/ghostty/config\n\nThey control how your tools behave:\n\nshell prompt, aliases, colors\ngit defaults, editor settings, etc.",
     "crumbs": [
-      "Effective Ticketing & the Definition of Done"
+      "Taming Your Terminal: Dotfiles & GNU Stow"
     ]
   },
   {
-    "objectID": "slides/2025-03-11_tickets.html#bug-tickets",
-    "href": "slides/2025-03-11_tickets.html#bug-tickets",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Bug Tickets",
-    "text": "Bug Tickets\n\nFor bugs, be as detailed as possible!\n\nOften the limiting factor for fixing a bug is reproducing it.\n\nFor example:\n\nEnvironment setup (OS, browser, app version, etc.)\nReproduction Steps (What precise actions lead to the bug?)\nExpected behaviour (What should have happened?)\nActual behaviour (What actually happened?)\nScreenshots, logs, etc.",
+    "objectID": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Why care about dotfiles?",
+    "text": "Why care about dotfiles?\n\nNew machine? → “Why doesn’t anything feel right?”\nDotfiles in a repo give you:\n\nreproducible setups\neasy sharing of configuration (new laptop, new team member)\na place to grow your personal setup over time",
     "crumbs": [
-      "Effective Ticketing & the Definition of Done"
+      "Taming Your Terminal: Dotfiles & GNU Stow"
     ]
   },
   {
-    "objectID": "slides/2025-03-11_tickets.html#acceptance-criteria",
-    "href": "slides/2025-03-11_tickets.html#acceptance-criteria",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Acceptance Criteria",
-    "text": "Acceptance Criteria\n\nWhat must be true for the issue to be considered complete?\n\nWritten as bullet points\nExample",
+    "objectID": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
+    "href": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Dotfiles as a developer’s fingerprint",
+    "text": "Dotfiles as a developer’s fingerprint\n\nEveryone’s environment is a bit different:\n\npreferred shell, editor, prompt, tools\n\nYour dotfiles encode:\n\nhow you navigate\nhow you debug\nhow you use git, ssh, etc.\n\nPutting them in a repo:\n\ndocuments how you work\nlets you borrow good ideas from others 😄",
     "crumbs": [
-      "Effective Ticketing & the Definition of Done"
+      "Taming Your Terminal: Dotfiles & GNU Stow"
     ]
   },
   {
-    "objectID": "slides/2025-03-11_tickets.html#definition-of-done",
-    "href": "slides/2025-03-11_tickets.html#definition-of-done",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Definition of Done:",
-    "text": "Definition of Done:\n\nAll acceptance criteria are met\nTests and checks pass\nDocumentation is updated when relevant\nCode is reviewed and merged!",
+    "objectID": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
+    "href": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "The problem: dotfiles sprawl",
+    "text": "The problem: dotfiles sprawl\n\nConfig files live all over $HOME:\n\n~/.bashrc\n~/.gitconfig\n~/.config/ghostty/config\n\nIf you edit them in-place:\n\nhard to sync between machines\neasy to accidentally diverge\n\nWe’d like a single source of truth in a repo, and a clean way to “deploy” them into $HOME.",
     "crumbs": [
-      "Effective Ticketing & the Definition of Done"
+      "Taming Your Terminal: Dotfiles & GNU Stow"
     ]
   },
   {
-    "objectID": "slides/2025-03-11_tickets.html#setup",
-    "href": "slides/2025-03-11_tickets.html#setup",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Setup",
-    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
+    "objectID": "slides/2025-12-02_dotfiles.html#gnu-stow",
+    "href": "slides/2025-12-02_dotfiles.html#gnu-stow",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "GNU Stow",
+    "text": "GNU Stow\nGNU Stow is a symlink manager.\n\nYou keep “real” files in a repo like:\n\n~/dotfiles/\n  bash/.bashrc\n  bash/.aliases\n  git/.gitconfig\n  ghostty/.config/ghostty/config\n\nThen you “stow” them into $HOME:\n\ncd ~/dotfiles\nstow -t \"$HOME\" bash git ghostty\n\nstow creates symlinks:\n\n~/.bashrc  -&gt; ~/dotfiles/bash/.bashrc\n~/.gitconfig -&gt; ~/dotfiles/git/.gitconfig",
     "crumbs": [
-      "Effective Ticketing & the Definition of Done"
+      "Taming Your Terminal: Dotfiles & GNU Stow"
     ]
   },
   {
-    "objectID": "slides/2025-03-11_tickets.html#recap",
-    "href": "slides/2025-03-11_tickets.html#recap",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Recap",
-    "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
+    "objectID": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Why Stow is nice for dotfiles",
+    "text": "Why Stow is nice for dotfiles\n\nKeeps $HOME clean → just symlinks\nEasy to enable/disable groups:\n\nstow -t \"$HOME\" bash\nstow -D -t \"$HOME\" bash   # unstow\n\nEncourages a modular layout:\n\none folder per “package” (bash, git, ghostty, …)\n\nWorks great with git:\n\nversion control your dotfiles repo\nclone + stow on any machine",
     "crumbs": [
-      "Effective Ticketing & the Definition of Done"
+      "Taming Your Terminal: Dotfiles & GNU Stow"
     ]
   }
 ]
