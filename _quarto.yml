@@ -23,6 +23,8 @@ website:
         target: text_encoding
       - file: slides/2025-11-04_okrs.qmd
         target: okrs
+      - file: slides/2025-12-02_dotfiles.qmd
+        target: dotfiles
 
 format:
   html:
