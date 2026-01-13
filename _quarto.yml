@@ -23,6 +23,8 @@ website:
         target: text_encoding
       - file: slides/2025-11-04_okrs.qmd
         target: okrs
+      - file: slides/2026-01-13_conventional_commits.qmd
+        target: conventional_commits
 
 format:
   html:
