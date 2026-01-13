@@ -19,10 +19,20 @@ website:
         target: tickets
       - file: slides/2025-04-08_data_pipeline_manifest.qmd
         target: data_pipeline_manifest
+      - file: slides/2025-04-24_python_testing_101.qmd
+        target: python_testing_101
+      - file: slides/2025-05-06_12FactorPt1.qmd
+        target: twelve_factor_part_1
+      - file: slides/2025-06-03_twelve_factor_demo.qmd
+        target: twelve_factor_demo
+      - file: slides/2025-07-29_learning_docker.qmd
+        target: learning_docker
       - file: slides/2025-10-21_text_encoding.qmd
         target: text_encoding
       - file: slides/2025-11-04_okrs.qmd
         target: okrs
+      - file: slides/2025-12-02_dotfiles.qmd
+        target: dotfiles
       - file: slides/2026-01-13_conventional_commits.qmd
         target: conventional_commits
 

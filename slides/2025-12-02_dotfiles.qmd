@@ -1,0 +1,99 @@
+---
+title: "Taming Your Terminal: Dotfiles & GNU Stow"
+author: "Jackson Hoffart"
+engine: "knitr"
+---
+
+## What are dotfiles?
+
+- Configuration files that live in your `$HOME` directory
+- Usually start with a dot (so they’re “hidden”):
+  - `.bashrc`, `.zshrc`
+  - `.gitconfig`
+  - `.config/ghostty/config`
+- They control how your tools behave:
+  - shell prompt, aliases, colors
+  - git defaults, editor settings, etc.
+
+---
+
+## Why care about dotfiles?
+
+::: incremental
+- New machine? → “Why doesn’t anything feel right?”
+- Dotfiles in a repo give you:
+  - **reproducible setups**
+  - **easy sharing** of configuration (new laptop, new team member)
+  - a place to **grow** your personal setup over time
+:::
+
+---
+
+## Dotfiles as a developer’s fingerprint
+
+- Everyone’s environment is a bit different:
+  - preferred shell, editor, prompt, tools
+- Your dotfiles encode:
+  - how you navigate
+  - how you debug
+  - how you use git, ssh, etc.
+- Putting them in a repo:
+  - documents how *you* work
+  - lets you borrow good ideas from others 😄
+
+---
+
+## The problem: dotfiles sprawl
+
+- Config files live all over `$HOME`:
+  - `~/.bashrc`
+  - `~/.gitconfig`
+  - `~/.config/ghostty/config`
+- If you edit them in-place:
+  - hard to sync between machines
+  - easy to accidentally diverge
+- We’d like a **single source of truth** in a repo,
+  and a clean way to “deploy” them into `$HOME`.
+
+---
+
+## GNU Stow
+
+**GNU Stow** is a symlink manager.
+
+- You keep “real” files in a repo like:
+
+```text
+~/dotfiles/
+  bash/.bashrc
+  bash/.aliases
+  git/.gitconfig
+  ghostty/.config/ghostty/config
+```
+
+- Then you “stow” them into $HOME:
+``` bash
+cd ~/dotfiles
+stow -t "$HOME" bash git ghostty
+```
+
+- stow creates symlinks:
+``` bash
+~/.bashrc  -> ~/dotfiles/bash/.bashrc
+~/.gitconfig -> ~/dotfiles/git/.gitconfig
+```
+
+## Why Stow is nice for dotfiles
+
+- Keeps `$HOME` clean → just symlinks
+- Easy to enable/disable groups:
+``` bash
+stow -t "$HOME" bash
+stow -D -t "$HOME" bash   # unstow
+```
+
+- Encourages a modular layout:
+    - one folder per “package” (bash, git, ghostty, …)
+- Works great with git:
+    - version control your dotfiles repo
+    - clone + stow on any machine
