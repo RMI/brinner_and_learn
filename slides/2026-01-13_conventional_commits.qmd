@@ -1,0 +1,183 @@
+---
+engine: "knitr"
+title: "How to Commit Conventionally"
+author: "Jackson Hoffart"
+---
+
+## Why we’re here
+
+In this session, we’ll walk through the Conventional Commits spec and why it’s useful in practice:
+
+- clearer PR history
+- easier changelogs
+- (optionally) automated version bumps & releases
+
+---
+
+## Agenda
+
+- What do Conventional Commits solve?
+- The spec (the minimum you need)
+- “Breaking changes” + SemVer mapping
+- Common patterns (scopes, footers, PR merges)
+- Automated tooling
+- Resources
+
+::: notes
+If your org uses squash merges, you still benefit: PR title becomes the “commit message.”
+:::
+
+---
+
+## Commit messages drift
+
+Without a shared convention, git history can easily become:
+
+- inconsistent (“Fix stuff”, “update”, “WIP”)
+- hard to scan in `git log`
+- painful to turn into release notes
+- ambiguous for reviewers (“is this a feature or a fix?”)
+
+::: notes
+Emphasize: you’re not “policing,” you’re reducing cognitive load for future-you.
+:::
+
+---
+
+## What is Conventional Commits?
+
+A lightweight convention for commit messages that are:
+
+- human-readable
+- machine-parseable
+
+It “dovetails with SemVer” by making it easy to identify:
+
+- features
+- fixes
+- breaking changes
+
+::: notes
+Point to the spec later; for now focus on the shape and why it matters.
+:::
+
+---
+
+## The core format
+
+```text
+<type>[optional scope][optional !]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+Examples:
+
+- `feat: add portfolio export to CSV`
+- `fix(api): handle empty scenario set`
+- `refactor!: drop legacy endpoint`
+
+## Types: pick a small set
+
+Common, widely-used types:
+
+- feat — new user-visible behavior
+- fix — bug fix
+- docs — documentation only
+- refactor — code change, no behavior change (ideally)
+- test — tests only
+- chore — tooling, build, deps, housekeeping
+- ci — CI pipeline changes
+
+## Scope
+
+Scopes are optional, but can help answer "where" a change is relevant, especially in larger codebases:
+
+Examples:
+
+- feat(ui): add scenario picker
+- fix(db): prevent deadlock on upsert
+- docs(api): document auth header
+
+Good scopes are:
+
+- small nouns or abbreviations (api, ui, db, auth, deps)
+- stable over time
+- not personal (“jackson-fix”)
+
+## Breaking changes
+
+Using a "bang" (!) in the header indicates a breaking change: 
+
+ - `feat!: remove v1 scenario fields`
+
+ If you need to give more context, you can use a footer in the commit description:
+
+ ```
+ feat!: remove v1 scenario fields
+
+ BREAKING CHANGE: v1 fields were removed; migrate to v2 schema
+ ```
+
+## Conventional Commits -> SemVer
+
+ The common automated release mapping goes something like:
+
+ - `fix` -> PATCH
+ - `feat` -> MINOR
+ - `!` or `BREAKING CHANGE` -> MAJOR
+
+Other types need to be mapped appropriately.
+This is still just a convention (not magic) and requires engineers to buy into using the convention consistently.
+
+## Example: a "good" conventional commit
+
+```
+fix(auth): refresh tokens on 401
+
+Previously, an expired token caused an infinite retry loop.
+Now we refresh once and surface an error if it fails.
+
+Refs: STIT-125, #823
+```
+
+## Migrating from "meh" to "conventional"
+
+- Before: `ignore stuff`
+- After: `chore(git): add build artifacts to .gitignore`
+
+## What about Squash merges?
+
+If the repo you are working on uses *squash merges* the PR title gets squashed into a commit message. 
+Write the PR title as a conventional commit!
+
+- e.g. PR title: `feat(ui): add scenario picker`
+
+## Automated tooling
+
+Conventional Commits are **machine-parseable**, so automation can reliably:
+
+- **Validate** messages at commit / PR time  
+  → catches missing type, malformed scope, or unclear descriptions early
+
+- **Classify changes** from history  
+  → groups commits into *Features*, *Fixes*, *Docs*, *Chores*, etc.
+
+- **Generate release notes / changelogs**  
+  → produces consistent summaries straight from merged work
+
+- **Decide the next version** (if you use SemVer)  
+  → `fix` → patch, `feat` → minor, `BREAKING CHANGE` / `!` → major
+
+- **Create traceability links**  
+  → connect releases back to PRs/issues via structured footers
+
+## Resources
+
+- Conventional Commits spec: https://www.conventionalcommits.org/en/v1.0.0/
+- Semantic Versioning (SemVer): https://semver.org/
+- commitlint (getting started): https://commitlint.js.org/guides/getting-started.html
+- Release Please: https://github.com/googleapis/release-please
+- semantic-release: https://github.com/semantic-release/semantic-release
+- conventional-changelog: https://github.com/conventional-changelog/conventional-changelog

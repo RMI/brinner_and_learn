@@ -33,6 +33,8 @@ website:
         target: okrs
       - file: slides/2025-12-02_dotfiles.qmd
         target: dotfiles
+      - file: slides/2026-01-13_conventional_commits.qmd
+        target: conventional_commits
 
 format:
   html:
