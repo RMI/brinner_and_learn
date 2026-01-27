@@ -188,14 +188,14 @@ versioning effectively
 
 ---
 
-## Continous Publication
+## Continuous Publication
 
 * If everything is a build, then everything can be a deploy
 * If it can be deployed, it _could_ be deployed to PROD
 
-The CI/CD pipeline is our *Continous Publication* mechanism.
+The CI/CD pipeline is our *Continuous Publication* mechanism.
 It is possible to track `latest` and have up-to-date information, while still
-checking against tests, model expecations, invariants, and data quality checks.
+checking against tests, model expectations, invariants, and data quality checks.
 
 It is also possible to mark old versions as inaccurate or deprecated
 
@@ -221,7 +221,7 @@ It's also possible to have human-in-the-loop approval steps
 :::notes
 What is cached often determines where 
 Web page --> CDN
-batch jobn dataset --> Internal blob
+batch job dataset --> Internal blob
 :::
 
 ---
@@ -231,7 +231,7 @@ batch jobn dataset --> Internal blob
 * How you want to handle dependencies determines what is the right tool
 * What tool you're using determines how you handle dependencies
 
-These affect system design (what is in or out of a system boundry), sometimes
+These affect system design (what is in or out of a system boundary), sometimes
 invisibly
 
 ---
