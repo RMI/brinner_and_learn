@@ -163,7 +163,7 @@ talk about the `latest` version of a data object (or dataset) in the same way
 you can talk about the `latest` version of an app or package 
 
 
-* frequently (for us), code is what changes.
+* frequently (for us), **code** is what changes.
   * How often does relevant data update vs. codebase? Yearly? Weekly? Immediate?
 * This does not need to be a literal `latest` tag
 
