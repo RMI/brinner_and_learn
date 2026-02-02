@@ -35,6 +35,8 @@ website:
         target: dotfiles
       - file: slides/2026-01-13_conventional_commits.qmd
         target: conventional_commits
+      - file: ./slides/2026-01-27_build-data-pipelines.qmd
+        target: build_data_pipelines
 
 format:
   html:

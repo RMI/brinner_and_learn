@@ -1,0 +1,287 @@
+---
+engine: "knitr"
+title: "Build Systems and Data Pipelines"
+author: "Alex Axthelm"
+format:
+  revealjs:
+    incremental: false
+---
+
+## 20 second `make` refresh
+
+```make
+output1: input1 input2
+  command
+
+input2: sourceA sourceB
+  write_input2.sh
+```
+
+:::notes
+output is tracked against its dependencies
+output for one step can be a dependency for another
+:::
+
+---
+
+## Agenda
+
+- Build Systems
+- Data Pipelines
+- Implications for our work
+- Discussion
+
+> There are only two hard things in Computer Science: cache invalidation and naming things.
+>
+> -- Phil Karlton
+
+---
+
+## Build system
+
+A build system is a tool (or library/package) for:
+
+- Declaring build "targets" (outputs)
+- Defining the steps required to create those targets
+- Executing those steps
+
+it _usually_ also includes a mechanism for _caching_:
+
+- Identifying what the inputs are to a step (i.e. code files)
+- Determining if the outputs are _stale_ (outdated)
+- Determining what steps need to be re-run based on _staleness_
+
+---
+
+### Examples of build systems
+
+- `make`/`cmake` (generic)
+- `docker build` (docker)
+- `vite` (JS/TS)
+- `uv` (python)
+
+---
+
+## Data Pipelines
+
+A data pipeline system is a tool (or library/package) for:
+
+- Declaring build "targets" (outputs)
+- Defining the steps required to create those targets
+- Executing those steps
+
+it _usually_ also includes a mechanism for _caching_:
+
+- Identifying what the inputs are to a step (i.e. data, code files)
+- Determining if the outputs are _stale_ (outdated)
+- Determining what steps need to be re-run based on _staleness_
+
+---
+
+### Examples of data pipeline tools
+
+- `targets` (R)
+- Airflow, Luigi (Python)
+- RMarkdown/Quarto (DataSci languages)
+- Microsoft Excel 
+
+:::notes
+Data pipelines generally have better tooling for circular dependencies, but I
+still wouldn't call the situation great.
+:::
+
+---
+
+## Task runner
+
+A task runner is a tool that runs tasks _without caching_.
+They may or may not support dependency resolution.
+
+Examples of task runners:
+
+- `just`
+- `npm run`
+- Shell scripts
+
+A build system that ignores its caches can be used as a task runner
+
+---
+
+## Same idea, different names
+
+| Build systems | Data pipelines |
+|---|---|
+| Target / artifact | Table / dataset / object |
+| Rule | Script / transform / job |
+| Dependency | Upstream input |
+| Incremental rebuild | Incremental refresh / backfill |
+| Cache | Materialization / snapshot |
+| Hermetic build | Reproducible run (pinned code + inputs) |
+| Test | Data quality check / invariant |
+
+---
+
+## Same graph, different choices
+
+:::: {.columns}
+::: {.column}
+- **Invalidation**
+  - Timestamps (`make`)
+  - Content hashes (Docker)
+  - Freshness windows (data pipelines)
+
+- **Scheduling & execution**
+  - Local 
+  - CI runners
+  - Distributed schedulers + compute engines
+:::
+
+::: {.column}
+- **Determinism / hermeticity**
+  - Pinned toolchains + inputs
+  - External systems
+  - Mutable/Immutable data
+
+:::notes
+determinism: Effectively, what is a declared dependency, vs. what is part of the environment
+
+Don't linger too long on this slide
+:::
+
+- **What does “success” mean?**
+  - Build passes tests
+  - Data passes invariants, freshness, and anomaly checks
+:::
+::::
+
+---
+
+## Enabling `latest`
+
+If you treat data and code both as dependencies, you can very easily start to
+talk about the `latest` version of a data object (or dataset) in the same way
+you can talk about the `latest` version of an app or package 
+
+
+* frequently (for us), **code** is what changes.
+  * How often does relevant data update vs. codebase? Yearly? Weekly? Immediate?
+* This does not need to be a literal `latest` tag
+
+:::notes
+Drop a link to working build in Teams/Slack/etc.
+:::
+
+---
+
+## Enabling versions/permalinks
+
+If inputs and outputs (possibly caches) can be accessed independently, this can also enable
+versioning effectively
+
+- Code inputs (`git checkout v1.2.3`)
+- Data inputs (`/datasets/my-dataset/2026-01-01.csv`)
+- Built outputs
+  - permalink
+  - ETag
+  - `report_2026-01-01.pdf`
+  - `index-Cwp2LJ1J.js`
+
+---
+
+## Continuous Publication
+
+* If everything is a build, then everything can be a deploy
+* If it can be deployed, it _could_ be deployed to PROD
+
+The CI/CD pipeline is our *Continuous Publication* mechanism.
+It is possible to track `latest` and have up-to-date information, while still
+checking against tests, model expectations, invariants, and data quality checks.
+
+It is also possible to mark old versions as inaccurate or deprecated
+
+> ⚠️ The information or analysis in this report are no longer sound.
+> See an updated version at foo.rmi.org/1234
+
+:::notes
+This idea can sound really scary to people.
+It's important to have faith in your automated checks.
+It's also possible to have human-in-the-loop approval steps 
+:::
+
+---
+
+## Caching and archiving
+
+* Identifying what to cache/store
+  * What is expensive to calculate? (Cache)
+  * What can we not re-create? (Archive)
+  * Do we have concerns about an upstream dependency changing history/going
+    offline? 
+
+:::notes
+What is cached often determines where 
+Web page --> CDN
+batch job dataset --> Internal blob
+:::
+
+---
+
+## Tech Stack
+
+* How you want to handle dependencies determines what is the right tool
+* What tool you're using determines how you handle dependencies
+
+These affect system design (what is in or out of a system boundary), sometimes
+invisibly
+
+---
+
+## A closer look at `make`
+
+Make is a universal glue, and as such is worth examining as both a toy model and
+a well- and commonly-used tool.
+
+---
+
+### Syntax overview/reminder
+
+```make
+site.tar: src/*
+  npm run build
+
+report.pdf: report.qmd data.csv
+	quarto render report.qmd -o report.pdf
+
+%.o : %.c
+        $(CC) -c $(CFLAGS) $< -o $@
+
+reports/sector_%.pdf: sector_report_template.qmd %.csv
+	quarto render $< -o $@
+```
+
+See also: [Stitch Makefile](https://github.com/RMI/stitch/blob/main/Makefile)
+
+:::notes
+it's been a long time for most people since they've actually looked at makefile
+make syntax isn't particualrly fun to work in
+:::
+
+---
+
+## Language-specific pipelines
+
+Using lanugage-speficic pipelines (`targets`) gives an easy way to track both
+code objects and data as "inputs", and add them to the dependency graph.
+
+It also gives them better syntax (familiar to devs and often just more
+expressive/easier to use than `make`)
+
+:::notes
+automatic dependency tracking of more of the environment
+:::
+
+---
+
+## Baby's first data pipeline
+
+[https://github.com/IndianaCHE/Detailed-SSP-Reports/blob/master/run.R](https://github.com/IndianaCHE/Detailed-SSP-Reports/blob/master/run.R)
