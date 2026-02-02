@@ -9,8 +9,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.27">
 
-  <meta name="author" content="Jackson Hoffart">
-  <title>SPD's Brinner and Learn Series – GitHub Best Practices</title>
+  <meta name="author" content="Alex Axthelm">
+  <title>SPD's Brinner and Learn Series – Build Systems and Data Pipelines</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5079db4132f0eaf0a29ac93fceccb8c9.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -127,161 +193,366 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">GitHub Best Practices</h1>
+  <h1 class="title">Build Systems and Data Pipelines</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Jackson Hoffart 
+Alex Axthelm 
 </div>
 </div>
 </div>
 
 </section>
-<section id="general-rule-of-thumb" class="title-slide slide level1 center">
-<h1>General Rule of Thumb</h1>
-<p>A pull request is a request for someone’s time and expertise. Be respectful of that by making your PR as clear, concise and well-prepared as possible.</p>
+<section id="second-make-refresh" class="slide level2">
+<h2>20 second <code>make</code> refresh</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource make number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>output1: input1 input2</span>
+<span id="cb1-2"><a></a>  command</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a>input2: sourceA sourceB</span>
+<span id="cb1-5"><a></a>  write_input2.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<aside class="notes">
+<p>output is tracked against its dependencies output for one step can be a dependency for another</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-
-<section>
-<section id="protect-long-lived-branches" class="title-slide slide level1 center">
-<h1>Protect Long-Lived Branches</h1>
-
-</section>
-<section id="enable-branch-protection-rules" class="slide level2">
-<h2>Enable branch protection rules</h2>
+<section id="agenda" class="slide level2">
+<h2>Agenda</h2>
 <ul>
-<li class="fragment">Protect <code>main</code> (and any other long-lived branches)</li>
-<li class="fragment">Require pull requests before merging</li>
-<li class="fragment">Require minimum 1 approving review</li>
-<li class="fragment">Enforce status checks (CI/CD pipelines, linting, tests)</li>
+<li>Build Systems</li>
+<li>Data Pipelines</li>
+<li>Implications for our work</li>
+<li>Discussion</li>
+</ul>
+<blockquote>
+<p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
+<p>– Phil Karlton</p>
+</blockquote>
+</section>
+<section id="build-system" class="slide level2">
+<h2>Build system</h2>
+<p>A build system is a tool (or library/package) for:</p>
+<ul>
+<li>Declaring build “targets” (outputs)</li>
+<li>Defining the steps required to create those targets</li>
+<li>Executing those steps</li>
+</ul>
+<p>it <em>usually</em> also includes a mechanism for <em>caching</em>:</p>
+<ul>
+<li>Identifying what the inputs are to a step (i.e.&nbsp;code files)</li>
+<li>Determining if the outputs are <em>stale</em> (outdated)</li>
+<li>Determining what steps need to be re-run based on <em>staleness</em></li>
 </ul>
 </section>
 <section class="slide level2">
 
-</section></section>
-<section>
-<section id="branching-strategies" class="title-slide slide level1 center">
-<h1>Branching Strategies</h1>
-
-</section>
-<section id="github-flow" class="slide level2">
-<h2>GitHub Flow</h2>
+<h3 id="examples-of-build-systems">Examples of build systems</h3>
 <ul>
-<li class="fragment">One long-lived branch: <code>main</code></li>
-<li class="fragment"><code>feature</code> branch → PR → Merge to <code>main</code></li>
-<li class="fragment">Simple</li>
-<li class="fragment">Best for continuous delivery</li>
-<li class="fragment">Deploy immediately after merge to <code>main</code></li>
+<li><code>make</code>/<code>cmake</code> (generic)</li>
+<li><code>docker build</code> (docker)</li>
+<li><code>vite</code> (JS/TS)</li>
+<li><code>uv</code> (python)</li>
 </ul>
 </section>
-<section id="gitflow" class="slide level2">
-<h2>GitFlow</h2>
+<section id="data-pipelines" class="slide level2">
+<h2>Data Pipelines</h2>
+<p>A data pipeline system is a tool (or library/package) for:</p>
 <ul>
-<li class="fragment">Long-lived branches: <code>main</code>, <code>develop</code></li>
-<li class="fragment">Short-lived branches: <code>release</code>, <code>hotfix</code>, <code>feature</code></li>
-<li class="fragment"><code>feature</code> branch -&gt; PR -&gt; Merge to <code>develop</code></li>
-<li class="fragment"><code>release</code> branch or <code>hotfix</code> -&gt; PR -&gt; Merge to <code>main</code> and <code>develop</code></li>
-<li class="fragment">Better for large-scale projects, many devs, scheduled releases</li>
+<li>Declaring build “targets” (outputs)</li>
+<li>Defining the steps required to create those targets</li>
+<li>Executing those steps</li>
+</ul>
+<p>it <em>usually</em> also includes a mechanism for <em>caching</em>:</p>
+<ul>
+<li>Identifying what the inputs are to a step (i.e.&nbsp;data, code files)</li>
+<li>Determining if the outputs are <em>stale</em> (outdated)</li>
+<li>Determining what steps need to be re-run based on <em>staleness</em></li>
 </ul>
 </section>
 <section class="slide level2">
 
-</section></section>
-<section>
-<section id="anatomy-of-a-bad-pull-request" class="title-slide slide level1 center">
-<h1>Anatomy of a Bad Pull Request</h1>
-
-</section>
-<section id="what-makes-a-pr-bad" class="slide level2">
-<h2>🚫 What makes a PR bad?</h2>
+<h3 id="examples-of-data-pipeline-tools">Examples of data pipeline tools</h3>
 <ul>
-<li class="fragment">Large &amp; difficult to review</li>
-<li class="fragment">Many unrelated changes</li>
-<li class="fragment">Poor or no description</li>
-<li class="fragment">Unclear commit history</li>
-<li class="fragment">Fails CI/CD checks</li>
-<li class="fragment">Lacks necessary tests</li>
+<li><code>targets</code> (R)</li>
+<li>Airflow, Luigi (Python)</li>
+<li>RMarkdown/Quarto (DataSci languages)</li>
+<li>Microsoft Excel</li>
+</ul>
+<aside class="notes">
+<p>Data pipelines generally have better tooling for circular dependencies, but I still wouldn’t call the situation great.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="task-runner" class="slide level2">
+<h2>Task runner</h2>
+<p>A task runner is a tool that runs tasks <em>without caching</em>. They may or may not support dependency resolution.</p>
+<p>Examples of task runners:</p>
+<ul>
+<li><code>just</code></li>
+<li><code>npm run</code></li>
+<li>Shell scripts</li>
+</ul>
+<p>A build system that ignores its caches can be used as a task runner</p>
+</section>
+<section id="same-idea-different-names" class="slide level2">
+<h2>Same idea, different names</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Build systems</th>
+<th>Data pipelines</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Target / artifact</td>
+<td>Table / dataset / object</td>
+</tr>
+<tr class="even">
+<td>Rule</td>
+<td>Script / transform / job</td>
+</tr>
+<tr class="odd">
+<td>Dependency</td>
+<td>Upstream input</td>
+</tr>
+<tr class="even">
+<td>Incremental rebuild</td>
+<td>Incremental refresh / backfill</td>
+</tr>
+<tr class="odd">
+<td>Cache</td>
+<td>Materialization / snapshot</td>
+</tr>
+<tr class="even">
+<td>Hermetic build</td>
+<td>Reproducible run (pinned code + inputs)</td>
+</tr>
+<tr class="odd">
+<td>Test</td>
+<td>Data quality check / invariant</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="same-graph-different-choices" class="slide level2">
+<h2>Same graph, different choices</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><strong>Invalidation</strong>
+<ul>
+<li>Timestamps (<code>make</code>)</li>
+<li>Content hashes (Docker)</li>
+<li>Freshness windows (data pipelines)</li>
+</ul></li>
+<li><strong>Scheduling &amp; execution</strong>
+<ul>
+<li>Local</li>
+<li>CI runners</li>
+<li>Distributed schedulers + compute engines</li>
+</ul></li>
+</ul>
+</div><div class="column">
+<ul>
+<li><strong>Determinism / hermeticity</strong>
+<ul>
+<li>Pinned toolchains + inputs</li>
+<li>External systems</li>
+<li>Mutable/Immutable data</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>determinism: Effectively, what is a declared dependency, vs.&nbsp;what is part of the environment</p>
+<p>Don’t linger too long on this slide</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<ul>
+<li><strong>What does “success” mean?</strong>
+<ul>
+<li>Build passes tests</li>
+<li>Data passes invariants, freshness, and anomaly checks</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="enabling-latest" class="slide level2">
+<h2>Enabling <code>latest</code></h2>
+<p>If you treat data and code both as dependencies, you can very easily start to talk about the <code>latest</code> version of a data object (or dataset) in the same way you can talk about the <code>latest</code> version of an app or package</p>
+<ul>
+<li>frequently (for us), <strong>code</strong> is what changes.
+<ul>
+<li>How often does relevant data update vs.&nbsp;codebase? Yearly? Weekly? Immediate?</li>
+</ul></li>
+<li>This does not need to be a literal <code>latest</code> tag</li>
+</ul>
+<aside class="notes">
+<p>Drop a link to working build in Teams/Slack/etc.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="enabling-versionspermalinks" class="slide level2">
+<h2>Enabling versions/permalinks</h2>
+<p>If inputs and outputs (possibly caches) can be accessed independently, this can also enable versioning effectively</p>
+<ul>
+<li>Code inputs (<code>git checkout v1.2.3</code>)</li>
+<li>Data inputs (<code>/datasets/my-dataset/2026-01-01.csv</code>)</li>
+<li>Built outputs
+<ul>
+<li>permalink</li>
+<li>ETag</li>
+<li><code>report_2026-01-01.pdf</code></li>
+<li><code>index-Cwp2LJ1J.js</code></li>
+</ul></li>
 </ul>
 </section>
-<section id="how-to-improve-prs" class="slide level2">
-<h2>✅ How to improve PRs</h2>
+<section id="continuous-publication" class="slide level2">
+<h2>Continuous Publication</h2>
 <ul>
-<li class="fragment">Keep PRs small and focused</li>
-<li class="fragment">Provide a clear summary &amp; context</li>
-<li class="fragment">Write meaningful commit messages</li>
-<li class="fragment">Ensure automated checks pass before requesting review</li>
-<li class="fragment">Add relevant tests &amp; documentation</li>
-<li class="fragment">Explain how a reviewer can test your changes</li>
+<li>If everything is a build, then everything can be a deploy</li>
+<li>If it can be deployed, it <em>could</em> be deployed to PROD</li>
 </ul>
+<p>The CI/CD pipeline is our <em>Continuous Publication</em> mechanism. It is possible to track <code>latest</code> and have up-to-date information, while still checking against tests, model expectations, invariants, and data quality checks.</p>
+<p>It is also possible to mark old versions as inaccurate or deprecated</p>
+<blockquote>
+<p>⚠️ The information or analysis in this report are no longer sound. See an updated version at foo.rmi.org/1234</p>
+</blockquote>
+<aside class="notes">
+<p>This idea can sound really scary to people. It’s important to have faith in your automated checks. It’s also possible to have human-in-the-loop approval steps</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="caching-and-archiving" class="slide level2">
+<h2>Caching and archiving</h2>
+<ul>
+<li>Identifying what to cache/store
+<ul>
+<li>What is expensive to calculate? (Cache)</li>
+<li>What can we not re-create? (Archive)</li>
+<li>Do we have concerns about an upstream dependency changing history/going offline?</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>What is cached often determines where Web page –&gt; CDN batch job dataset –&gt; Internal blob</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tech-stack" class="slide level2">
+<h2>Tech Stack</h2>
+<ul>
+<li>How you want to handle dependencies determines what is the right tool</li>
+<li>What tool you’re using determines how you handle dependencies</li>
+</ul>
+<p>These affect system design (what is in or out of a system boundary), sometimes invisibly</p>
+</section>
+<section id="a-closer-look-at-make" class="slide level2">
+<h2>A closer look at <code>make</code></h2>
+<p>Make is a universal glue, and as such is worth examining as both a toy model and a well- and commonly-used tool.</p>
 </section>
 <section class="slide level2">
 
-</section></section>
-<section>
-<section id="anatomy-of-a-bad-review" class="title-slide slide level1 center">
-<h1>Anatomy of a Bad Review</h1>
-
+<h3 id="syntax-overviewreminder">Syntax overview/reminder</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource make number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>site.tar: src/*</span>
+<span id="cb2-2"><a></a>  npm run build</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>report.pdf: report.qmd data.csv</span>
+<span id="cb2-5"><a></a>    quarto render report.qmd -o report.pdf</span>
+<span id="cb2-6"><a></a></span>
+<span id="cb2-7"><a></a>%.o : %.c</span>
+<span id="cb2-8"><a></a>        $(CC) -c $(CFLAGS) $&lt; -o $@</span>
+<span id="cb2-9"><a></a></span>
+<span id="cb2-10"><a></a>reports/sector_%.pdf: sector_report_template.qmd %.csv</span>
+<span id="cb2-11"><a></a>    quarto render $&lt; -o $@</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>See also: <a href="https://github.com/RMI/stitch/blob/main/Makefile">Stitch Makefile</a></p>
+<aside class="notes">
+<p>it’s been a long time for most people since they’ve actually looked at makefile make syntax isn’t particualrly fun to work in</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="common-bad-practices" class="slide level2">
-<h2>🚫 Common bad practices</h2>
-<ul>
-<li class="fragment">Superficial LGTM approvals</li>
-<li class="fragment">Excessively nitpicky comments</li>
-<li class="fragment">Review lacks a clear status (ie. “Approved”, “Request Changes”, “Close Recommendation”)</li>
-</ul>
+<section id="language-specific-pipelines" class="slide level2">
+<h2>Language-specific pipelines</h2>
+<p>Using lanugage-speficic pipelines (<code>targets</code>) gives an easy way to track both code objects and data as “inputs”, and add them to the dependency graph.</p>
+<p>It also gives them better syntax (familiar to devs and often just more expressive/easier to use than <code>make</code>)</p>
+<aside class="notes">
+<p>automatic dependency tracking of more of the environment</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="how-to-review-effectively" class="slide level2">
-<h2>✅ How to review effectively</h2>
-<ul>
-<li class="fragment">Clearly state your status: “Approved”, “Request Changes”, “Close Recommendation”</li>
-<li class="fragment">Nitpicky or non-blocking comments should be clearly marked</li>
-<li class="fragment">Be constructive and specific</li>
-<li class="fragment">Validate logic, security, performance</li>
-<li class="fragment">Check for coding standards and test coverage</li>
-<li class="fragment">Ensure documentation is updated when necessary</li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="demo-submitting-a-great-pr" class="title-slide slide level1 center">
-<h1>Demo: Submitting a Great PR</h1>
-<ul>
-<li class="fragment">Create a new branch &amp; make changes</li>
-<li class="fragment">Write clear commit messages</li>
-<li class="fragment">Open a PR with a well-written description</li>
-<li class="fragment">Clearly identify the corresponding GitHub issues or Jira ticket</li>
-<li class="fragment">Assign reviewers and respond to feedback</li>
-<li class="fragment">Merge your own PRs when approved</li>
-<li class="fragment"><a href="https://github.com/RMI-PACTA/r2dii.analysis/pull/460?new_mergebox=true">Example PR</a></li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="demo-reviewing-a-pull-request-well" class="title-slide slide level1 center">
-<h1>Demo: Reviewing a Pull Request Well</h1>
-<ul>
-<li class="fragment">Check for CI/CD failures</li>
-<li class="fragment">Visually inspect changes (e.g.&nbsp;using GitHub diff view)</li>
-<li class="fragment">Review code logic and security concerns</li>
-<li class="fragment">Provide clear and actionable feedback</li>
-<li class="fragment">Approve or request changes with explanations</li>
-<li class="fragment">Confirm proper documentation is in place</li>
-</ul>
-</section>
-<section class="slide level2">
-
-</section></section>
-<section id="final-thoughts" class="title-slide slide level1 center">
-<h1>Final Thoughts</h1>
-<p>🔹 Keep branches clean and protected<br>
-🔹 Use PRs as a collaboration tool<br>
-🔹 Follow a branching strategy that fits your workflow<br>
-🔹 Make PRs and reviews effective by being clear, concise, and constructive</p>
+<section id="babys-first-data-pipeline" class="slide level2">
+<h2>Baby’s first data pipeline</h2>
+<p><a href="https://github.com/IndianaCHE/Detailed-SSP-Reports/blob/master/run.R">https://github.com/IndianaCHE/Detailed-SSP-Reports/blob/master/run.R</a></p>
 
 
 </section>

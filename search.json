@@ -190,86 +190,6 @@
     ]
   },
   {
-    "objectID": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
-    "href": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
-    "title": "GitHub Best Practices",
-    "section": "Enable branch protection rules",
-    "text": "Enable branch protection rules\n\nProtect main (and any other long-lived branches)\nRequire pull requests before merging\nRequire minimum 1 approving review\nEnforce status checks (CI/CD pipelines, linting, tests)",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#github-flow",
-    "href": "slides/2025-02-11_pr_practices.html#github-flow",
-    "title": "GitHub Best Practices",
-    "section": "GitHub Flow",
-    "text": "GitHub Flow\n\nOne long-lived branch: main\nfeature branch → PR → Merge to main\nSimple\nBest for continuous delivery\nDeploy immediately after merge to main",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#gitflow",
-    "href": "slides/2025-02-11_pr_practices.html#gitflow",
-    "title": "GitHub Best Practices",
-    "section": "GitFlow",
-    "text": "GitFlow\n\nLong-lived branches: main, develop\nShort-lived branches: release, hotfix, feature\nfeature branch -&gt; PR -&gt; Merge to develop\nrelease branch or hotfix -&gt; PR -&gt; Merge to main and develop\nBetter for large-scale projects, many devs, scheduled releases",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#what-makes-a-pr-bad",
-    "href": "slides/2025-02-11_pr_practices.html#what-makes-a-pr-bad",
-    "title": "GitHub Best Practices",
-    "section": "🚫 What makes a PR bad?",
-    "text": "🚫 What makes a PR bad?\n\nLarge & difficult to review\nMany unrelated changes\nPoor or no description\nUnclear commit history\nFails CI/CD checks\nLacks necessary tests",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#how-to-improve-prs",
-    "href": "slides/2025-02-11_pr_practices.html#how-to-improve-prs",
-    "title": "GitHub Best Practices",
-    "section": "✅ How to improve PRs",
-    "text": "✅ How to improve PRs\n\nKeep PRs small and focused\nProvide a clear summary & context\nWrite meaningful commit messages\nEnsure automated checks pass before requesting review\nAdd relevant tests & documentation\nExplain how a reviewer can test your changes",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#common-bad-practices",
-    "href": "slides/2025-02-11_pr_practices.html#common-bad-practices",
-    "title": "GitHub Best Practices",
-    "section": "🚫 Common bad practices",
-    "text": "🚫 Common bad practices\n\nSuperficial LGTM approvals\nExcessively nitpicky comments\nReview lacks a clear status (ie. “Approved”, “Request Changes”, “Close Recommendation”)",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#how-to-review-effectively",
-    "href": "slides/2025-02-11_pr_practices.html#how-to-review-effectively",
-    "title": "GitHub Best Practices",
-    "section": "✅ How to review effectively",
-    "text": "✅ How to review effectively\n\nClearly state your status: “Approved”, “Request Changes”, “Close Recommendation”\nNitpicky or non-blocking comments should be clearly marked\nBe constructive and specific\nValidate logic, security, performance\nCheck for coding standards and test coverage\nEnsure documentation is updated when necessary",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
     "objectID": "slides/2025-05-06_12FactorPt1.html#motivation",
     "href": "slides/2025-05-06_12FactorPt1.html#motivation",
     "title": "12 Factor Applications (Pt 1)",
@@ -357,6 +277,236 @@
     "text": "Getting Started with 12 Factor Apps\n\nReview your current projects against the 12 factors.\nIncrementally adopt factors as you enhance or refactor projects.\nFoster collaboration and awareness across development and operations teams.",
     "crumbs": [
       "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
+    "href": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
+    "title": "GitHub Best Practices",
+    "section": "Enable branch protection rules",
+    "text": "Enable branch protection rules\n\nProtect main (and any other long-lived branches)\nRequire pull requests before merging\nRequire minimum 1 approving review\nEnforce status checks (CI/CD pipelines, linting, tests)",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#github-flow",
+    "href": "slides/2025-02-11_pr_practices.html#github-flow",
+    "title": "GitHub Best Practices",
+    "section": "GitHub Flow",
+    "text": "GitHub Flow\n\nOne long-lived branch: main\nfeature branch → PR → Merge to main\nSimple\nBest for continuous delivery\nDeploy immediately after merge to main",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#gitflow",
+    "href": "slides/2025-02-11_pr_practices.html#gitflow",
+    "title": "GitHub Best Practices",
+    "section": "GitFlow",
+    "text": "GitFlow\n\nLong-lived branches: main, develop\nShort-lived branches: release, hotfix, feature\nfeature branch -&gt; PR -&gt; Merge to develop\nrelease branch or hotfix -&gt; PR -&gt; Merge to main and develop\nBetter for large-scale projects, many devs, scheduled releases",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#what-makes-a-pr-bad",
+    "href": "slides/2025-02-11_pr_practices.html#what-makes-a-pr-bad",
+    "title": "GitHub Best Practices",
+    "section": "🚫 What makes a PR bad?",
+    "text": "🚫 What makes a PR bad?\n\nLarge & difficult to review\nMany unrelated changes\nPoor or no description\nUnclear commit history\nFails CI/CD checks\nLacks necessary tests",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#how-to-improve-prs",
+    "href": "slides/2025-02-11_pr_practices.html#how-to-improve-prs",
+    "title": "GitHub Best Practices",
+    "section": "✅ How to improve PRs",
+    "text": "✅ How to improve PRs\n\nKeep PRs small and focused\nProvide a clear summary & context\nWrite meaningful commit messages\nEnsure automated checks pass before requesting review\nAdd relevant tests & documentation\nExplain how a reviewer can test your changes",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#common-bad-practices",
+    "href": "slides/2025-02-11_pr_practices.html#common-bad-practices",
+    "title": "GitHub Best Practices",
+    "section": "🚫 Common bad practices",
+    "text": "🚫 Common bad practices\n\nSuperficial LGTM approvals\nExcessively nitpicky comments\nReview lacks a clear status (ie. “Approved”, “Request Changes”, “Close Recommendation”)",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#how-to-review-effectively",
+    "href": "slides/2025-02-11_pr_practices.html#how-to-review-effectively",
+    "title": "GitHub Best Practices",
+    "section": "✅ How to review effectively",
+    "text": "✅ How to review effectively\n\nClearly state your status: “Approved”, “Request Changes”, “Close Recommendation”\nNitpicky or non-blocking comments should be clearly marked\nBe constructive and specific\nValidate logic, security, performance\nCheck for coding standards and test coverage\nEnsure documentation is updated when necessary",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#second-make-refresh",
+    "href": "slides/2026-01-27_build-data-pipelines.html#second-make-refresh",
+    "title": "Build Systems and Data Pipelines",
+    "section": "20 second make refresh",
+    "text": "20 second make refresh\noutput1: input1 input2\n  command\n\ninput2: sourceA sourceB\n  write_input2.sh\n\noutput is tracked against its dependencies output for one step can be a dependency for another",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#agenda",
+    "href": "slides/2026-01-27_build-data-pipelines.html#agenda",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Agenda",
+    "text": "Agenda\n\nBuild Systems\nData Pipelines\nImplications for our work\nDiscussion\n\n\nThere are only two hard things in Computer Science: cache invalidation and naming things.\n– Phil Karlton",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#build-system",
+    "href": "slides/2026-01-27_build-data-pipelines.html#build-system",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Build system",
+    "text": "Build system\nA build system is a tool (or library/package) for:\n\nDeclaring build “targets” (outputs)\nDefining the steps required to create those targets\nExecuting those steps\n\nit usually also includes a mechanism for caching:\n\nIdentifying what the inputs are to a step (i.e. code files)\nDetermining if the outputs are stale (outdated)\nDetermining what steps need to be re-run based on staleness",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#data-pipelines",
+    "href": "slides/2026-01-27_build-data-pipelines.html#data-pipelines",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Data Pipelines",
+    "text": "Data Pipelines\nA data pipeline system is a tool (or library/package) for:\n\nDeclaring build “targets” (outputs)\nDefining the steps required to create those targets\nExecuting those steps\n\nit usually also includes a mechanism for caching:\n\nIdentifying what the inputs are to a step (i.e. data, code files)\nDetermining if the outputs are stale (outdated)\nDetermining what steps need to be re-run based on staleness",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#task-runner",
+    "href": "slides/2026-01-27_build-data-pipelines.html#task-runner",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Task runner",
+    "text": "Task runner\nA task runner is a tool that runs tasks without caching. They may or may not support dependency resolution.\nExamples of task runners:\n\njust\nnpm run\nShell scripts\n\nA build system that ignores its caches can be used as a task runner",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#same-idea-different-names",
+    "href": "slides/2026-01-27_build-data-pipelines.html#same-idea-different-names",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Same idea, different names",
+    "text": "Same idea, different names\n\n\n\nBuild systems\nData pipelines\n\n\n\n\nTarget / artifact\nTable / dataset / object\n\n\nRule\nScript / transform / job\n\n\nDependency\nUpstream input\n\n\nIncremental rebuild\nIncremental refresh / backfill\n\n\nCache\nMaterialization / snapshot\n\n\nHermetic build\nReproducible run (pinned code + inputs)\n\n\nTest\nData quality check / invariant",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#same-graph-different-choices",
+    "href": "slides/2026-01-27_build-data-pipelines.html#same-graph-different-choices",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Same graph, different choices",
+    "text": "Same graph, different choices\n\n\n\nInvalidation\n\nTimestamps (make)\nContent hashes (Docker)\nFreshness windows (data pipelines)\n\nScheduling & execution\n\nLocal\nCI runners\nDistributed schedulers + compute engines\n\n\n\n\nDeterminism / hermeticity\n\nPinned toolchains + inputs\nExternal systems\nMutable/Immutable data\n\n\n\ndeterminism: Effectively, what is a declared dependency, vs. what is part of the environment\nDon’t linger too long on this slide\n\n\nWhat does “success” mean?\n\nBuild passes tests\nData passes invariants, freshness, and anomaly checks",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#enabling-latest",
+    "href": "slides/2026-01-27_build-data-pipelines.html#enabling-latest",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Enabling latest",
+    "text": "Enabling latest\nIf you treat data and code both as dependencies, you can very easily start to talk about the latest version of a data object (or dataset) in the same way you can talk about the latest version of an app or package\n\nfrequently (for us), code is what changes.\n\nHow often does relevant data update vs. codebase? Yearly? Weekly? Immediate?\n\nThis does not need to be a literal latest tag\n\n\nDrop a link to working build in Teams/Slack/etc.",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#enabling-versionspermalinks",
+    "href": "slides/2026-01-27_build-data-pipelines.html#enabling-versionspermalinks",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Enabling versions/permalinks",
+    "text": "Enabling versions/permalinks\nIf inputs and outputs (possibly caches) can be accessed independently, this can also enable versioning effectively\n\nCode inputs (git checkout v1.2.3)\nData inputs (/datasets/my-dataset/2026-01-01.csv)\nBuilt outputs\n\npermalink\nETag\nreport_2026-01-01.pdf\nindex-Cwp2LJ1J.js",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#continuous-publication",
+    "href": "slides/2026-01-27_build-data-pipelines.html#continuous-publication",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Continuous Publication",
+    "text": "Continuous Publication\n\nIf everything is a build, then everything can be a deploy\nIf it can be deployed, it could be deployed to PROD\n\nThe CI/CD pipeline is our Continuous Publication mechanism. It is possible to track latest and have up-to-date information, while still checking against tests, model expectations, invariants, and data quality checks.\nIt is also possible to mark old versions as inaccurate or deprecated\n\n⚠️ The information or analysis in this report are no longer sound. See an updated version at foo.rmi.org/1234\n\n\nThis idea can sound really scary to people. It’s important to have faith in your automated checks. It’s also possible to have human-in-the-loop approval steps",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#caching-and-archiving",
+    "href": "slides/2026-01-27_build-data-pipelines.html#caching-and-archiving",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Caching and archiving",
+    "text": "Caching and archiving\n\nIdentifying what to cache/store\n\nWhat is expensive to calculate? (Cache)\nWhat can we not re-create? (Archive)\nDo we have concerns about an upstream dependency changing history/going offline?\n\n\n\nWhat is cached often determines where Web page –&gt; CDN batch job dataset –&gt; Internal blob",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#tech-stack",
+    "href": "slides/2026-01-27_build-data-pipelines.html#tech-stack",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Tech Stack",
+    "text": "Tech Stack\n\nHow you want to handle dependencies determines what is the right tool\nWhat tool you’re using determines how you handle dependencies\n\nThese affect system design (what is in or out of a system boundary), sometimes invisibly",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#a-closer-look-at-make",
+    "href": "slides/2026-01-27_build-data-pipelines.html#a-closer-look-at-make",
+    "title": "Build Systems and Data Pipelines",
+    "section": "A closer look at make",
+    "text": "A closer look at make\nMake is a universal glue, and as such is worth examining as both a toy model and a well- and commonly-used tool.",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#language-specific-pipelines",
+    "href": "slides/2026-01-27_build-data-pipelines.html#language-specific-pipelines",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Language-specific pipelines",
+    "text": "Language-specific pipelines\nUsing lanugage-speficic pipelines (targets) gives an easy way to track both code objects and data as “inputs”, and add them to the dependency graph.\nIt also gives them better syntax (familiar to devs and often just more expressive/easier to use than make)\n\nautomatic dependency tracking of more of the environment",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#babys-first-data-pipeline",
+    "href": "slides/2026-01-27_build-data-pipelines.html#babys-first-data-pipeline",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Baby’s first data pipeline",
+    "text": "Baby’s first data pipeline\nhttps://github.com/IndianaCHE/Detailed-SSP-Reports/blob/master/run.R",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
     ]
   },
   {
