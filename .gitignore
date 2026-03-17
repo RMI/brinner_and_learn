@@ -3,8 +3,10 @@
 .Rdata
 .httr-oauth
 .DS_Store
-__pycache__/
-*.py[cod]
+
+# Ignore Python cache in the current live demo only.
+live_demos/2026-03-16_libraries_dont_run_themselves/src/**/__pycache__/
+live_demos/2026-03-16_libraries_dont_run_themselves/src/**/*.py[cod]
 
 # Ignore things during render.
 *.html
