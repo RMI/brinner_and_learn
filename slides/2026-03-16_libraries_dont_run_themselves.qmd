@@ -1,0 +1,395 @@
+---
+title: "Libraries Don't Run Themselves"
+author: "Jackson Hoffart"
+format:
+  revealjs:
+    incremental: true
+execute:
+  eval: true
+---
+
+<style>
+.reveal .cell:has(.mermaid-js) .code-copy-outer-scaffold {
+  display: none;
+}
+</style>
+
+## Why Are Some Repos Hard to Use?
+
+- The path from "repo" to "execution" is usually unclear
+- "What am I supposed to run?"
+- "Which files are "active", and which are historical debris?"
+- "Do I change code, config, or data to do the next run?"
+
+::: {.notes}
+Purpose: start from familiar pain instead of definitions.
+
+Suggested talk track: "Most confusing repos do contain code. The problem is usually not missing code. The problem is that the path from repo to actual execution is unclear."
+:::
+
+---
+
+## The Core Problem
+
+- Reusable logic is mixed with one-off glue
+- Execution depends on tribal knowledge
+- Inputs are implicit and not declared
+- Reproducing a run becomes a scavenger hunt
+
+::: {.notes}
+Purpose: establish the central idea in one sentence.
+
+Suggested talk track: "A repo can be full of files and still be operationally vague. If a new teammate cannot tell what to run and what controls the run, the software is not clear enough yet."
+:::
+
+---
+
+## One Example Repo, Three Different Kinds of Thing
+
+``` text
+repo/
+  src/project/model.py
+  scripts/run_model.py
+  model-run --config configs/base.yaml
+```
+
+- `src/project/model.py` is library code: reusable logic
+- `scripts/run_model.py` is a script: often one runnable task
+- `model-run ...` is the application interface (in this case a CLI)
+
+::: {.notes}
+Purpose: replace fuzzy analogy with one concrete example.
+
+Suggested talk track: "I want one picture in your head. Same repo, different jobs. The module in `src/` holds reusable logic, the script runs one workflow, and the CLI is the supported doorway other people should use."
+:::
+
+---
+
+## What Is a Library?
+
+- Code that is meant to be imported and reused
+- Often: Functions, classes, and modules with precise behavior
+- Should never actually "do anything" just because it is imported
+- Unit tests should focus here, this is where stable behavior lives
+
+```python
+def run_model(records, factors, threshold):
+    ...
+```
+
+::: {.notes}
+Purpose: define library in practical terms.
+
+Suggested talk track: "If I import your module to use one function, it should not suddenly pull data, write files, or parse command-line arguments. Libraries are building blocks."
+:::
+
+---
+
+## What Is a Script?
+
+- A "executable" wrapper around one task
+- Often: Parses inputs, calls library code, writes outputs
+- Should stay thin so the logic is still reusable
+
+```python
+def main():
+    config = load_config(...)
+    records = load_inputs(config)
+    results = run_model(records, ...)
+    write_outputs(results, config.output_dir)
+```
+
+::: {.notes}
+Purpose: explain script as the missing middle layer.
+
+Suggested talk track: "Scripts are often the first honest runnable thing in a project. They are not bad. They become a problem only when they silently become the whole architecture."
+:::
+
+---
+
+## What Is an Application?
+
+- A supported way for a person or system to use the workflow
+- Often: a CLI, API, scheduled job, pipeline step, or web application
+- An application still needs an entry point
+- The entry point is how that application actually gets invoked
+
+::: {.notes}
+Purpose: define application by user experience, not by prestige.
+
+Suggested talk track: "An application does not have to be fancy. A clear CLI can absolutely be an application if it is the intended, supported way to run the workflow."
+:::
+
+---
+
+## What Actually Runs?
+
+- `python -m package.module`
+- a `main()` function
+- a CLI command like `model-run --config configs/base.yaml`
+- an API endpoint or scheduled job
+- a notebook cell, which works, but usually weakly
+
+::: {.notes}
+Purpose: translate entry points into user questions.
+
+Suggested talk track: "Entry point is just the technical name for where execution starts. For most users, the important version is simpler: what do I run, and what controls the run?"
+:::
+
+---
+
+## The Common "Modeling" Pipeline
+
+```{mermaid echo="false"}
+flowchart LR
+    A[Entry point] --> B[Load config]
+    B --> C[Load input data]
+    C --> D[Call model library]
+    D --> E[Write outputs]
+```
+
+- The library only provides logic
+- The entry point actually assembles the run
+- The config and input data determine the specific execution
+
+::: {.notes}
+Purpose: show the whole run path in one picture.
+
+Suggested talk track: "When people say 'the model runs,' they usually mean this whole chain runs. The library is one important piece, but it is not the whole runnable system."
+:::
+
+---
+
+## Model Code, Configuration, Data, and Outputs Are Distinct
+
+```{mermaid echo="false"}
+flowchart TB
+    code[Code<br/>Reusable logic]
+    config[Config<br/>Run instructions]
+    data[Input data<br/>Domain facts]
+    output[Outputs<br/>Results of the run]
+
+    code --> run((Run))
+    config --> run
+    data --> run
+    run --> output
+```
+
+- Code dictates how the software behaves
+- Configuration specifies how the run should execute
+- Data provides the domain facts for that run
+- Outputs are what the run produced
+
+::: {.notes}
+Purpose: establish the four-part model cleanly.
+
+Suggested talk track: "A lot of repo confusion is category confusion. We blur code, config, data, and outputs together, then wonder why the project is hard to reason about."
+:::
+
+---
+
+## Two "Input" Artifacts, Different Intuition
+
+:::: {.columns}
+::: {.column width="48%"}
+### Config file
+
+```yaml
+release_year: 2026
+portfolio_path: s3://team-data/portfolios/q1.parquet
+threshold: 0.85
+output_dir: outputs/2026-q1
+```
+
+- Model run configuration
+- I/O data paths
+- etc.
+- Mostly instructions? Probably config.
+:::
+
+::: {.column width="48%"}
+### Input data file
+
+```text
+account_id, balance, sector, region
+1042, 1500000, cement, NA
+1043, 230000, steel, EU
+```
+
+- Domain input, facts or records
+- The "thing" being modeled
+- Mostly records? Probably data.
+:::
+::::
+
+
+::: {.notes}
+Purpose: make config vs data obvious and visual.
+
+Suggested talk track: "These may both be text files, but they play very different roles. One describes the run. The other is the thing being analyzed or modeled."
+:::
+
+---
+
+## What Good Execution Feels Like
+
+- One clear supported way to run an important workflow
+- Inputs are explicit, not hidden in code
+- A teammate can follow the docs and succeed
+- A result can be traced back to code, config, and data
+- boring to explain
+- boring to rerun
+- boring to hand off
+
+::: {.notes}
+Purpose: tie the structure back to the user experience.
+
+Suggested talk track: "Boring is the goal. A healthy run path should feel obvious enough that nobody has to schedule a meeting just to rerun last quarter's work."
+:::
+
+---
+
+## Common Anti-Patterns, and the Fix They Point To
+
+| If you see this... | A good next fix is... |
+|---|---|
+| `sys.path` hacks | make imports real and package the code cleanly |
+| hard-coded local paths | move the path into config |
+| `script_2024.py`, `script_2025.py` | drive behavior from inputs instead of duplicated files |
+| notebooks as source of truth | try to move reusable logic into `src/` |
+| `main.py` just because `uv` added it | document and support one real entry point |
+
+::: {.notes}
+Purpose: connect smells directly to improvements.
+
+Suggested talk track: "These are not signs that someone is bad at their job. They are signs that the project grew without a clear runnable path. Each smell points to a cleaner boundary."
+:::
+
+---
+
+## A "Healthy" Default Repo Shape
+
+:::: {.columns}
+::: {.column width="58%"}
+```text
+repo/
+  src/project/
+    model.py
+    io.py
+    validation.py
+    app.py
+  scripts/
+    run_model.py
+  configs/
+    base.yaml
+  notebooks/
+    exploratory_analysis.ipynb
+  tests/
+    test_model.py
+  docs/
+    running.md
+```
+:::
+
+::: {.column width="42%"}
+- `src/` for reusable code
+- `scripts/` for task-focused orchestration
+- `notebooks/` for exploration, not the source of truth
+- `configs/` for declared runs
+- `docs/` for the humans (and some robots)
+:::
+::::
+
+::: {.notes}
+Purpose: provide a practical default shape rather than a theory.
+
+Suggested talk track: "This is not the one true tree. It is a useful default. The main goal is that a new person can tell what is reusable, what is runnable, and where to look first."
+:::
+
+---
+
+## Tiny Demo Project
+
+The live demo for this talk lives here:
+
+`live_demos/2026-03-16_libraries_dont_run_themselves`
+
+```text
+mini_house/
+  src/mini_house/tools.py
+  src/mini_house/app.py
+  scripts/frame_wall.py
+  pyproject.toml
+```
+
+- library: a tiny reusable "tool"
+- script: one part of the work
+- application: a micro CLI representing the supported interface
+- same pattern, deliberately stripped down
+
+::: {.notes}
+Purpose: connect the talk to a concrete local example.
+
+Suggested talk track: "I made this deliberately tiny. The goal is not realism. The goal is to show the roles clearly enough that you can point at them in a repo."
+:::
+
+---
+
+## Three Improvements You Can Make This Week
+
+1. Move one chunk of reusable logic out of a notebook or script and into `src/`
+2. Create one real runnable entry point for an important workflow
+3. Replace one hard-coded path or year with a config value
+4. Make it painfully obvious what someone else should run
+
+::: {.notes}
+Purpose: give the target audience immediate next actions.
+
+Suggested talk track: "You do not need a grand rewrite. Pick one workflow and make the run path clearer this week. That alone makes a project much easier to maintain."
+:::
+
+---
+
+## Bonus: Product Thinking Helps!
+
+- Decide who needs to use the thing
+- Decide how they are supposed to use it
+- The clearer the user, the clearer the entry point
+- A repo gets healthier when the supported workflow is designed on purpose
+- Another developer importing functions needs stable library code
+- An analyst running a scenario needs one obvious command plus editable config
+- Is this for another developer to import?
+- Is this for a teammate to run from the CLI?
+- What is the smallest successful experience for that user?
+
+::: {.notes}
+Purpose: connect architecture back to user-centered design.
+
+Suggested talk track: "A lot of repo confusion is really a product-definition problem. If we do not decide who the user is and how they should use the workflow, we drift into vague software."
+:::
+
+---
+
+## Closing Thought
+
+Libraries can't just run themselves. Good repos make that obvious.
+
+::: {.notes}
+Purpose: end on one memorable sentence.
+
+Suggested talk track: "If people leave remembering one thing, I want it to be this: the repo should advertise its runnable path. If that path is obvious, a lot of other architecture decisions get easier."
+:::
+
+---
+
+## Discussion
+
+- What repo in your world would benefit most from this cleanup?
+- Which anti-pattern shows up most often?
+- What would make one of your current projects easier to hand off?
+
+::: {.notes}
+Purpose: invite discussion tied to real work.
+
+Suggested talk track: "I would expect different teams to answer these differently. The useful part is not forcing identical structure everywhere. The useful part is making the runnable path explicit."
+:::
