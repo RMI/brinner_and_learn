@@ -39,6 +39,8 @@ website:
         target: build_data_pipelines
       - file: ./slides/2026-03-16_libraries_dont_run_themselves.qmd
         target: libraries_dont_run_themselves
+      - file: ./slides/2026-04-21_llms_for_software_development.qmd
+        target: llms_for_software_development
 
 format:
   html:
