@@ -1,0 +1,43 @@
+---
+engine: "knitr"
+title: "⌘+C/V/🤖"
+subtitle: "Effective Software development with the Robots"
+author: "Alex Axthelm"
+format:
+  revealjs:
+    incremental: false
+---
+
+# The Practical Framing
+
+- This is about using ChatGPT through the RMI subscription
+- The goal is *not* autonomous coding
+- The goal is using the robot to make *your* engineering brain more effective
+
+---
+
+# Background
+
+- Same process as 5 years ago, but the path to finding a working code block is
+  lower
+- The robot has replaced Stack Overflow
+- "I found this on the internet and it maybe works"
+- It's the synthesis of GH comments, SO posts and Hacker News
+- Very good at doing a lit search, following source links can be very
+  informative
+
+---
+
+# My Default Workflow
+
+1. Figure out what my approach to the problem would be
+2. Describe the problem to the robot.
+3. Let it suggest a plan 
+   If different than mine, discuss tradeoffs
+4. Ask it what context it needs. Provide link to GH if available. Tell it to
+   check, and be explicit if it can access. Upload if it can't
+5. Integrate responses locally.
+6. `make check` and `make reboot-docker`
+7. Read the diffs while checks are running
+
+Loop.
