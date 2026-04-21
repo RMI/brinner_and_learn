@@ -1,62 +1,262 @@
 [
   {
-    "objectID": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
-    "href": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "What are dotfiles?",
-    "text": "What are dotfiles?\n\nConfiguration files that live in your $HOME directory\nUsually start with a dot (so they’re “hidden”):\n\n.bashrc, .zshrc\n.gitconfig\n.config/ghostty/config\n\nThey control how your tools behave:\n\nshell prompt, aliases, colors\ngit defaults, editor settings, etc.",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
     "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
+      "Welcome"
     ]
   },
   {
-    "objectID": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
-    "href": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "Why care about dotfiles?",
-    "text": "Why care about dotfiles?\n\nNew machine? → “Why doesn’t anything feel right?”\nDotfiles in a repo give you:\n\nreproducible setups\neasy sharing of configuration (new laptop, new team member)\na place to grow your personal setup over time",
+    "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
+    "href": "slides/2025-03-11_tickets.html#feature-tickets",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Feature Tickets",
+    "text": "Feature Tickets\n\nFor features, try to include a user story:\n\ne.g. “As a registered user, I might forget my password and want to regain access to my account securely.”\n\nWhen possible, supplement the user story with unambiguous acceptance criteria",
     "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
+      "Effective Ticketing & the Definition of Done"
     ]
   },
   {
-    "objectID": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
-    "href": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "Dotfiles as a developer’s fingerprint",
-    "text": "Dotfiles as a developer’s fingerprint\n\nEveryone’s environment is a bit different:\n\npreferred shell, editor, prompt, tools\n\nYour dotfiles encode:\n\nhow you navigate\nhow you debug\nhow you use git, ssh, etc.\n\nPutting them in a repo:\n\ndocuments how you work\nlets you borrow good ideas from others 😄",
+    "objectID": "slides/2025-03-11_tickets.html#bug-tickets",
+    "href": "slides/2025-03-11_tickets.html#bug-tickets",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Bug Tickets",
+    "text": "Bug Tickets\n\nFor bugs, be as detailed as possible!\n\nOften the limiting factor for fixing a bug is reproducing it.\n\nFor example:\n\nEnvironment setup (OS, browser, app version, etc.)\nReproduction Steps (What precise actions lead to the bug?)\nExpected behaviour (What should have happened?)\nActual behaviour (What actually happened?)\nScreenshots, logs, etc.",
     "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
+      "Effective Ticketing & the Definition of Done"
     ]
   },
   {
-    "objectID": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
-    "href": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "The problem: dotfiles sprawl",
-    "text": "The problem: dotfiles sprawl\n\nConfig files live all over $HOME:\n\n~/.bashrc\n~/.gitconfig\n~/.config/ghostty/config\n\nIf you edit them in-place:\n\nhard to sync between machines\neasy to accidentally diverge\n\nWe’d like a single source of truth in a repo, and a clean way to “deploy” them into $HOME.",
+    "objectID": "slides/2025-03-11_tickets.html#acceptance-criteria",
+    "href": "slides/2025-03-11_tickets.html#acceptance-criteria",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Acceptance Criteria",
+    "text": "Acceptance Criteria\n\nWhat must be true for the issue to be considered complete?\n\nWritten as bullet points\nExample",
     "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
+      "Effective Ticketing & the Definition of Done"
     ]
   },
   {
-    "objectID": "slides/2025-12-02_dotfiles.html#gnu-stow",
-    "href": "slides/2025-12-02_dotfiles.html#gnu-stow",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "GNU Stow",
-    "text": "GNU Stow\nGNU Stow is a symlink manager.\n\nYou keep “real” files in a repo like:\n\n~/dotfiles/\n  bash/.bashrc\n  bash/.aliases\n  git/.gitconfig\n  ghostty/.config/ghostty/config\n\nThen you “stow” them into $HOME:\n\ncd ~/dotfiles\nstow -t \"$HOME\" bash git ghostty\n\nstow creates symlinks:\n\n~/.bashrc  -&gt; ~/dotfiles/bash/.bashrc\n~/.gitconfig -&gt; ~/dotfiles/git/.gitconfig",
+    "objectID": "slides/2025-03-11_tickets.html#definition-of-done",
+    "href": "slides/2025-03-11_tickets.html#definition-of-done",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Definition of Done:",
+    "text": "Definition of Done:\n\nAll acceptance criteria are met\nTests and checks pass\nDocumentation is updated when relevant\nCode is reviewed and merged!",
     "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
+      "Effective Ticketing & the Definition of Done"
     ]
   },
   {
-    "objectID": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
-    "href": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "Why Stow is nice for dotfiles",
-    "text": "Why Stow is nice for dotfiles\n\nKeeps $HOME clean → just symlinks\nEasy to enable/disable groups:\n\nstow -t \"$HOME\" bash\nstow -D -t \"$HOME\" bash   # unstow\n\nEncourages a modular layout:\n\none folder per “package” (bash, git, ghostty, …)\n\nWorks great with git:\n\nversion control your dotfiles repo\nclone + stow on any machine",
+    "objectID": "slides/2025-03-11_tickets.html#setup",
+    "href": "slides/2025-03-11_tickets.html#setup",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Setup",
+    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
     "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-03-11_tickets.html#recap",
+    "href": "slides/2025-03-11_tickets.html#recap",
+    "title": "Effective Ticketing & the Definition of Done",
+    "section": "Recap",
+    "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
+    "crumbs": [
+      "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#motivation",
+    "href": "slides/2025-05-06_12FactorPt1.html#motivation",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Motivation",
+    "text": "Motivation\n\nDeveloping and Deploying Apps can be difficult\nThe 12 Factor App methodology provides guidelines that ensure\n\nclarity,\nscalability,\nmaintainability\n\nBenefits both developers and operations teams.",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
+    "href": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Why are 12 Factor Apps Important?",
+    "text": "Why are 12 Factor Apps Important?\n\nConsistency and predictability in application behavior.\nSimplifies the development lifecycle.\nEases the process of deploying, scaling, and maintaining applications.\nPromotes collaboration between development and operations (DevOps).",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#best-practices",
+    "href": "slides/2025-05-06_12FactorPt1.html#best-practices",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Best Practices",
+    "text": "Best Practices\nA lot of these concepts are things that are considered best practices, but collected together.\n\nYou are probably already do a bunch of these things\nYou may not know you do it (it just feels right)\nYou may not know why you do it (it just seems to work)\nYou may do it because you were told to (it isn’t broken)",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
+    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Benefits for Developers",
+    "text": "Benefits for Developers\n\nClear guidelines for application structure and behavior.\nSimplified onboarding and reduced cognitive load.\nEasier debugging and local development.\nPredictable dependencies and environments.",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
+    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Benefits for DevOps/Operations",
+    "text": "Benefits for DevOps/Operations\n\nStreamlined deployment and automated management.\nImproved reliability and faster issue resolution.\nEasier monitoring and logging.",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
+    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "The 12 Factors (Brief Overview)",
+    "text": "The 12 Factors (Brief Overview)\n\nCodebase: One codebase tracked in version control, many deploys.\nDependencies: Explicitly declare and isolate dependencies.\nConfig: Store configuration in the environment.\nBacking Services: Treat backing services as attached resources.\nBuild, Release, Run: Strictly separate build and run stages.\nProcesses: Execute the app as one or more stateless processes.",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
+    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "The 12 Factors (Brief Overview)",
+    "text": "The 12 Factors (Brief Overview)\n\nPort Binding: Export services via port binding.\nConcurrency: Scale out via the process model.\nDisposability: Maximize robustness with fast startup and graceful shutdown.\nDev/Prod Parity: Keep development, staging, and production similar.\nLogs: Treat logs as event streams.\nAdmin Processes: Run admin tasks as one-off processes.",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
+    "href": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Examples of Common Pitfalls",
+    "text": "Examples of Common Pitfalls\n\nConfiguration hardcoded in source code.\nDependencies not clearly defined or versioned.\nStateful processes causing unpredictable behavior.\nSignificant differences between development and production environments.",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
+    "href": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
+    "title": "12 Factor Applications (Pt 1)",
+    "section": "Getting Started with 12 Factor Apps",
+    "text": "Getting Started with 12 Factor Apps\n\nReview your current projects against the 12 factors.\nIncrementally adopt factors as you enhance or refactor projects.\nFoster collaboration and awareness across development and operations teams.",
+    "crumbs": [
+      "12 Factor Applications (Pt 1)"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#will-it-make-the-car-go-faster",
+    "href": "slides/2025-11-04_okrs.html#will-it-make-the-car-go-faster",
+    "title": "OKRs 101",
+    "section": "🏎️ Will it make the car go faster?",
+    "text": "🏎️ Will it make the car go faster?\n\nRed Bull’s Formula 1 Racing team asks one question before every decision:\n\n“Will it make the car go faster?”\nIf the answer is no, it’s not a priority.\n\nEveryone from the pit crew to the strategist knows the same goal.\nFor RMI, that question might be more like:\n\n“Will it drive decarbonization?”\nThis question helps us focus our energy and creativity on work that accelerates impact — the equivalent of making our car go faster.",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#why-are-we-talking-about-okrs",
+    "href": "slides/2025-11-04_okrs.html#why-are-we-talking-about-okrs",
+    "title": "OKRs 101",
+    "section": "🎯 Why are we talking about OKRs?",
+    "text": "🎯 Why are we talking about OKRs?\nObjectives and Key Results help bridge our day-to-day work with SPD’s broader mission:\n\nEnabling public and private sector actors to make energy transition decisions using SPD products.\nThey:\n\nDefine what to prioritize and (often more crucially) what not to.\n\nHelp every team member align on outcomes that move the needle.\n\nConnect organization, team, and personal objectives to measurable outcomes.",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#okr-fundamentals",
+    "href": "slides/2025-11-04_okrs.html#okr-fundamentals",
+    "title": "OKRs 101",
+    "section": "⚙️ OKR Fundamentals",
+    "text": "⚙️ OKR Fundamentals\nGood OKRs always focus on outcomes and not activities.\n\nObjective: What we want to achieve\nKey Results: How we’ll measure success\nEach KR must be measurable and collectively signal achievement of the Objective.",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#anatomy-of-a-good-okr",
+    "href": "slides/2025-11-04_okrs.html#anatomy-of-a-good-okr",
+    "title": "OKRs 101",
+    "section": "🧩 Anatomy of a Good OKR",
+    "text": "🧩 Anatomy of a Good OKR\n\nExample Objective:\n\nEnsure every SPD product delivers impact and engagement, not just technical completion.\n\nKey Results:\n\nAll new project concepts validated with real users (0–1.0)\n\nAll new project proposals budgeted for comms & design (0–1.0)\n\nAll product launches include a “splash” marketing moment (0–1.0)\n\nCollaboration process defined with Influence team (0–1.0)",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#stretch-and-grade",
+    "href": "slides/2025-11-04_okrs.html#stretch-and-grade",
+    "title": "OKRs 101",
+    "section": "🧮 Stretch and Grade",
+    "text": "🧮 Stretch and Grade\nIf you always hit 100%, your goals aren’t ambitious enough.\n\nKey Results shouldn’t be binary “done/not done.”\n\nWe use a 0–1.0 scale to track progress.\n\n~0.7 indicates we’re at the right level of stretch — ambitious but achievable.\n\nOKRs are designed to push learning, not punish shortfalls.",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#common-pitfalls",
+    "href": "slides/2025-11-04_okrs.html#common-pitfalls",
+    "title": "OKRs 101",
+    "section": "⚠️ Common Pitfalls",
+    "text": "⚠️ Common Pitfalls\n\nOKRs should be:\n\nFew in number\n\nMeasurable\n\nFocused on value, not activity\n\nAvoid:\n\nConfusing outputs: 🚫 “deploy web application to production and publish blog post”)\nwith outcomes: ✅ “X% of pilot users log in more than twice within the first month”)\nSetting too many OKRs — focus is power\n\nWriting vague or unmeasurable goals (“do more research”)",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#how-spd-uses-okrs",
+    "href": "slides/2025-11-04_okrs.html#how-spd-uses-okrs",
+    "title": "OKRs 101",
+    "section": "🏗️ How SPD Uses OKRs",
+    "text": "🏗️ How SPD Uses OKRs\n\nWe decide what’s most important each quarter\n\nWe measure progress toward outcomes, not outputs\n\nWe keep workload realistic to prevent burnout\n\nWe maintain alignment and velocity across the team",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#how-are-okrs-different-from-ooms",
+    "href": "slides/2025-11-04_okrs.html#how-are-okrs-different-from-ooms",
+    "title": "OKRs 101",
+    "section": "🧭 How Are OKRs Different From OOMs?",
+    "text": "🧭 How Are OKRs Different From OOMs?\n\n\n\n\n\n\n\nConcept\nPurpose\n\n\n\n\nOOMs\nReport organizational milestones & long-term yearly targets\n\n\nOKRs\nGround each quarter in actionable, measurable goals that connect to daily work and sprint backlogs",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#hands-on-okrs-in-jira-goals",
+    "href": "slides/2025-11-04_okrs.html#hands-on-okrs-in-jira-goals",
+    "title": "OKRs 101",
+    "section": "💻 Hands-On — OKRs in Jira Goals",
+    "text": "💻 Hands-On — OKRs in Jira Goals\n\nDemo time!",
+    "crumbs": [
+      "OKRs 101"
+    ]
+  },
+  {
+    "objectID": "slides/2025-11-04_okrs.html#resources",
+    "href": "slides/2025-11-04_okrs.html#resources",
+    "title": "OKRs 101",
+    "section": "📚 Resources",
+    "text": "📚 Resources\n\nGoogle OKR Guidance\nGoogle OKR Video",
+    "crumbs": [
+      "OKRs 101"
     ]
   },
   {
@@ -127,6 +327,246 @@
     "text": "✅ How to review effectively\n\nClearly state your status: “Approved”, “Request Changes”, “Close Recommendation”\nNitpicky or non-blocking comments should be clearly marked\nBe constructive and specific\nValidate logic, security, performance\nCheck for coding standards and test coverage\nEnsure documentation is updated when necessary",
     "crumbs": [
       "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "What are dotfiles?",
+    "text": "What are dotfiles?\n\nConfiguration files that live in your $HOME directory\nUsually start with a dot (so they’re “hidden”):\n\n.bashrc, .zshrc\n.gitconfig\n.config/ghostty/config\n\nThey control how your tools behave:\n\nshell prompt, aliases, colors\ngit defaults, editor settings, etc.",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Why care about dotfiles?",
+    "text": "Why care about dotfiles?\n\nNew machine? → “Why doesn’t anything feel right?”\nDotfiles in a repo give you:\n\nreproducible setups\neasy sharing of configuration (new laptop, new team member)\na place to grow your personal setup over time",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
+    "href": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Dotfiles as a developer’s fingerprint",
+    "text": "Dotfiles as a developer’s fingerprint\n\nEveryone’s environment is a bit different:\n\npreferred shell, editor, prompt, tools\n\nYour dotfiles encode:\n\nhow you navigate\nhow you debug\nhow you use git, ssh, etc.\n\nPutting them in a repo:\n\ndocuments how you work\nlets you borrow good ideas from others 😄",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
+    "href": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "The problem: dotfiles sprawl",
+    "text": "The problem: dotfiles sprawl\n\nConfig files live all over $HOME:\n\n~/.bashrc\n~/.gitconfig\n~/.config/ghostty/config\n\nIf you edit them in-place:\n\nhard to sync between machines\neasy to accidentally diverge\n\nWe’d like a single source of truth in a repo, and a clean way to “deploy” them into $HOME.",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#gnu-stow",
+    "href": "slides/2025-12-02_dotfiles.html#gnu-stow",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "GNU Stow",
+    "text": "GNU Stow\nGNU Stow is a symlink manager.\n\nYou keep “real” files in a repo like:\n\n~/dotfiles/\n  bash/.bashrc\n  bash/.aliases\n  git/.gitconfig\n  ghostty/.config/ghostty/config\n\nThen you “stow” them into $HOME:\n\ncd ~/dotfiles\nstow -t \"$HOME\" bash git ghostty\n\nstow creates symlinks:\n\n~/.bashrc  -&gt; ~/dotfiles/bash/.bashrc\n~/.gitconfig -&gt; ~/dotfiles/git/.gitconfig",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Why Stow is nice for dotfiles",
+    "text": "Why Stow is nice for dotfiles\n\nKeeps $HOME clean → just symlinks\nEasy to enable/disable groups:\n\nstow -t \"$HOME\" bash\nstow -D -t \"$HOME\" bash   # unstow\n\nEncourages a modular layout:\n\none folder per “package” (bash, git, ghostty, …)\n\nWorks great with git:\n\nversion control your dotfiles repo\nclone + stow on any machine",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#why-are-some-repos-hard-to-use",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#why-are-some-repos-hard-to-use",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Why Are Some Repos Hard to Use?",
+    "text": "Why Are Some Repos Hard to Use?\n\nThe path from “repo” to “execution” is usually unclear\n“What am I supposed to run?”\n“Which files are”active”, and which are historical debris?”\n“Do I change code, config, or data to do the next run?”\n\n\nPurpose: start from familiar pain instead of definitions.\nSuggested talk track: “Most confusing repos do contain code. The problem is usually not missing code. The problem is that the path from repo to actual execution is unclear.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#the-core-problem",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#the-core-problem",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "The Core Problem",
+    "text": "The Core Problem\n\nReusable logic is mixed with one-off glue\nExecution depends on tribal knowledge\nInputs are implicit and not declared\nReproducing a run becomes a scavenger hunt\n\n\nPurpose: establish the central idea in one sentence.\nSuggested talk track: “A repo can be full of files and still be operationally vague. If a new teammate cannot tell what to run and what controls the run, the software is not clear enough yet.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#one-example-repo-three-different-kinds-of-thing",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#one-example-repo-three-different-kinds-of-thing",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "One Example Repo, Three Different Kinds of Thing",
+    "text": "One Example Repo, Three Different Kinds of Thing\nrepo/\n  src/project/model.py\n  scripts/run_model.py\n  model-run --config configs/base.yaml\n\nsrc/project/model.py is library code: reusable logic\nscripts/run_model.py is a script: often one runnable task\nmodel-run ... is the application interface (in this case a CLI)\n\n\nPurpose: replace fuzzy analogy with one concrete example.\nSuggested talk track: “I want one picture in your head. Same repo, different jobs. The module in src/ holds reusable logic, the script runs one workflow, and the CLI is the supported doorway other people should use.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-library",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-library",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Is a Library?",
+    "text": "What Is a Library?\n\nCode that is meant to be imported and reused\nOften: Functions, classes, and modules with precise behavior\nShould never actually “do anything” just because it is imported\nUnit tests should focus here, this is where stable behavior lives\n\ndef run_model(records, factors, threshold):\n    ...\n\nPurpose: define library in practical terms.\nSuggested talk track: “If I import your module to use one function, it should not suddenly pull data, write files, or parse command-line arguments. Libraries are building blocks.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-script",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-script",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Is a Script?",
+    "text": "What Is a Script?\n\nA “executable” wrapper around one task\nOften: Parses inputs, calls library code, writes outputs\nShould stay thin so the logic is still reusable\n\ndef main():\n    config = load_config(...)\n    records = load_inputs(config)\n    results = run_model(records, ...)\n    write_outputs(results, config.output_dir)\n\nPurpose: explain script as the missing middle layer.\nSuggested talk track: “Scripts are often the first honest runnable thing in a project. They are not bad. They become a problem only when they silently become the whole architecture.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-an-application",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-an-application",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Is an Application?",
+    "text": "What Is an Application?\n\nA supported way for a person or system to use the workflow\nOften: a CLI, API, scheduled job, pipeline step, or web application\nAn application still needs an entry point\nThe entry point is how that application actually gets invoked\n\n\nPurpose: define application by user experience, not by prestige.\nSuggested talk track: “An application does not have to be fancy. A clear CLI can absolutely be an application if it is the intended, supported way to run the workflow.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-actually-runs",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-actually-runs",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Actually Runs?",
+    "text": "What Actually Runs?\n\npython -m package.module\na main() function\na CLI command like model-run --config configs/base.yaml\nan API endpoint or scheduled job\na notebook cell, which works, but usually weakly\n\n\nPurpose: translate entry points into user questions.\nSuggested talk track: “Entry point is just the technical name for where execution starts. For most users, the important version is simpler: what do I run, and what controls the run?”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#the-common-modeling-pipeline",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#the-common-modeling-pipeline",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "The Common “Modeling” Pipeline",
+    "text": "The Common “Modeling” Pipeline\n\nflowchart LR\n    A[Entry point] --&gt; B[Load config]\n    B --&gt; C[Load input data]\n    C --&gt; D[Call model library]\n    D --&gt; E[Write outputs]\n\n\n\n\nflowchart LR\n    A[Entry point] --&gt; B[Load config]\n    B --&gt; C[Load input data]\n    C --&gt; D[Call model library]\n    D --&gt; E[Write outputs]\n\n\n\n\n\n\n\nThe library only provides logic\nThe entry point actually assembles the run\nThe config and input data determine the specific execution\n\n\nPurpose: show the whole run path in one picture.\nSuggested talk track: “When people say ‘the model runs,’ they usually mean this whole chain runs. The library is one important piece, but it is not the whole runnable system.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#model-code-configuration-data-and-outputs-are-distinct",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#model-code-configuration-data-and-outputs-are-distinct",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Model Code, Configuration, Data, and Outputs Are Distinct",
+    "text": "Model Code, Configuration, Data, and Outputs Are Distinct\n\nflowchart TB\n    code[Code&lt;br/&gt;Reusable logic]\n    config[Config&lt;br/&gt;Run instructions]\n    data[Input data&lt;br/&gt;Domain facts]\n    output[Outputs&lt;br/&gt;Results of the run]\n\n    code --&gt; run((Run))\n    config --&gt; run\n    data --&gt; run\n    run --&gt; output\n\n\n\n\nflowchart TB\n    code[Code&lt;br/&gt;Reusable logic]\n    config[Config&lt;br/&gt;Run instructions]\n    data[Input data&lt;br/&gt;Domain facts]\n    output[Outputs&lt;br/&gt;Results of the run]\n\n    code --&gt; run((Run))\n    config --&gt; run\n    data --&gt; run\n    run --&gt; output\n\n\n\n\n\n\n\nCode dictates how the software behaves\nConfiguration specifies how the run should execute\nData provides the domain facts for that run\nOutputs are what the run produced\n\n\nPurpose: establish the four-part model cleanly.\nSuggested talk track: “A lot of repo confusion is category confusion. We blur code, config, data, and outputs together, then wonder why the project is hard to reason about.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#two-input-artifacts-different-intuition",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#two-input-artifacts-different-intuition",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Two “Input” Artifacts, Different Intuition",
+    "text": "Two “Input” Artifacts, Different Intuition\n\n\nConfig file\nrelease_year: 2026\nportfolio_path: s3://team-data/portfolios/q1.parquet\nthreshold: 0.85\noutput_dir: outputs/2026-q1\n\nModel run configuration\nI/O data paths\netc.\nMostly instructions? Probably config.\n\n\nInput data file\naccount_id, balance, sector, region\n1042, 1500000, cement, NA\n1043, 230000, steel, EU\n\nDomain input, facts or records\nThe “thing” being modeled\nMostly records? Probably data.\n\n\n\nPurpose: make config vs data obvious and visual.\nSuggested talk track: “These may both be text files, but they play very different roles. One describes the run. The other is the thing being analyzed or modeled.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-good-execution-feels-like",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-good-execution-feels-like",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Good Execution Feels Like",
+    "text": "What Good Execution Feels Like\n\nOne clear supported way to run an important workflow\nInputs are explicit, not hidden in code\nA teammate can follow the docs and succeed\nA result can be traced back to code, config, and data\nboring to explain\nboring to rerun\nboring to hand off\n\n\nPurpose: tie the structure back to the user experience.\nSuggested talk track: “Boring is the goal. A healthy run path should feel obvious enough that nobody has to schedule a meeting just to rerun last quarter’s work.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#common-anti-patterns-and-the-fix-they-point-to",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#common-anti-patterns-and-the-fix-they-point-to",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Common Anti-Patterns, and the Fix They Point To",
+    "text": "Common Anti-Patterns, and the Fix They Point To\n\n\n\n\n\n\n\nIf you see this…\nA good next fix is…\n\n\n\n\nsys.path hacks\nmake imports real and package the code cleanly\n\n\nhard-coded local paths\nmove the path into config\n\n\nscript_2024.py, script_2025.py\ndrive behavior from inputs instead of duplicated files\n\n\nnotebooks as source of truth\ntry to move reusable logic into src/\n\n\nmain.py just because uv added it\ndocument and support one real entry point\n\n\n\n\nPurpose: connect smells directly to improvements.\nSuggested talk track: “These are not signs that someone is bad at their job. They are signs that the project grew without a clear runnable path. Each smell points to a cleaner boundary.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#a-healthy-default-repo-shape",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#a-healthy-default-repo-shape",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "A “Healthy” Default Repo Shape",
+    "text": "A “Healthy” Default Repo Shape\n\n\nrepo/\n  src/project/\n    model.py\n    io.py\n    validation.py\n    app.py\n  scripts/\n    run_model.py\n  configs/\n    base.yaml\n  notebooks/\n    exploratory_analysis.ipynb\n  tests/\n    test_model.py\n  docs/\n    running.md\n\n\nsrc/ for reusable code\nscripts/ for task-focused orchestration\nnotebooks/ for exploration, not the source of truth\nconfigs/ for declared runs\ndocs/ for the humans (and some robots)\n\n\n\nPurpose: provide a practical default shape rather than a theory.\nSuggested talk track: “This is not the one true tree. It is a useful default. The main goal is that a new person can tell what is reusable, what is runnable, and where to look first.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#tiny-demo-project",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#tiny-demo-project",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Tiny Demo Project",
+    "text": "Tiny Demo Project\nThe live demo for this talk lives here:\nlive_demos/2026-03-16_libraries_dont_run_themselves\nmini_house/\n  src/mini_house/tools.py\n  src/mini_house/app.py\n  scripts/frame_wall.py\n  pyproject.toml\n\nlibrary: a tiny reusable “tool”\nscript: one part of the work\napplication: a micro CLI representing the supported interface\nsame pattern, deliberately stripped down\n\n\nPurpose: connect the talk to a concrete local example.\nSuggested talk track: “I made this deliberately tiny. The goal is not realism. The goal is to show the roles clearly enough that you can point at them in a repo.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#three-improvements-you-can-make-this-week",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#three-improvements-you-can-make-this-week",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Three Improvements You Can Make This Week",
+    "text": "Three Improvements You Can Make This Week\n\nMove one chunk of reusable logic out of a notebook or script and into src/\nCreate one real runnable entry point for an important workflow\nReplace one hard-coded path or year with a config value\nMake it painfully obvious what someone else should run\n\n\nPurpose: give the target audience immediate next actions.\nSuggested talk track: “You do not need a grand rewrite. Pick one workflow and make the run path clearer this week. That alone makes a project much easier to maintain.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#bonus-product-thinking-helps",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#bonus-product-thinking-helps",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Bonus: Product Thinking Helps!",
+    "text": "Bonus: Product Thinking Helps!\n\nDecide who needs to use the thing\nDecide how they are supposed to use it\nThe clearer the user, the clearer the entry point\nA repo gets healthier when the supported workflow is designed on purpose\nAnother developer importing functions needs stable library code\nAn analyst running a scenario needs one obvious command plus editable config\nIs this for another developer to import?\nIs this for a teammate to run from the CLI?\nWhat is the smallest successful experience for that user?\n\n\nPurpose: connect architecture back to user-centered design.\nSuggested talk track: “A lot of repo confusion is really a product-definition problem. If we do not decide who the user is and how they should use the workflow, we drift into vague software.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#closing-thought",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#closing-thought",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Closing Thought",
+    "text": "Closing Thought\nLibraries can’t just run themselves. Good repos make that obvious.\n\nPurpose: end on one memorable sentence.\nSuggested talk track: “If people leave remembering one thing, I want it to be this: the repo should advertise its runnable path. If that path is obvious, a lot of other architecture decisions get easier.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#discussion",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#discussion",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Discussion",
+    "text": "Discussion\n\nWhat repo in your world would benefit most from this cleanup?\nWhich anti-pattern shows up most often?\nWhat would make one of your current projects easier to hand off?\n\n\nPurpose: invite discussion tied to real work.\nSuggested talk track: “I would expect different teams to answer these differently. The useful part is not forcing identical structure everywhere. The useful part is making the runnable path explicit.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
     ]
   },
   {
@@ -410,286 +850,6 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "This page hosts all slides for presentations given during SPD’s Brinner and Learn series.\nEach chapter title to the left is a link to a slide deck.\n\nThese slides are being developed by the SPD team.\nEach deck will open in its own tab.\nYou may want to type “s” at the start of each deck to open the speaker notes.\nSome of these slides may end up being adopted as a more formal SPD practice.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#motivation",
-    "href": "slides/2025-05-06_12FactorPt1.html#motivation",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Motivation",
-    "text": "Motivation\n\nDeveloping and Deploying Apps can be difficult\nThe 12 Factor App methodology provides guidelines that ensure\n\nclarity,\nscalability,\nmaintainability\n\nBenefits both developers and operations teams.",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
-    "href": "slides/2025-05-06_12FactorPt1.html#why-are-12-factor-apps-important",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Why are 12 Factor Apps Important?",
-    "text": "Why are 12 Factor Apps Important?\n\nConsistency and predictability in application behavior.\nSimplifies the development lifecycle.\nEases the process of deploying, scaling, and maintaining applications.\nPromotes collaboration between development and operations (DevOps).",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#best-practices",
-    "href": "slides/2025-05-06_12FactorPt1.html#best-practices",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Best Practices",
-    "text": "Best Practices\nA lot of these concepts are things that are considered best practices, but collected together.\n\nYou are probably already do a bunch of these things\nYou may not know you do it (it just feels right)\nYou may not know why you do it (it just seems to work)\nYou may do it because you were told to (it isn’t broken)",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
-    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-developers",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Benefits for Developers",
-    "text": "Benefits for Developers\n\nClear guidelines for application structure and behavior.\nSimplified onboarding and reduced cognitive load.\nEasier debugging and local development.\nPredictable dependencies and environments.",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
-    "href": "slides/2025-05-06_12FactorPt1.html#benefits-for-devopsoperations",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Benefits for DevOps/Operations",
-    "text": "Benefits for DevOps/Operations\n\nStreamlined deployment and automated management.\nImproved reliability and faster issue resolution.\nEasier monitoring and logging.",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
-    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "The 12 Factors (Brief Overview)",
-    "text": "The 12 Factors (Brief Overview)\n\nCodebase: One codebase tracked in version control, many deploys.\nDependencies: Explicitly declare and isolate dependencies.\nConfig: Store configuration in the environment.\nBacking Services: Treat backing services as attached resources.\nBuild, Release, Run: Strictly separate build and run stages.\nProcesses: Execute the app as one or more stateless processes.",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
-    "href": "slides/2025-05-06_12FactorPt1.html#the-12-factors-brief-overview-1",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "The 12 Factors (Brief Overview)",
-    "text": "The 12 Factors (Brief Overview)\n\nPort Binding: Export services via port binding.\nConcurrency: Scale out via the process model.\nDisposability: Maximize robustness with fast startup and graceful shutdown.\nDev/Prod Parity: Keep development, staging, and production similar.\nLogs: Treat logs as event streams.\nAdmin Processes: Run admin tasks as one-off processes.",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
-    "href": "slides/2025-05-06_12FactorPt1.html#examples-of-common-pitfalls",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Examples of Common Pitfalls",
-    "text": "Examples of Common Pitfalls\n\nConfiguration hardcoded in source code.\nDependencies not clearly defined or versioned.\nStateful processes causing unpredictable behavior.\nSignificant differences between development and production environments.",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
-    "href": "slides/2025-05-06_12FactorPt1.html#getting-started-with-12-factor-apps",
-    "title": "12 Factor Applications (Pt 1)",
-    "section": "Getting Started with 12 Factor Apps",
-    "text": "Getting Started with 12 Factor Apps\n\nReview your current projects against the 12 factors.\nIncrementally adopt factors as you enhance or refactor projects.\nFoster collaboration and awareness across development and operations teams.",
-    "crumbs": [
-      "12 Factor Applications (Pt 1)"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#why-are-some-repos-hard-to-use",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#why-are-some-repos-hard-to-use",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Why Are Some Repos Hard to Use?",
-    "text": "Why Are Some Repos Hard to Use?\n\nThe path from “repo” to “execution” is usually unclear\n“What am I supposed to run?”\n“Which files are”active”, and which are historical debris?”\n“Do I change code, config, or data to do the next run?”\n\n\nPurpose: start from familiar pain instead of definitions.\nSuggested talk track: “Most confusing repos do contain code. The problem is usually not missing code. The problem is that the path from repo to actual execution is unclear.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#the-core-problem",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#the-core-problem",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "The Core Problem",
-    "text": "The Core Problem\n\nReusable logic is mixed with one-off glue\nExecution depends on tribal knowledge\nInputs are implicit and not declared\nReproducing a run becomes a scavenger hunt\n\n\nPurpose: establish the central idea in one sentence.\nSuggested talk track: “A repo can be full of files and still be operationally vague. If a new teammate cannot tell what to run and what controls the run, the software is not clear enough yet.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#one-example-repo-three-different-kinds-of-thing",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#one-example-repo-three-different-kinds-of-thing",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "One Example Repo, Three Different Kinds of Thing",
-    "text": "One Example Repo, Three Different Kinds of Thing\nrepo/\n  src/project/model.py\n  scripts/run_model.py\n  model-run --config configs/base.yaml\n\nsrc/project/model.py is library code: reusable logic\nscripts/run_model.py is a script: often one runnable task\nmodel-run ... is the application interface (in this case a CLI)\n\n\nPurpose: replace fuzzy analogy with one concrete example.\nSuggested talk track: “I want one picture in your head. Same repo, different jobs. The module in src/ holds reusable logic, the script runs one workflow, and the CLI is the supported doorway other people should use.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-library",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-library",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Is a Library?",
-    "text": "What Is a Library?\n\nCode that is meant to be imported and reused\nOften: Functions, classes, and modules with precise behavior\nShould never actually “do anything” just because it is imported\nUnit tests should focus here, this is where stable behavior lives\n\ndef run_model(records, factors, threshold):\n    ...\n\nPurpose: define library in practical terms.\nSuggested talk track: “If I import your module to use one function, it should not suddenly pull data, write files, or parse command-line arguments. Libraries are building blocks.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-script",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-script",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Is a Script?",
-    "text": "What Is a Script?\n\nA “executable” wrapper around one task\nOften: Parses inputs, calls library code, writes outputs\nShould stay thin so the logic is still reusable\n\ndef main():\n    config = load_config(...)\n    records = load_inputs(config)\n    results = run_model(records, ...)\n    write_outputs(results, config.output_dir)\n\nPurpose: explain script as the missing middle layer.\nSuggested talk track: “Scripts are often the first honest runnable thing in a project. They are not bad. They become a problem only when they silently become the whole architecture.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-an-application",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-an-application",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Is an Application?",
-    "text": "What Is an Application?\n\nA supported way for a person or system to use the workflow\nOften: a CLI, API, scheduled job, pipeline step, or web application\nAn application still needs an entry point\nThe entry point is how that application actually gets invoked\n\n\nPurpose: define application by user experience, not by prestige.\nSuggested talk track: “An application does not have to be fancy. A clear CLI can absolutely be an application if it is the intended, supported way to run the workflow.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-actually-runs",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-actually-runs",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Actually Runs?",
-    "text": "What Actually Runs?\n\npython -m package.module\na main() function\na CLI command like model-run --config configs/base.yaml\nan API endpoint or scheduled job\na notebook cell, which works, but usually weakly\n\n\nPurpose: translate entry points into user questions.\nSuggested talk track: “Entry point is just the technical name for where execution starts. For most users, the important version is simpler: what do I run, and what controls the run?”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#the-common-modeling-pipeline",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#the-common-modeling-pipeline",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "The Common “Modeling” Pipeline",
-    "text": "The Common “Modeling” Pipeline\n\nflowchart LR\n    A[Entry point] --&gt; B[Load config]\n    B --&gt; C[Load input data]\n    C --&gt; D[Call model library]\n    D --&gt; E[Write outputs]\n\n\n\n\nflowchart LR\n    A[Entry point] --&gt; B[Load config]\n    B --&gt; C[Load input data]\n    C --&gt; D[Call model library]\n    D --&gt; E[Write outputs]\n\n\n\n\n\n\n\nThe library only provides logic\nThe entry point actually assembles the run\nThe config and input data determine the specific execution\n\n\nPurpose: show the whole run path in one picture.\nSuggested talk track: “When people say ‘the model runs,’ they usually mean this whole chain runs. The library is one important piece, but it is not the whole runnable system.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#model-code-configuration-data-and-outputs-are-distinct",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#model-code-configuration-data-and-outputs-are-distinct",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Model Code, Configuration, Data, and Outputs Are Distinct",
-    "text": "Model Code, Configuration, Data, and Outputs Are Distinct\n\nflowchart TB\n    code[Code&lt;br/&gt;Reusable logic]\n    config[Config&lt;br/&gt;Run instructions]\n    data[Input data&lt;br/&gt;Domain facts]\n    output[Outputs&lt;br/&gt;Results of the run]\n\n    code --&gt; run((Run))\n    config --&gt; run\n    data --&gt; run\n    run --&gt; output\n\n\n\n\nflowchart TB\n    code[Code&lt;br/&gt;Reusable logic]\n    config[Config&lt;br/&gt;Run instructions]\n    data[Input data&lt;br/&gt;Domain facts]\n    output[Outputs&lt;br/&gt;Results of the run]\n\n    code --&gt; run((Run))\n    config --&gt; run\n    data --&gt; run\n    run --&gt; output\n\n\n\n\n\n\n\nCode dictates how the software behaves\nConfiguration specifies how the run should execute\nData provides the domain facts for that run\nOutputs are what the run produced\n\n\nPurpose: establish the four-part model cleanly.\nSuggested talk track: “A lot of repo confusion is category confusion. We blur code, config, data, and outputs together, then wonder why the project is hard to reason about.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#two-input-artifacts-different-intuition",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#two-input-artifacts-different-intuition",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Two “Input” Artifacts, Different Intuition",
-    "text": "Two “Input” Artifacts, Different Intuition\n\n\nConfig file\nrelease_year: 2026\nportfolio_path: s3://team-data/portfolios/q1.parquet\nthreshold: 0.85\noutput_dir: outputs/2026-q1\n\nModel run configuration\nI/O data paths\netc.\nMostly instructions? Probably config.\n\n\nInput data file\naccount_id, balance, sector, region\n1042, 1500000, cement, NA\n1043, 230000, steel, EU\n\nDomain input, facts or records\nThe “thing” being modeled\nMostly records? Probably data.\n\n\n\nPurpose: make config vs data obvious and visual.\nSuggested talk track: “These may both be text files, but they play very different roles. One describes the run. The other is the thing being analyzed or modeled.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-good-execution-feels-like",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-good-execution-feels-like",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Good Execution Feels Like",
-    "text": "What Good Execution Feels Like\n\nOne clear supported way to run an important workflow\nInputs are explicit, not hidden in code\nA teammate can follow the docs and succeed\nA result can be traced back to code, config, and data\nboring to explain\nboring to rerun\nboring to hand off\n\n\nPurpose: tie the structure back to the user experience.\nSuggested talk track: “Boring is the goal. A healthy run path should feel obvious enough that nobody has to schedule a meeting just to rerun last quarter’s work.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#common-anti-patterns-and-the-fix-they-point-to",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#common-anti-patterns-and-the-fix-they-point-to",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Common Anti-Patterns, and the Fix They Point To",
-    "text": "Common Anti-Patterns, and the Fix They Point To\n\n\n\n\n\n\n\nIf you see this…\nA good next fix is…\n\n\n\n\nsys.path hacks\nmake imports real and package the code cleanly\n\n\nhard-coded local paths\nmove the path into config\n\n\nscript_2024.py, script_2025.py\ndrive behavior from inputs instead of duplicated files\n\n\nnotebooks as source of truth\ntry to move reusable logic into src/\n\n\nmain.py just because uv added it\ndocument and support one real entry point\n\n\n\n\nPurpose: connect smells directly to improvements.\nSuggested talk track: “These are not signs that someone is bad at their job. They are signs that the project grew without a clear runnable path. Each smell points to a cleaner boundary.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#a-healthy-default-repo-shape",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#a-healthy-default-repo-shape",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "A “Healthy” Default Repo Shape",
-    "text": "A “Healthy” Default Repo Shape\n\n\nrepo/\n  src/project/\n    model.py\n    io.py\n    validation.py\n    app.py\n  scripts/\n    run_model.py\n  configs/\n    base.yaml\n  notebooks/\n    exploratory_analysis.ipynb\n  tests/\n    test_model.py\n  docs/\n    running.md\n\n\nsrc/ for reusable code\nscripts/ for task-focused orchestration\nnotebooks/ for exploration, not the source of truth\nconfigs/ for declared runs\ndocs/ for the humans (and some robots)\n\n\n\nPurpose: provide a practical default shape rather than a theory.\nSuggested talk track: “This is not the one true tree. It is a useful default. The main goal is that a new person can tell what is reusable, what is runnable, and where to look first.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#tiny-demo-project",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#tiny-demo-project",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Tiny Demo Project",
-    "text": "Tiny Demo Project\nThe live demo for this talk lives here:\nlive_demos/2026-03-16_libraries_dont_run_themselves\nmini_house/\n  src/mini_house/tools.py\n  src/mini_house/app.py\n  scripts/frame_wall.py\n  pyproject.toml\n\nlibrary: a tiny reusable “tool”\nscript: one part of the work\napplication: a micro CLI representing the supported interface\nsame pattern, deliberately stripped down\n\n\nPurpose: connect the talk to a concrete local example.\nSuggested talk track: “I made this deliberately tiny. The goal is not realism. The goal is to show the roles clearly enough that you can point at them in a repo.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#three-improvements-you-can-make-this-week",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#three-improvements-you-can-make-this-week",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Three Improvements You Can Make This Week",
-    "text": "Three Improvements You Can Make This Week\n\nMove one chunk of reusable logic out of a notebook or script and into src/\nCreate one real runnable entry point for an important workflow\nReplace one hard-coded path or year with a config value\nMake it painfully obvious what someone else should run\n\n\nPurpose: give the target audience immediate next actions.\nSuggested talk track: “You do not need a grand rewrite. Pick one workflow and make the run path clearer this week. That alone makes a project much easier to maintain.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#bonus-product-thinking-helps",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#bonus-product-thinking-helps",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Bonus: Product Thinking Helps!",
-    "text": "Bonus: Product Thinking Helps!\n\nDecide who needs to use the thing\nDecide how they are supposed to use it\nThe clearer the user, the clearer the entry point\nA repo gets healthier when the supported workflow is designed on purpose\nAnother developer importing functions needs stable library code\nAn analyst running a scenario needs one obvious command plus editable config\nIs this for another developer to import?\nIs this for a teammate to run from the CLI?\nWhat is the smallest successful experience for that user?\n\n\nPurpose: connect architecture back to user-centered design.\nSuggested talk track: “A lot of repo confusion is really a product-definition problem. If we do not decide who the user is and how they should use the workflow, we drift into vague software.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#closing-thought",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#closing-thought",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Closing Thought",
-    "text": "Closing Thought\nLibraries can’t just run themselves. Good repos make that obvious.\n\nPurpose: end on one memorable sentence.\nSuggested talk track: “If people leave remembering one thing, I want it to be this: the repo should advertise its runnable path. If that path is obvious, a lot of other architecture decisions get easier.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#discussion",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#discussion",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Discussion",
-    "text": "Discussion\n\nWhat repo in your world would benefit most from this cleanup?\nWhich anti-pattern shows up most often?\nWhat would make one of your current projects easier to hand off?\n\n\nPurpose: invite discussion tied to real work.\nSuggested talk track: “I would expect different teams to answer these differently. The useful part is not forcing identical structure everywhere. The useful part is making the runnable path explicit.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
     "objectID": "slides/2026-01-13_conventional_commits.html#why-were-here",
     "href": "slides/2026-01-13_conventional_commits.html#why-were-here",
     "title": "How to Commit Conventionally",
@@ -827,166 +987,6 @@
     "text": "Resources\n\nConventional Commits spec: https://www.conventionalcommits.org/en/v1.0.0/\nSemantic Versioning (SemVer): https://semver.org/\ncommitlint (getting started): https://commitlint.js.org/guides/getting-started.html\nRelease Please: https://github.com/googleapis/release-please\nsemantic-release: https://github.com/semantic-release/semantic-release\nconventional-changelog: https://github.com/conventional-changelog/conventional-changelog",
     "crumbs": [
       "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#will-it-make-the-car-go-faster",
-    "href": "slides/2025-11-04_okrs.html#will-it-make-the-car-go-faster",
-    "title": "OKRs 101",
-    "section": "🏎️ Will it make the car go faster?",
-    "text": "🏎️ Will it make the car go faster?\n\nRed Bull’s Formula 1 Racing team asks one question before every decision:\n\n“Will it make the car go faster?”\nIf the answer is no, it’s not a priority.\n\nEveryone from the pit crew to the strategist knows the same goal.\nFor RMI, that question might be more like:\n\n“Will it drive decarbonization?”\nThis question helps us focus our energy and creativity on work that accelerates impact — the equivalent of making our car go faster.",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#why-are-we-talking-about-okrs",
-    "href": "slides/2025-11-04_okrs.html#why-are-we-talking-about-okrs",
-    "title": "OKRs 101",
-    "section": "🎯 Why are we talking about OKRs?",
-    "text": "🎯 Why are we talking about OKRs?\nObjectives and Key Results help bridge our day-to-day work with SPD’s broader mission:\n\nEnabling public and private sector actors to make energy transition decisions using SPD products.\nThey:\n\nDefine what to prioritize and (often more crucially) what not to.\n\nHelp every team member align on outcomes that move the needle.\n\nConnect organization, team, and personal objectives to measurable outcomes.",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#okr-fundamentals",
-    "href": "slides/2025-11-04_okrs.html#okr-fundamentals",
-    "title": "OKRs 101",
-    "section": "⚙️ OKR Fundamentals",
-    "text": "⚙️ OKR Fundamentals\nGood OKRs always focus on outcomes and not activities.\n\nObjective: What we want to achieve\nKey Results: How we’ll measure success\nEach KR must be measurable and collectively signal achievement of the Objective.",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#anatomy-of-a-good-okr",
-    "href": "slides/2025-11-04_okrs.html#anatomy-of-a-good-okr",
-    "title": "OKRs 101",
-    "section": "🧩 Anatomy of a Good OKR",
-    "text": "🧩 Anatomy of a Good OKR\n\nExample Objective:\n\nEnsure every SPD product delivers impact and engagement, not just technical completion.\n\nKey Results:\n\nAll new project concepts validated with real users (0–1.0)\n\nAll new project proposals budgeted for comms & design (0–1.0)\n\nAll product launches include a “splash” marketing moment (0–1.0)\n\nCollaboration process defined with Influence team (0–1.0)",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#stretch-and-grade",
-    "href": "slides/2025-11-04_okrs.html#stretch-and-grade",
-    "title": "OKRs 101",
-    "section": "🧮 Stretch and Grade",
-    "text": "🧮 Stretch and Grade\nIf you always hit 100%, your goals aren’t ambitious enough.\n\nKey Results shouldn’t be binary “done/not done.”\n\nWe use a 0–1.0 scale to track progress.\n\n~0.7 indicates we’re at the right level of stretch — ambitious but achievable.\n\nOKRs are designed to push learning, not punish shortfalls.",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#common-pitfalls",
-    "href": "slides/2025-11-04_okrs.html#common-pitfalls",
-    "title": "OKRs 101",
-    "section": "⚠️ Common Pitfalls",
-    "text": "⚠️ Common Pitfalls\n\nOKRs should be:\n\nFew in number\n\nMeasurable\n\nFocused on value, not activity\n\nAvoid:\n\nConfusing outputs: 🚫 “deploy web application to production and publish blog post”)\nwith outcomes: ✅ “X% of pilot users log in more than twice within the first month”)\nSetting too many OKRs — focus is power\n\nWriting vague or unmeasurable goals (“do more research”)",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#how-spd-uses-okrs",
-    "href": "slides/2025-11-04_okrs.html#how-spd-uses-okrs",
-    "title": "OKRs 101",
-    "section": "🏗️ How SPD Uses OKRs",
-    "text": "🏗️ How SPD Uses OKRs\n\nWe decide what’s most important each quarter\n\nWe measure progress toward outcomes, not outputs\n\nWe keep workload realistic to prevent burnout\n\nWe maintain alignment and velocity across the team",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#how-are-okrs-different-from-ooms",
-    "href": "slides/2025-11-04_okrs.html#how-are-okrs-different-from-ooms",
-    "title": "OKRs 101",
-    "section": "🧭 How Are OKRs Different From OOMs?",
-    "text": "🧭 How Are OKRs Different From OOMs?\n\n\n\n\n\n\n\nConcept\nPurpose\n\n\n\n\nOOMs\nReport organizational milestones & long-term yearly targets\n\n\nOKRs\nGround each quarter in actionable, measurable goals that connect to daily work and sprint backlogs",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#hands-on-okrs-in-jira-goals",
-    "href": "slides/2025-11-04_okrs.html#hands-on-okrs-in-jira-goals",
-    "title": "OKRs 101",
-    "section": "💻 Hands-On — OKRs in Jira Goals",
-    "text": "💻 Hands-On — OKRs in Jira Goals\n\nDemo time!",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-11-04_okrs.html#resources",
-    "href": "slides/2025-11-04_okrs.html#resources",
-    "title": "OKRs 101",
-    "section": "📚 Resources",
-    "text": "📚 Resources\n\nGoogle OKR Guidance\nGoogle OKR Video",
-    "crumbs": [
-      "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
-    "href": "slides/2025-03-11_tickets.html#feature-tickets",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Feature Tickets",
-    "text": "Feature Tickets\n\nFor features, try to include a user story:\n\ne.g. “As a registered user, I might forget my password and want to regain access to my account securely.”\n\nWhen possible, supplement the user story with unambiguous acceptance criteria",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#bug-tickets",
-    "href": "slides/2025-03-11_tickets.html#bug-tickets",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Bug Tickets",
-    "text": "Bug Tickets\n\nFor bugs, be as detailed as possible!\n\nOften the limiting factor for fixing a bug is reproducing it.\n\nFor example:\n\nEnvironment setup (OS, browser, app version, etc.)\nReproduction Steps (What precise actions lead to the bug?)\nExpected behaviour (What should have happened?)\nActual behaviour (What actually happened?)\nScreenshots, logs, etc.",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#acceptance-criteria",
-    "href": "slides/2025-03-11_tickets.html#acceptance-criteria",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Acceptance Criteria",
-    "text": "Acceptance Criteria\n\nWhat must be true for the issue to be considered complete?\n\nWritten as bullet points\nExample",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#definition-of-done",
-    "href": "slides/2025-03-11_tickets.html#definition-of-done",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Definition of Done:",
-    "text": "Definition of Done:\n\nAll acceptance criteria are met\nTests and checks pass\nDocumentation is updated when relevant\nCode is reviewed and merged!",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#setup",
-    "href": "slides/2025-03-11_tickets.html#setup",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Setup",
-    "text": "Setup\nbrew install gh  # macOS\n``\n\n### Authenticating\n``\ngh auth login\n``\n\n### Cloning a Repo\n```sh\ngh repo clone RMI/web-api-poc\nChecking out a PR locally\ngh pr checkout 14",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
-    ]
-  },
-  {
-    "objectID": "slides/2025-03-11_tickets.html#recap",
-    "href": "slides/2025-03-11_tickets.html#recap",
-    "title": "Effective Ticketing & the Definition of Done",
-    "section": "Recap",
-    "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
-    "crumbs": [
-      "Effective Ticketing & the Definition of Done"
     ]
   }
 ]
