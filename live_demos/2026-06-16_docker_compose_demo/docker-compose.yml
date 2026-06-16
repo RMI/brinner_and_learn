@@ -6,7 +6,8 @@ services:
     environment:
       GREETING: "Hello from Compose"
       APP_ENV: "compose"
-      DATA_FILE: "/mnt/data/data.txt"
-    # Mount the data directory — directory mounts survive atomic editor saves
+      INPUT_DIR: "/mnt/input"
+      OUTPUT_DIR: "/mnt/output"
     volumes:
-      - ./data:/mnt/data
+      - ./input:/mnt/input:ro    # read-only — container cannot modify source data
+      - ./output:/mnt/output     # read-write — container writes results here
