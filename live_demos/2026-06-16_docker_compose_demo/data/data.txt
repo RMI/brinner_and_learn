@@ -1,0 +1,4 @@
+Brinner & Learn — Docker Compose edition
+=========================================
+This text is read from a file at request time.
+Edit it (or swap in a mounted volume) to see the page change.

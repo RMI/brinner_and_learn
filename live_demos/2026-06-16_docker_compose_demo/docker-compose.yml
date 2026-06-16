@@ -3,3 +3,10 @@ services:
     build: .
     ports:
       - "8000:8000"
+    environment:
+      GREETING: "Hello from Compose"
+      APP_ENV: "compose"
+      DATA_FILE: "/mnt/data/data.txt"
+    # Mount the data directory — directory mounts survive atomic editor saves
+    volumes:
+      - ./data:/mnt/data
