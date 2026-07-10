@@ -10,6 +10,636 @@
     ]
   },
   {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#second-make-refresh",
+    "href": "slides/2026-01-27_build-data-pipelines.html#second-make-refresh",
+    "title": "Build Systems and Data Pipelines",
+    "section": "20 second make refresh",
+    "text": "20 second make refresh\noutput1: input1 input2\n  command\n\ninput2: sourceA sourceB\n  write_input2.sh\n\noutput is tracked against its dependencies output for one step can be a dependency for another",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#agenda",
+    "href": "slides/2026-01-27_build-data-pipelines.html#agenda",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Agenda",
+    "text": "Agenda\n\nBuild Systems\nData Pipelines\nImplications for our work\nDiscussion\n\n\nThere are only two hard things in Computer Science: cache invalidation and naming things.\n– Phil Karlton",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#build-system",
+    "href": "slides/2026-01-27_build-data-pipelines.html#build-system",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Build system",
+    "text": "Build system\nA build system is a tool (or library/package) for:\n\nDeclaring build “targets” (outputs)\nDefining the steps required to create those targets\nExecuting those steps\n\nit usually also includes a mechanism for caching:\n\nIdentifying what the inputs are to a step (i.e. code files)\nDetermining if the outputs are stale (outdated)\nDetermining what steps need to be re-run based on staleness",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#data-pipelines",
+    "href": "slides/2026-01-27_build-data-pipelines.html#data-pipelines",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Data Pipelines",
+    "text": "Data Pipelines\nA data pipeline system is a tool (or library/package) for:\n\nDeclaring build “targets” (outputs)\nDefining the steps required to create those targets\nExecuting those steps\n\nit usually also includes a mechanism for caching:\n\nIdentifying what the inputs are to a step (i.e. data, code files)\nDetermining if the outputs are stale (outdated)\nDetermining what steps need to be re-run based on staleness",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#task-runner",
+    "href": "slides/2026-01-27_build-data-pipelines.html#task-runner",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Task runner",
+    "text": "Task runner\nA task runner is a tool that runs tasks without caching. They may or may not support dependency resolution.\nExamples of task runners:\n\njust\nnpm run\nShell scripts\n\nA build system that ignores its caches can be used as a task runner",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#same-idea-different-names",
+    "href": "slides/2026-01-27_build-data-pipelines.html#same-idea-different-names",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Same idea, different names",
+    "text": "Same idea, different names\n\n\n\nBuild systems\nData pipelines\n\n\n\n\nTarget / artifact\nTable / dataset / object\n\n\nRule\nScript / transform / job\n\n\nDependency\nUpstream input\n\n\nIncremental rebuild\nIncremental refresh / backfill\n\n\nCache\nMaterialization / snapshot\n\n\nHermetic build\nReproducible run (pinned code + inputs)\n\n\nTest\nData quality check / invariant",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#same-graph-different-choices",
+    "href": "slides/2026-01-27_build-data-pipelines.html#same-graph-different-choices",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Same graph, different choices",
+    "text": "Same graph, different choices\n\n\n\nInvalidation\n\nTimestamps (make)\nContent hashes (Docker)\nFreshness windows (data pipelines)\n\nScheduling & execution\n\nLocal\nCI runners\nDistributed schedulers + compute engines\n\n\n\n\nDeterminism / hermeticity\n\nPinned toolchains + inputs\nExternal systems\nMutable/Immutable data\n\n\n\ndeterminism: Effectively, what is a declared dependency, vs. what is part of the environment\nDon’t linger too long on this slide\n\n\nWhat does “success” mean?\n\nBuild passes tests\nData passes invariants, freshness, and anomaly checks",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#enabling-latest",
+    "href": "slides/2026-01-27_build-data-pipelines.html#enabling-latest",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Enabling latest",
+    "text": "Enabling latest\nIf you treat data and code both as dependencies, you can very easily start to talk about the latest version of a data object (or dataset) in the same way you can talk about the latest version of an app or package\n\nfrequently (for us), code is what changes.\n\nHow often does relevant data update vs. codebase? Yearly? Weekly? Immediate?\n\nThis does not need to be a literal latest tag\n\n\nDrop a link to working build in Teams/Slack/etc.",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#enabling-versionspermalinks",
+    "href": "slides/2026-01-27_build-data-pipelines.html#enabling-versionspermalinks",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Enabling versions/permalinks",
+    "text": "Enabling versions/permalinks\nIf inputs and outputs (possibly caches) can be accessed independently, this can also enable versioning effectively\n\nCode inputs (git checkout v1.2.3)\nData inputs (/datasets/my-dataset/2026-01-01.csv)\nBuilt outputs\n\npermalink\nETag\nreport_2026-01-01.pdf\nindex-Cwp2LJ1J.js",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#continuous-publication",
+    "href": "slides/2026-01-27_build-data-pipelines.html#continuous-publication",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Continuous Publication",
+    "text": "Continuous Publication\n\nIf everything is a build, then everything can be a deploy\nIf it can be deployed, it could be deployed to PROD\n\nThe CI/CD pipeline is our Continuous Publication mechanism. It is possible to track latest and have up-to-date information, while still checking against tests, model expectations, invariants, and data quality checks.\nIt is also possible to mark old versions as inaccurate or deprecated\n\n⚠️ The information or analysis in this report are no longer sound. See an updated version at foo.rmi.org/1234\n\n\nThis idea can sound really scary to people. It’s important to have faith in your automated checks. It’s also possible to have human-in-the-loop approval steps",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#caching-and-archiving",
+    "href": "slides/2026-01-27_build-data-pipelines.html#caching-and-archiving",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Caching and archiving",
+    "text": "Caching and archiving\n\nIdentifying what to cache/store\n\nWhat is expensive to calculate? (Cache)\nWhat can we not re-create? (Archive)\nDo we have concerns about an upstream dependency changing history/going offline?\n\n\n\nWhat is cached often determines where Web page –&gt; CDN batch job dataset –&gt; Internal blob",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#tech-stack",
+    "href": "slides/2026-01-27_build-data-pipelines.html#tech-stack",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Tech Stack",
+    "text": "Tech Stack\n\nHow you want to handle dependencies determines what is the right tool\nWhat tool you’re using determines how you handle dependencies\n\nThese affect system design (what is in or out of a system boundary), sometimes invisibly",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#a-closer-look-at-make",
+    "href": "slides/2026-01-27_build-data-pipelines.html#a-closer-look-at-make",
+    "title": "Build Systems and Data Pipelines",
+    "section": "A closer look at make",
+    "text": "A closer look at make\nMake is a universal glue, and as such is worth examining as both a toy model and a well- and commonly-used tool.",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#language-specific-pipelines",
+    "href": "slides/2026-01-27_build-data-pipelines.html#language-specific-pipelines",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Language-specific pipelines",
+    "text": "Language-specific pipelines\nUsing lanugage-speficic pipelines (targets) gives an easy way to track both code objects and data as “inputs”, and add them to the dependency graph.\nIt also gives them better syntax (familiar to devs and often just more expressive/easier to use than make)\n\nautomatic dependency tracking of more of the environment",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-27_build-data-pipelines.html#babys-first-data-pipeline",
+    "href": "slides/2026-01-27_build-data-pipelines.html#babys-first-data-pipeline",
+    "title": "Build Systems and Data Pipelines",
+    "section": "Baby’s first data pipeline",
+    "text": "Baby’s first data pipeline\nhttps://github.com/IndianaCHE/Detailed-SSP-Reports/blob/master/run.R",
+    "crumbs": [
+      "Build Systems and Data Pipelines"
+    ]
+  },
+  {
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 1: Write a Test (Red Phase)",
+    "text": "Step 1: Write a Test (Red Phase)\n\nIdentify a small, testable unit of functionality.\nWrite a test that asserts the expected behavior.\nRun the test (it should fail since the implementation doesn’t exist yet).\n\n\nimport pytest\n\ndef test_addition():\n    assert add(2, 3) == 5  # Function doesn't exist yet",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 2: Write Minimal Code to Pass the Test (Green Phase)",
+    "text": "Step 2: Write Minimal Code to Pass the Test (Green Phase)\n\nImplement only the necessary code to make the test pass.\n\n\ndef add(a, b):\n    return a + b\n\n\nRun the test again (it should pass now).",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
+    "href": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
+    "title": "Test-Driven Development [TDD]",
+    "section": "Step 3: Refactor the Code (Refactor Phase)",
+    "text": "Step 3: Refactor the Code (Refactor Phase)\n\nClean up the implementation without changing behavior.\nEnsure all tests still pass after refactoring.\n\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b  # Adding types",
+    "crumbs": [
+      "Test-Driven Development [TDD]"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#why-are-some-repos-hard-to-use",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#why-are-some-repos-hard-to-use",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Why Are Some Repos Hard to Use?",
+    "text": "Why Are Some Repos Hard to Use?\n\nThe path from “repo” to “execution” is usually unclear\n“What am I supposed to run?”\n“Which files are”active”, and which are historical debris?”\n“Do I change code, config, or data to do the next run?”\n\n\nPurpose: start from familiar pain instead of definitions.\nSuggested talk track: “Most confusing repos do contain code. The problem is usually not missing code. The problem is that the path from repo to actual execution is unclear.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#the-core-problem",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#the-core-problem",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "The Core Problem",
+    "text": "The Core Problem\n\nReusable logic is mixed with one-off glue\nExecution depends on tribal knowledge\nInputs are implicit and not declared\nReproducing a run becomes a scavenger hunt\n\n\nPurpose: establish the central idea in one sentence.\nSuggested talk track: “A repo can be full of files and still be operationally vague. If a new teammate cannot tell what to run and what controls the run, the software is not clear enough yet.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#one-example-repo-three-different-kinds-of-thing",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#one-example-repo-three-different-kinds-of-thing",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "One Example Repo, Three Different Kinds of Thing",
+    "text": "One Example Repo, Three Different Kinds of Thing\nrepo/\n  src/project/model.py\n  scripts/run_model.py\n  model-run --config configs/base.yaml\n\nsrc/project/model.py is library code: reusable logic\nscripts/run_model.py is a script: often one runnable task\nmodel-run ... is the application interface (in this case a CLI)\n\n\nPurpose: replace fuzzy analogy with one concrete example.\nSuggested talk track: “I want one picture in your head. Same repo, different jobs. The module in src/ holds reusable logic, the script runs one workflow, and the CLI is the supported doorway other people should use.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-library",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-library",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Is a Library?",
+    "text": "What Is a Library?\n\nCode that is meant to be imported and reused\nOften: Functions, classes, and modules with precise behavior\nShould never actually “do anything” just because it is imported\nUnit tests should focus here, this is where stable behavior lives\n\ndef run_model(records, factors, threshold):\n    ...\n\nPurpose: define library in practical terms.\nSuggested talk track: “If I import your module to use one function, it should not suddenly pull data, write files, or parse command-line arguments. Libraries are building blocks.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-script",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-script",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Is a Script?",
+    "text": "What Is a Script?\n\nA “executable” wrapper around one task\nOften: Parses inputs, calls library code, writes outputs\nShould stay thin so the logic is still reusable\n\ndef main():\n    config = load_config(...)\n    records = load_inputs(config)\n    results = run_model(records, ...)\n    write_outputs(results, config.output_dir)\n\nPurpose: explain script as the missing middle layer.\nSuggested talk track: “Scripts are often the first honest runnable thing in a project. They are not bad. They become a problem only when they silently become the whole architecture.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-an-application",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-an-application",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Is an Application?",
+    "text": "What Is an Application?\n\nA supported way for a person or system to use the workflow\nOften: a CLI, API, scheduled job, pipeline step, or web application\nAn application still needs an entry point\nThe entry point is how that application actually gets invoked\n\n\nPurpose: define application by user experience, not by prestige.\nSuggested talk track: “An application does not have to be fancy. A clear CLI can absolutely be an application if it is the intended, supported way to run the workflow.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-actually-runs",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-actually-runs",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Actually Runs?",
+    "text": "What Actually Runs?\n\npython -m package.module\na main() function\na CLI command like model-run --config configs/base.yaml\nan API endpoint or scheduled job\na notebook cell, which works, but usually weakly\n\n\nPurpose: translate entry points into user questions.\nSuggested talk track: “Entry point is just the technical name for where execution starts. For most users, the important version is simpler: what do I run, and what controls the run?”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#the-common-modeling-pipeline",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#the-common-modeling-pipeline",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "The Common “Modeling” Pipeline",
+    "text": "The Common “Modeling” Pipeline\n\nflowchart LR\n    A[Entry point] --&gt; B[Load config]\n    B --&gt; C[Load input data]\n    C --&gt; D[Call model library]\n    D --&gt; E[Write outputs]\n\n\n\n\nflowchart LR\n    A[Entry point] --&gt; B[Load config]\n    B --&gt; C[Load input data]\n    C --&gt; D[Call model library]\n    D --&gt; E[Write outputs]\n\n\n\n\n\n\n\nThe library only provides logic\nThe entry point actually assembles the run\nThe config and input data determine the specific execution\n\n\nPurpose: show the whole run path in one picture.\nSuggested talk track: “When people say ‘the model runs,’ they usually mean this whole chain runs. The library is one important piece, but it is not the whole runnable system.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#model-code-configuration-data-and-outputs-are-distinct",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#model-code-configuration-data-and-outputs-are-distinct",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Model Code, Configuration, Data, and Outputs Are Distinct",
+    "text": "Model Code, Configuration, Data, and Outputs Are Distinct\n\nflowchart TB\n    code[Code&lt;br/&gt;Reusable logic]\n    config[Config&lt;br/&gt;Run instructions]\n    data[Input data&lt;br/&gt;Domain facts]\n    output[Outputs&lt;br/&gt;Results of the run]\n\n    code --&gt; run((Run))\n    config --&gt; run\n    data --&gt; run\n    run --&gt; output\n\n\n\n\nflowchart TB\n    code[Code&lt;br/&gt;Reusable logic]\n    config[Config&lt;br/&gt;Run instructions]\n    data[Input data&lt;br/&gt;Domain facts]\n    output[Outputs&lt;br/&gt;Results of the run]\n\n    code --&gt; run((Run))\n    config --&gt; run\n    data --&gt; run\n    run --&gt; output\n\n\n\n\n\n\n\nCode dictates how the software behaves\nConfiguration specifies how the run should execute\nData provides the domain facts for that run\nOutputs are what the run produced\n\n\nPurpose: establish the four-part model cleanly.\nSuggested talk track: “A lot of repo confusion is category confusion. We blur code, config, data, and outputs together, then wonder why the project is hard to reason about.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#two-input-artifacts-different-intuition",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#two-input-artifacts-different-intuition",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Two “Input” Artifacts, Different Intuition",
+    "text": "Two “Input” Artifacts, Different Intuition\n\n\nConfig file\nrelease_year: 2026\nportfolio_path: s3://team-data/portfolios/q1.parquet\nthreshold: 0.85\noutput_dir: outputs/2026-q1\n\nModel run configuration\nI/O data paths\netc.\nMostly instructions? Probably config.\n\n\nInput data file\naccount_id, balance, sector, region\n1042, 1500000, cement, NA\n1043, 230000, steel, EU\n\nDomain input, facts or records\nThe “thing” being modeled\nMostly records? Probably data.\n\n\n\nPurpose: make config vs data obvious and visual.\nSuggested talk track: “These may both be text files, but they play very different roles. One describes the run. The other is the thing being analyzed or modeled.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-good-execution-feels-like",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-good-execution-feels-like",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "What Good Execution Feels Like",
+    "text": "What Good Execution Feels Like\n\nOne clear supported way to run an important workflow\nInputs are explicit, not hidden in code\nA teammate can follow the docs and succeed\nA result can be traced back to code, config, and data\nboring to explain\nboring to rerun\nboring to hand off\n\n\nPurpose: tie the structure back to the user experience.\nSuggested talk track: “Boring is the goal. A healthy run path should feel obvious enough that nobody has to schedule a meeting just to rerun last quarter’s work.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#common-anti-patterns-and-the-fix-they-point-to",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#common-anti-patterns-and-the-fix-they-point-to",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Common Anti-Patterns, and the Fix They Point To",
+    "text": "Common Anti-Patterns, and the Fix They Point To\n\n\n\n\n\n\n\nIf you see this…\nA good next fix is…\n\n\n\n\nsys.path hacks\nmake imports real and package the code cleanly\n\n\nhard-coded local paths\nmove the path into config\n\n\nscript_2024.py, script_2025.py\ndrive behavior from inputs instead of duplicated files\n\n\nnotebooks as source of truth\ntry to move reusable logic into src/\n\n\nmain.py just because uv added it\ndocument and support one real entry point\n\n\n\n\nPurpose: connect smells directly to improvements.\nSuggested talk track: “These are not signs that someone is bad at their job. They are signs that the project grew without a clear runnable path. Each smell points to a cleaner boundary.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#a-healthy-default-repo-shape",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#a-healthy-default-repo-shape",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "A “Healthy” Default Repo Shape",
+    "text": "A “Healthy” Default Repo Shape\n\n\nrepo/\n  src/project/\n    model.py\n    io.py\n    validation.py\n    app.py\n  scripts/\n    run_model.py\n  configs/\n    base.yaml\n  notebooks/\n    exploratory_analysis.ipynb\n  tests/\n    test_model.py\n  docs/\n    running.md\n\n\nsrc/ for reusable code\nscripts/ for task-focused orchestration\nnotebooks/ for exploration, not the source of truth\nconfigs/ for declared runs\ndocs/ for the humans (and some robots)\n\n\n\nPurpose: provide a practical default shape rather than a theory.\nSuggested talk track: “This is not the one true tree. It is a useful default. The main goal is that a new person can tell what is reusable, what is runnable, and where to look first.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#tiny-demo-project",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#tiny-demo-project",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Tiny Demo Project",
+    "text": "Tiny Demo Project\nThe live demo for this talk lives here:\nlive_demos/2026-03-16_libraries_dont_run_themselves\nmini_house/\n  src/mini_house/tools.py\n  src/mini_house/app.py\n  scripts/frame_wall.py\n  pyproject.toml\n\nlibrary: a tiny reusable “tool”\nscript: one part of the work\napplication: a micro CLI representing the supported interface\nsame pattern, deliberately stripped down\n\n\nPurpose: connect the talk to a concrete local example.\nSuggested talk track: “I made this deliberately tiny. The goal is not realism. The goal is to show the roles clearly enough that you can point at them in a repo.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#three-improvements-you-can-make-this-week",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#three-improvements-you-can-make-this-week",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Three Improvements You Can Make This Week",
+    "text": "Three Improvements You Can Make This Week\n\nMove one chunk of reusable logic out of a notebook or script and into src/\nCreate one real runnable entry point for an important workflow\nReplace one hard-coded path or year with a config value\nMake it painfully obvious what someone else should run\n\n\nPurpose: give the target audience immediate next actions.\nSuggested talk track: “You do not need a grand rewrite. Pick one workflow and make the run path clearer this week. That alone makes a project much easier to maintain.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#bonus-product-thinking-helps",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#bonus-product-thinking-helps",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Bonus: Product Thinking Helps!",
+    "text": "Bonus: Product Thinking Helps!\n\nDecide who needs to use the thing\nDecide how they are supposed to use it\nThe clearer the user, the clearer the entry point\nA repo gets healthier when the supported workflow is designed on purpose\nAnother developer importing functions needs stable library code\nAn analyst running a scenario needs one obvious command plus editable config\nIs this for another developer to import?\nIs this for a teammate to run from the CLI?\nWhat is the smallest successful experience for that user?\n\n\nPurpose: connect architecture back to user-centered design.\nSuggested talk track: “A lot of repo confusion is really a product-definition problem. If we do not decide who the user is and how they should use the workflow, we drift into vague software.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#closing-thought",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#closing-thought",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Closing Thought",
+    "text": "Closing Thought\nLibraries can’t just run themselves. Good repos make that obvious.\n\nPurpose: end on one memorable sentence.\nSuggested talk track: “If people leave remembering one thing, I want it to be this: the repo should advertise its runnable path. If that path is obvious, a lot of other architecture decisions get easier.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#discussion",
+    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#discussion",
+    "title": "Libraries Don’t Run Themselves",
+    "section": "Discussion",
+    "text": "Discussion\n\nWhat repo in your world would benefit most from this cleanup?\nWhich anti-pattern shows up most often?\nWhat would make one of your current projects easier to hand off?\n\n\nPurpose: invite discussion tied to real work.\nSuggested talk track: “I would expect different teams to answer these differently. The useful part is not forcing identical structure everywhere. The useful part is making the runnable path explicit.”",
+    "crumbs": [
+      "Libraries Don't Run Themselves"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
+    "href": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
+    "title": "GitHub Best Practices",
+    "section": "Enable branch protection rules",
+    "text": "Enable branch protection rules\n\nProtect main (and any other long-lived branches)\nRequire pull requests before merging\nRequire minimum 1 approving review\nEnforce status checks (CI/CD pipelines, linting, tests)",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#github-flow",
+    "href": "slides/2025-02-11_pr_practices.html#github-flow",
+    "title": "GitHub Best Practices",
+    "section": "GitHub Flow",
+    "text": "GitHub Flow\n\nOne long-lived branch: main\nfeature branch → PR → Merge to main\nSimple\nBest for continuous delivery\nDeploy immediately after merge to main",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#gitflow",
+    "href": "slides/2025-02-11_pr_practices.html#gitflow",
+    "title": "GitHub Best Practices",
+    "section": "GitFlow",
+    "text": "GitFlow\n\nLong-lived branches: main, develop\nShort-lived branches: release, hotfix, feature\nfeature branch -&gt; PR -&gt; Merge to develop\nrelease branch or hotfix -&gt; PR -&gt; Merge to main and develop\nBetter for large-scale projects, many devs, scheduled releases",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#what-makes-a-pr-bad",
+    "href": "slides/2025-02-11_pr_practices.html#what-makes-a-pr-bad",
+    "title": "GitHub Best Practices",
+    "section": "🚫 What makes a PR bad?",
+    "text": "🚫 What makes a PR bad?\n\nLarge & difficult to review\nMany unrelated changes\nPoor or no description\nUnclear commit history\nFails CI/CD checks\nLacks necessary tests",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#how-to-improve-prs",
+    "href": "slides/2025-02-11_pr_practices.html#how-to-improve-prs",
+    "title": "GitHub Best Practices",
+    "section": "✅ How to improve PRs",
+    "text": "✅ How to improve PRs\n\nKeep PRs small and focused\nProvide a clear summary & context\nWrite meaningful commit messages\nEnsure automated checks pass before requesting review\nAdd relevant tests & documentation\nExplain how a reviewer can test your changes",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#common-bad-practices",
+    "href": "slides/2025-02-11_pr_practices.html#common-bad-practices",
+    "title": "GitHub Best Practices",
+    "section": "🚫 Common bad practices",
+    "text": "🚫 Common bad practices\n\nSuperficial LGTM approvals\nExcessively nitpicky comments\nReview lacks a clear status (ie. “Approved”, “Request Changes”, “Close Recommendation”)",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-02-11_pr_practices.html#how-to-review-effectively",
+    "href": "slides/2025-02-11_pr_practices.html#how-to-review-effectively",
+    "title": "GitHub Best Practices",
+    "section": "✅ How to review effectively",
+    "text": "✅ How to review effectively\n\nClearly state your status: “Approved”, “Request Changes”, “Close Recommendation”\nNitpicky or non-blocking comments should be clearly marked\nBe constructive and specific\nValidate logic, security, performance\nCheck for coding standards and test coverage\nEnsure documentation is updated when necessary",
+    "crumbs": [
+      "GitHub Best Practices"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "What are dotfiles?",
+    "text": "What are dotfiles?\n\nConfiguration files that live in your $HOME directory\nUsually start with a dot (so they’re “hidden”):\n\n.bashrc, .zshrc\n.gitconfig\n.config/ghostty/config\n\nThey control how your tools behave:\n\nshell prompt, aliases, colors\ngit defaults, editor settings, etc.",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Why care about dotfiles?",
+    "text": "Why care about dotfiles?\n\nNew machine? → “Why doesn’t anything feel right?”\nDotfiles in a repo give you:\n\nreproducible setups\neasy sharing of configuration (new laptop, new team member)\na place to grow your personal setup over time",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
+    "href": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Dotfiles as a developer’s fingerprint",
+    "text": "Dotfiles as a developer’s fingerprint\n\nEveryone’s environment is a bit different:\n\npreferred shell, editor, prompt, tools\n\nYour dotfiles encode:\n\nhow you navigate\nhow you debug\nhow you use git, ssh, etc.\n\nPutting them in a repo:\n\ndocuments how you work\nlets you borrow good ideas from others 😄",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
+    "href": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "The problem: dotfiles sprawl",
+    "text": "The problem: dotfiles sprawl\n\nConfig files live all over $HOME:\n\n~/.bashrc\n~/.gitconfig\n~/.config/ghostty/config\n\nIf you edit them in-place:\n\nhard to sync between machines\neasy to accidentally diverge\n\nWe’d like a single source of truth in a repo, and a clean way to “deploy” them into $HOME.",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#gnu-stow",
+    "href": "slides/2025-12-02_dotfiles.html#gnu-stow",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "GNU Stow",
+    "text": "GNU Stow\nGNU Stow is a symlink manager.\n\nYou keep “real” files in a repo like:\n\n~/dotfiles/\n  bash/.bashrc\n  bash/.aliases\n  git/.gitconfig\n  ghostty/.config/ghostty/config\n\nThen you “stow” them into $HOME:\n\ncd ~/dotfiles\nstow -t \"$HOME\" bash git ghostty\n\nstow creates symlinks:\n\n~/.bashrc  -&gt; ~/dotfiles/bash/.bashrc\n~/.gitconfig -&gt; ~/dotfiles/git/.gitconfig",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
+    "href": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
+    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
+    "section": "Why Stow is nice for dotfiles",
+    "text": "Why Stow is nice for dotfiles\n\nKeeps $HOME clean → just symlinks\nEasy to enable/disable groups:\n\nstow -t \"$HOME\" bash\nstow -D -t \"$HOME\" bash   # unstow\n\nEncourages a modular layout:\n\none folder per “package” (bash, git, ghostty, …)\n\nWorks great with git:\n\nversion control your dotfiles repo\nclone + stow on any machine",
+    "crumbs": [
+      "Taming Your Terminal: Dotfiles & GNU Stow"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#why-were-here",
+    "href": "slides/2026-01-13_conventional_commits.html#why-were-here",
+    "title": "How to Commit Conventionally",
+    "section": "Why we’re here",
+    "text": "Why we’re here\nIn this session, we’ll walk through the Conventional Commits spec and why it’s useful in practice:\n\nclearer PR history\neasier changelogs\n(optionally) automated version bumps & releases",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#agenda",
+    "href": "slides/2026-01-13_conventional_commits.html#agenda",
+    "title": "How to Commit Conventionally",
+    "section": "Agenda",
+    "text": "Agenda\n\nWhat do Conventional Commits solve?\nThe spec (the minimum you need)\n“Breaking changes” + SemVer mapping\nCommon patterns (scopes, footers, PR merges)\nAutomated tooling\nResources\n\n\nIf your org uses squash merges, you still benefit: PR title becomes the “commit message.”",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#commit-messages-drift",
+    "href": "slides/2026-01-13_conventional_commits.html#commit-messages-drift",
+    "title": "How to Commit Conventionally",
+    "section": "Commit messages drift",
+    "text": "Commit messages drift\nWithout a shared convention, git history can easily become:\n\ninconsistent (“Fix stuff”, “update”, “WIP”)\nhard to scan in git log\npainful to turn into release notes\nambiguous for reviewers (“is this a feature or a fix?”)\n\n\nEmphasize: you’re not “policing,” you’re reducing cognitive load for future-you.",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#what-is-conventional-commits",
+    "href": "slides/2026-01-13_conventional_commits.html#what-is-conventional-commits",
+    "title": "How to Commit Conventionally",
+    "section": "What is Conventional Commits?",
+    "text": "What is Conventional Commits?\nA lightweight convention for commit messages that are:\n\nhuman-readable\nmachine-parseable\n\nIt “dovetails with SemVer” by making it easy to identify:\n\nfeatures\nfixes\nbreaking changes\n\n\nPoint to the spec later; for now focus on the shape and why it matters.",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#the-core-format",
+    "href": "slides/2026-01-13_conventional_commits.html#the-core-format",
+    "title": "How to Commit Conventionally",
+    "section": "The core format",
+    "text": "The core format\n&lt;type&gt;[optional scope][optional !]: &lt;description&gt;\n\n[optional body]\n\n[optional footer(s)]\nExamples:\n\nfeat: add portfolio export to CSV\nfix(api): handle empty scenario set\nrefactor!: drop legacy endpoint",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#types-pick-a-small-set",
+    "href": "slides/2026-01-13_conventional_commits.html#types-pick-a-small-set",
+    "title": "How to Commit Conventionally",
+    "section": "Types: pick a small set",
+    "text": "Types: pick a small set\nCommon, widely-used types:\n\nfeat — new user-visible behavior\nfix — bug fix\ndocs — documentation only\nrefactor — code change, no behavior change (ideally)\ntest — tests only\nchore — tooling, build, deps, housekeeping\nci — CI pipeline changes",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#scope",
+    "href": "slides/2026-01-13_conventional_commits.html#scope",
+    "title": "How to Commit Conventionally",
+    "section": "Scope",
+    "text": "Scope\nScopes are optional, but can help answer “where” a change is relevant, especially in larger codebases:\nExamples:\n\nfeat(ui): add scenario picker\nfix(db): prevent deadlock on upsert\ndocs(api): document auth header\n\nGood scopes are:\n\nsmall nouns or abbreviations (api, ui, db, auth, deps)\nstable over time\nnot personal (“jackson-fix”)",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#breaking-changes",
+    "href": "slides/2026-01-13_conventional_commits.html#breaking-changes",
+    "title": "How to Commit Conventionally",
+    "section": "Breaking changes",
+    "text": "Breaking changes\nUsing a “bang” (!) in the header indicates a breaking change:\n\nfeat!: remove v1 scenario fields\n\nIf you need to give more context, you can use a footer in the commit description:\nfeat!: remove v1 scenario fields\n\nBREAKING CHANGE: v1 fields were removed; migrate to v2 schema",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#conventional-commits---semver",
+    "href": "slides/2026-01-13_conventional_commits.html#conventional-commits---semver",
+    "title": "How to Commit Conventionally",
+    "section": "Conventional Commits -> SemVer",
+    "text": "Conventional Commits -&gt; SemVer\nThe common automated release mapping goes something like:\n\nfix -&gt; PATCH\nfeat -&gt; MINOR\n! or BREAKING CHANGE -&gt; MAJOR\n\nOther types need to be mapped appropriately. This is still just a convention (not magic) and requires engineers to buy into using the convention consistently.",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#example-a-good-conventional-commit",
+    "href": "slides/2026-01-13_conventional_commits.html#example-a-good-conventional-commit",
+    "title": "How to Commit Conventionally",
+    "section": "Example: a “good” conventional commit",
+    "text": "Example: a “good” conventional commit\nfix(auth): refresh tokens on 401\n\nPreviously, an expired token caused an infinite retry loop.\nNow we refresh once and surface an error if it fails.\n\nRefs: STIT-125, #823",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#migrating-from-meh-to-conventional",
+    "href": "slides/2026-01-13_conventional_commits.html#migrating-from-meh-to-conventional",
+    "title": "How to Commit Conventionally",
+    "section": "Migrating from “meh” to “conventional”",
+    "text": "Migrating from “meh” to “conventional”\n\nBefore: ignore stuff\nAfter: chore(git): add build artifacts to .gitignore",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#what-about-squash-merges",
+    "href": "slides/2026-01-13_conventional_commits.html#what-about-squash-merges",
+    "title": "How to Commit Conventionally",
+    "section": "What about Squash merges?",
+    "text": "What about Squash merges?\nIf the repo you are working on uses squash merges the PR title gets squashed into a commit message. Write the PR title as a conventional commit!\n\ne.g. PR title: feat(ui): add scenario picker",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#automated-tooling",
+    "href": "slides/2026-01-13_conventional_commits.html#automated-tooling",
+    "title": "How to Commit Conventionally",
+    "section": "Automated tooling",
+    "text": "Automated tooling\nConventional Commits are machine-parseable, so automation can reliably:\n\nValidate messages at commit / PR time\n→ catches missing type, malformed scope, or unclear descriptions early\nClassify changes from history\n→ groups commits into Features, Fixes, Docs, Chores, etc.\nGenerate release notes / changelogs\n→ produces consistent summaries straight from merged work\nDecide the next version (if you use SemVer)\n→ fix → patch, feat → minor, BREAKING CHANGE / ! → major\nCreate traceability links\n→ connect releases back to PRs/issues via structured footers",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
+    "objectID": "slides/2026-01-13_conventional_commits.html#resources",
+    "href": "slides/2026-01-13_conventional_commits.html#resources",
+    "title": "How to Commit Conventionally",
+    "section": "Resources",
+    "text": "Resources\n\nConventional Commits spec: https://www.conventionalcommits.org/en/v1.0.0/\nSemantic Versioning (SemVer): https://semver.org/\ncommitlint (getting started): https://commitlint.js.org/guides/getting-started.html\nRelease Please: https://github.com/googleapis/release-please\nsemantic-release: https://github.com/semantic-release/semantic-release\nconventional-changelog: https://github.com/conventional-changelog/conventional-changelog",
+    "crumbs": [
+      "How to Commit Conventionally"
+    ]
+  },
+  {
     "objectID": "slides/2025-03-11_tickets.html#feature-tickets",
     "href": "slides/2025-03-11_tickets.html#feature-tickets",
     "title": "Effective Ticketing & the Definition of Done",
@@ -67,6 +697,106 @@
     "text": "Recap\n\nWrite clear, structured tickets\nDefine acceptance criteria & done criteria\nUse meaningful feature branch names\ngh CLI simplifies GitHub workflows\n\nQuestions?",
     "crumbs": [
       "Effective Ticketing & the Definition of Done"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#what-is-a-unit-test",
+    "href": "slides/2025-04-24_python_testing_101.html#what-is-a-unit-test",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "What is a Unit Test?",
+    "text": "What is a Unit Test?\n\nA unit test checks that a small unit of code works as expected.\nUsually a single function or method.\nHelps you catch bugs early, refactor confidently, and build better software.",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#why-should-data-scientists-care",
+    "href": "slides/2025-04-24_python_testing_101.html#why-should-data-scientists-care",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Why Should Data Scientists Care?",
+    "text": "Why Should Data Scientists Care?\n\nPrevent breaking your analysis pipeline accidentally.\nAdd guardrails for complex logic (e.g., custom transforms).\nMake code easier to reuse and maintain.",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#unit-testing-workflow",
+    "href": "slides/2025-04-24_python_testing_101.html#unit-testing-workflow",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Unit Testing Workflow",
+    "text": "Unit Testing Workflow\n\nWrite failing test -&gt; Run with pytest (It should fail)\nWrite just enough code to pass -&gt; Re-run pytest\nSee it pass 🎉\nRefactor code if needed\nRepeat 🔁",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#best-practices",
+    "href": "slides/2025-04-24_python_testing_101.html#best-practices",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Best Practices",
+    "text": "Best Practices\n\n🧪 Test one case per test, keep them small!\n🔁 Test edge cases and common use\n🧼 Use clear naming: test_functionname_case\n📦 Structure code so logic is in testable functions (not in notebooks!)",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#code-structure-for-testing",
+    "href": "slides/2025-04-24_python_testing_101.html#code-structure-for-testing",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Code Structure for Testing",
+    "text": "Code Structure for Testing\nBefore testing: - Your code should live in a .py file, e.g. my_module.py - Tests should go in a separate file: test_my_module.py\nproject/\n├── my_module.py\n├── test_my_module.py",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#lets-write-a-failing-test",
+    "href": "slides/2025-04-24_python_testing_101.html#lets-write-a-failing-test",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Let’s Write a Failing Test",
+    "text": "Let’s Write a Failing Test\ntest_my_module.py:\nfrom my_module import multiply_by_two\n\ndef test_multiply_by_two():\n    assert multiply_by_two(3) == 6",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#run-it-with-pytest",
+    "href": "slides/2025-04-24_python_testing_101.html#run-it-with-pytest",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Run it with pytest",
+    "text": "Run it with pytest\npytest\nExpect output like:\n&gt;       assert multiply_by_two(3) == 6\nE       NameError: name 'multiply_by_two' is not defined\n⬆️ Good! The test is failing as expected.",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#write-just-enough-code-to-pass",
+    "href": "slides/2025-04-24_python_testing_101.html#write-just-enough-code-to-pass",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Write Just Enough Code to Pass",
+    "text": "Write Just Enough Code to Pass\nmy_module.py:\ndef multiply_by_two(x):\n    return x * 2\nRe-run pytest:\ncollected 1 item\ntest_my_module.py .                                    [100%]\n✅ Green means good!",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#common-anti-patterns-to-avoid",
+    "href": "slides/2025-04-24_python_testing_101.html#common-anti-patterns-to-avoid",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "Common Anti-Patterns to Avoid",
+    "text": "Common Anti-Patterns to Avoid\n🚫 Too much in one test - Hard to precisely understand what failed and why\n🚫 Testing implementation details - Tests should focus on what your function does and outputs, not how it does it\n🚫 Skipping tests for ‘just a script’ - Scripts evolve fast — Make testable functions early and part of your default workflow\n🚫 Functions that are hard to test - If a function: - Has side effects - Does too many things - Depends on global state\n➡️ It might need to be split into smaller pieces\n💡 If it’s hard to write a simple test, your function may need refactoring!",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
+    ]
+  },
+  {
+    "objectID": "slides/2025-04-24_python_testing_101.html#whats-next",
+    "href": "slides/2025-04-24_python_testing_101.html#whats-next",
+    "title": "Python Testing 101: Writing Your First Unit Tests",
+    "section": "What’s Next?",
+    "text": "What’s Next?\n\nTry testing:\n\nEdge cases (0, negative numbers, empty lists, incorrect input types)\nYour own utility functions\n\nExplore:\n\nTest coverage (pytest-cov)\nMocks and temporary files",
+    "crumbs": [
+      "Python Testing 101: Writing Your First Unit Tests"
     ]
   },
   {
@@ -257,736 +987,6 @@
     "text": "📚 Resources\n\nGoogle OKR Guidance\nGoogle OKR Video",
     "crumbs": [
       "OKRs 101"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
-    "href": "slides/2025-02-11_pr_practices.html#enable-branch-protection-rules",
-    "title": "GitHub Best Practices",
-    "section": "Enable branch protection rules",
-    "text": "Enable branch protection rules\n\nProtect main (and any other long-lived branches)\nRequire pull requests before merging\nRequire minimum 1 approving review\nEnforce status checks (CI/CD pipelines, linting, tests)",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#github-flow",
-    "href": "slides/2025-02-11_pr_practices.html#github-flow",
-    "title": "GitHub Best Practices",
-    "section": "GitHub Flow",
-    "text": "GitHub Flow\n\nOne long-lived branch: main\nfeature branch → PR → Merge to main\nSimple\nBest for continuous delivery\nDeploy immediately after merge to main",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#gitflow",
-    "href": "slides/2025-02-11_pr_practices.html#gitflow",
-    "title": "GitHub Best Practices",
-    "section": "GitFlow",
-    "text": "GitFlow\n\nLong-lived branches: main, develop\nShort-lived branches: release, hotfix, feature\nfeature branch -&gt; PR -&gt; Merge to develop\nrelease branch or hotfix -&gt; PR -&gt; Merge to main and develop\nBetter for large-scale projects, many devs, scheduled releases",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#what-makes-a-pr-bad",
-    "href": "slides/2025-02-11_pr_practices.html#what-makes-a-pr-bad",
-    "title": "GitHub Best Practices",
-    "section": "🚫 What makes a PR bad?",
-    "text": "🚫 What makes a PR bad?\n\nLarge & difficult to review\nMany unrelated changes\nPoor or no description\nUnclear commit history\nFails CI/CD checks\nLacks necessary tests",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#how-to-improve-prs",
-    "href": "slides/2025-02-11_pr_practices.html#how-to-improve-prs",
-    "title": "GitHub Best Practices",
-    "section": "✅ How to improve PRs",
-    "text": "✅ How to improve PRs\n\nKeep PRs small and focused\nProvide a clear summary & context\nWrite meaningful commit messages\nEnsure automated checks pass before requesting review\nAdd relevant tests & documentation\nExplain how a reviewer can test your changes",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#common-bad-practices",
-    "href": "slides/2025-02-11_pr_practices.html#common-bad-practices",
-    "title": "GitHub Best Practices",
-    "section": "🚫 Common bad practices",
-    "text": "🚫 Common bad practices\n\nSuperficial LGTM approvals\nExcessively nitpicky comments\nReview lacks a clear status (ie. “Approved”, “Request Changes”, “Close Recommendation”)",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-02-11_pr_practices.html#how-to-review-effectively",
-    "href": "slides/2025-02-11_pr_practices.html#how-to-review-effectively",
-    "title": "GitHub Best Practices",
-    "section": "✅ How to review effectively",
-    "text": "✅ How to review effectively\n\nClearly state your status: “Approved”, “Request Changes”, “Close Recommendation”\nNitpicky or non-blocking comments should be clearly marked\nBe constructive and specific\nValidate logic, security, performance\nCheck for coding standards and test coverage\nEnsure documentation is updated when necessary",
-    "crumbs": [
-      "GitHub Best Practices"
-    ]
-  },
-  {
-    "objectID": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
-    "href": "slides/2025-12-02_dotfiles.html#what-are-dotfiles",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "What are dotfiles?",
-    "text": "What are dotfiles?\n\nConfiguration files that live in your $HOME directory\nUsually start with a dot (so they’re “hidden”):\n\n.bashrc, .zshrc\n.gitconfig\n.config/ghostty/config\n\nThey control how your tools behave:\n\nshell prompt, aliases, colors\ngit defaults, editor settings, etc.",
-    "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
-    ]
-  },
-  {
-    "objectID": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
-    "href": "slides/2025-12-02_dotfiles.html#why-care-about-dotfiles",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "Why care about dotfiles?",
-    "text": "Why care about dotfiles?\n\nNew machine? → “Why doesn’t anything feel right?”\nDotfiles in a repo give you:\n\nreproducible setups\neasy sharing of configuration (new laptop, new team member)\na place to grow your personal setup over time",
-    "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
-    ]
-  },
-  {
-    "objectID": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
-    "href": "slides/2025-12-02_dotfiles.html#dotfiles-as-a-developers-fingerprint",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "Dotfiles as a developer’s fingerprint",
-    "text": "Dotfiles as a developer’s fingerprint\n\nEveryone’s environment is a bit different:\n\npreferred shell, editor, prompt, tools\n\nYour dotfiles encode:\n\nhow you navigate\nhow you debug\nhow you use git, ssh, etc.\n\nPutting them in a repo:\n\ndocuments how you work\nlets you borrow good ideas from others 😄",
-    "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
-    ]
-  },
-  {
-    "objectID": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
-    "href": "slides/2025-12-02_dotfiles.html#the-problem-dotfiles-sprawl",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "The problem: dotfiles sprawl",
-    "text": "The problem: dotfiles sprawl\n\nConfig files live all over $HOME:\n\n~/.bashrc\n~/.gitconfig\n~/.config/ghostty/config\n\nIf you edit them in-place:\n\nhard to sync between machines\neasy to accidentally diverge\n\nWe’d like a single source of truth in a repo, and a clean way to “deploy” them into $HOME.",
-    "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
-    ]
-  },
-  {
-    "objectID": "slides/2025-12-02_dotfiles.html#gnu-stow",
-    "href": "slides/2025-12-02_dotfiles.html#gnu-stow",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "GNU Stow",
-    "text": "GNU Stow\nGNU Stow is a symlink manager.\n\nYou keep “real” files in a repo like:\n\n~/dotfiles/\n  bash/.bashrc\n  bash/.aliases\n  git/.gitconfig\n  ghostty/.config/ghostty/config\n\nThen you “stow” them into $HOME:\n\ncd ~/dotfiles\nstow -t \"$HOME\" bash git ghostty\n\nstow creates symlinks:\n\n~/.bashrc  -&gt; ~/dotfiles/bash/.bashrc\n~/.gitconfig -&gt; ~/dotfiles/git/.gitconfig",
-    "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
-    ]
-  },
-  {
-    "objectID": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
-    "href": "slides/2025-12-02_dotfiles.html#why-stow-is-nice-for-dotfiles",
-    "title": "Taming Your Terminal: Dotfiles & GNU Stow",
-    "section": "Why Stow is nice for dotfiles",
-    "text": "Why Stow is nice for dotfiles\n\nKeeps $HOME clean → just symlinks\nEasy to enable/disable groups:\n\nstow -t \"$HOME\" bash\nstow -D -t \"$HOME\" bash   # unstow\n\nEncourages a modular layout:\n\none folder per “package” (bash, git, ghostty, …)\n\nWorks great with git:\n\nversion control your dotfiles repo\nclone + stow on any machine",
-    "crumbs": [
-      "Taming Your Terminal: Dotfiles & GNU Stow"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#why-are-some-repos-hard-to-use",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#why-are-some-repos-hard-to-use",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Why Are Some Repos Hard to Use?",
-    "text": "Why Are Some Repos Hard to Use?\n\nThe path from “repo” to “execution” is usually unclear\n“What am I supposed to run?”\n“Which files are”active”, and which are historical debris?”\n“Do I change code, config, or data to do the next run?”\n\n\nPurpose: start from familiar pain instead of definitions.\nSuggested talk track: “Most confusing repos do contain code. The problem is usually not missing code. The problem is that the path from repo to actual execution is unclear.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#the-core-problem",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#the-core-problem",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "The Core Problem",
-    "text": "The Core Problem\n\nReusable logic is mixed with one-off glue\nExecution depends on tribal knowledge\nInputs are implicit and not declared\nReproducing a run becomes a scavenger hunt\n\n\nPurpose: establish the central idea in one sentence.\nSuggested talk track: “A repo can be full of files and still be operationally vague. If a new teammate cannot tell what to run and what controls the run, the software is not clear enough yet.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#one-example-repo-three-different-kinds-of-thing",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#one-example-repo-three-different-kinds-of-thing",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "One Example Repo, Three Different Kinds of Thing",
-    "text": "One Example Repo, Three Different Kinds of Thing\nrepo/\n  src/project/model.py\n  scripts/run_model.py\n  model-run --config configs/base.yaml\n\nsrc/project/model.py is library code: reusable logic\nscripts/run_model.py is a script: often one runnable task\nmodel-run ... is the application interface (in this case a CLI)\n\n\nPurpose: replace fuzzy analogy with one concrete example.\nSuggested talk track: “I want one picture in your head. Same repo, different jobs. The module in src/ holds reusable logic, the script runs one workflow, and the CLI is the supported doorway other people should use.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-library",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-library",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Is a Library?",
-    "text": "What Is a Library?\n\nCode that is meant to be imported and reused\nOften: Functions, classes, and modules with precise behavior\nShould never actually “do anything” just because it is imported\nUnit tests should focus here, this is where stable behavior lives\n\ndef run_model(records, factors, threshold):\n    ...\n\nPurpose: define library in practical terms.\nSuggested talk track: “If I import your module to use one function, it should not suddenly pull data, write files, or parse command-line arguments. Libraries are building blocks.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-script",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-a-script",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Is a Script?",
-    "text": "What Is a Script?\n\nA “executable” wrapper around one task\nOften: Parses inputs, calls library code, writes outputs\nShould stay thin so the logic is still reusable\n\ndef main():\n    config = load_config(...)\n    records = load_inputs(config)\n    results = run_model(records, ...)\n    write_outputs(results, config.output_dir)\n\nPurpose: explain script as the missing middle layer.\nSuggested talk track: “Scripts are often the first honest runnable thing in a project. They are not bad. They become a problem only when they silently become the whole architecture.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-an-application",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-is-an-application",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Is an Application?",
-    "text": "What Is an Application?\n\nA supported way for a person or system to use the workflow\nOften: a CLI, API, scheduled job, pipeline step, or web application\nAn application still needs an entry point\nThe entry point is how that application actually gets invoked\n\n\nPurpose: define application by user experience, not by prestige.\nSuggested talk track: “An application does not have to be fancy. A clear CLI can absolutely be an application if it is the intended, supported way to run the workflow.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-actually-runs",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-actually-runs",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Actually Runs?",
-    "text": "What Actually Runs?\n\npython -m package.module\na main() function\na CLI command like model-run --config configs/base.yaml\nan API endpoint or scheduled job\na notebook cell, which works, but usually weakly\n\n\nPurpose: translate entry points into user questions.\nSuggested talk track: “Entry point is just the technical name for where execution starts. For most users, the important version is simpler: what do I run, and what controls the run?”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#the-common-modeling-pipeline",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#the-common-modeling-pipeline",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "The Common “Modeling” Pipeline",
-    "text": "The Common “Modeling” Pipeline\n\nflowchart LR\n    A[Entry point] --&gt; B[Load config]\n    B --&gt; C[Load input data]\n    C --&gt; D[Call model library]\n    D --&gt; E[Write outputs]\n\n\n\n\nflowchart LR\n    A[Entry point] --&gt; B[Load config]\n    B --&gt; C[Load input data]\n    C --&gt; D[Call model library]\n    D --&gt; E[Write outputs]\n\n\n\n\n\n\n\nThe library only provides logic\nThe entry point actually assembles the run\nThe config and input data determine the specific execution\n\n\nPurpose: show the whole run path in one picture.\nSuggested talk track: “When people say ‘the model runs,’ they usually mean this whole chain runs. The library is one important piece, but it is not the whole runnable system.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#model-code-configuration-data-and-outputs-are-distinct",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#model-code-configuration-data-and-outputs-are-distinct",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Model Code, Configuration, Data, and Outputs Are Distinct",
-    "text": "Model Code, Configuration, Data, and Outputs Are Distinct\n\nflowchart TB\n    code[Code&lt;br/&gt;Reusable logic]\n    config[Config&lt;br/&gt;Run instructions]\n    data[Input data&lt;br/&gt;Domain facts]\n    output[Outputs&lt;br/&gt;Results of the run]\n\n    code --&gt; run((Run))\n    config --&gt; run\n    data --&gt; run\n    run --&gt; output\n\n\n\n\nflowchart TB\n    code[Code&lt;br/&gt;Reusable logic]\n    config[Config&lt;br/&gt;Run instructions]\n    data[Input data&lt;br/&gt;Domain facts]\n    output[Outputs&lt;br/&gt;Results of the run]\n\n    code --&gt; run((Run))\n    config --&gt; run\n    data --&gt; run\n    run --&gt; output\n\n\n\n\n\n\n\nCode dictates how the software behaves\nConfiguration specifies how the run should execute\nData provides the domain facts for that run\nOutputs are what the run produced\n\n\nPurpose: establish the four-part model cleanly.\nSuggested talk track: “A lot of repo confusion is category confusion. We blur code, config, data, and outputs together, then wonder why the project is hard to reason about.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#two-input-artifacts-different-intuition",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#two-input-artifacts-different-intuition",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Two “Input” Artifacts, Different Intuition",
-    "text": "Two “Input” Artifacts, Different Intuition\n\n\nConfig file\nrelease_year: 2026\nportfolio_path: s3://team-data/portfolios/q1.parquet\nthreshold: 0.85\noutput_dir: outputs/2026-q1\n\nModel run configuration\nI/O data paths\netc.\nMostly instructions? Probably config.\n\n\nInput data file\naccount_id, balance, sector, region\n1042, 1500000, cement, NA\n1043, 230000, steel, EU\n\nDomain input, facts or records\nThe “thing” being modeled\nMostly records? Probably data.\n\n\n\nPurpose: make config vs data obvious and visual.\nSuggested talk track: “These may both be text files, but they play very different roles. One describes the run. The other is the thing being analyzed or modeled.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#what-good-execution-feels-like",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#what-good-execution-feels-like",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "What Good Execution Feels Like",
-    "text": "What Good Execution Feels Like\n\nOne clear supported way to run an important workflow\nInputs are explicit, not hidden in code\nA teammate can follow the docs and succeed\nA result can be traced back to code, config, and data\nboring to explain\nboring to rerun\nboring to hand off\n\n\nPurpose: tie the structure back to the user experience.\nSuggested talk track: “Boring is the goal. A healthy run path should feel obvious enough that nobody has to schedule a meeting just to rerun last quarter’s work.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#common-anti-patterns-and-the-fix-they-point-to",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#common-anti-patterns-and-the-fix-they-point-to",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Common Anti-Patterns, and the Fix They Point To",
-    "text": "Common Anti-Patterns, and the Fix They Point To\n\n\n\n\n\n\n\nIf you see this…\nA good next fix is…\n\n\n\n\nsys.path hacks\nmake imports real and package the code cleanly\n\n\nhard-coded local paths\nmove the path into config\n\n\nscript_2024.py, script_2025.py\ndrive behavior from inputs instead of duplicated files\n\n\nnotebooks as source of truth\ntry to move reusable logic into src/\n\n\nmain.py just because uv added it\ndocument and support one real entry point\n\n\n\n\nPurpose: connect smells directly to improvements.\nSuggested talk track: “These are not signs that someone is bad at their job. They are signs that the project grew without a clear runnable path. Each smell points to a cleaner boundary.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#a-healthy-default-repo-shape",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#a-healthy-default-repo-shape",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "A “Healthy” Default Repo Shape",
-    "text": "A “Healthy” Default Repo Shape\n\n\nrepo/\n  src/project/\n    model.py\n    io.py\n    validation.py\n    app.py\n  scripts/\n    run_model.py\n  configs/\n    base.yaml\n  notebooks/\n    exploratory_analysis.ipynb\n  tests/\n    test_model.py\n  docs/\n    running.md\n\n\nsrc/ for reusable code\nscripts/ for task-focused orchestration\nnotebooks/ for exploration, not the source of truth\nconfigs/ for declared runs\ndocs/ for the humans (and some robots)\n\n\n\nPurpose: provide a practical default shape rather than a theory.\nSuggested talk track: “This is not the one true tree. It is a useful default. The main goal is that a new person can tell what is reusable, what is runnable, and where to look first.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#tiny-demo-project",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#tiny-demo-project",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Tiny Demo Project",
-    "text": "Tiny Demo Project\nThe live demo for this talk lives here:\nlive_demos/2026-03-16_libraries_dont_run_themselves\nmini_house/\n  src/mini_house/tools.py\n  src/mini_house/app.py\n  scripts/frame_wall.py\n  pyproject.toml\n\nlibrary: a tiny reusable “tool”\nscript: one part of the work\napplication: a micro CLI representing the supported interface\nsame pattern, deliberately stripped down\n\n\nPurpose: connect the talk to a concrete local example.\nSuggested talk track: “I made this deliberately tiny. The goal is not realism. The goal is to show the roles clearly enough that you can point at them in a repo.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#three-improvements-you-can-make-this-week",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#three-improvements-you-can-make-this-week",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Three Improvements You Can Make This Week",
-    "text": "Three Improvements You Can Make This Week\n\nMove one chunk of reusable logic out of a notebook or script and into src/\nCreate one real runnable entry point for an important workflow\nReplace one hard-coded path or year with a config value\nMake it painfully obvious what someone else should run\n\n\nPurpose: give the target audience immediate next actions.\nSuggested talk track: “You do not need a grand rewrite. Pick one workflow and make the run path clearer this week. That alone makes a project much easier to maintain.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#bonus-product-thinking-helps",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#bonus-product-thinking-helps",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Bonus: Product Thinking Helps!",
-    "text": "Bonus: Product Thinking Helps!\n\nDecide who needs to use the thing\nDecide how they are supposed to use it\nThe clearer the user, the clearer the entry point\nA repo gets healthier when the supported workflow is designed on purpose\nAnother developer importing functions needs stable library code\nAn analyst running a scenario needs one obvious command plus editable config\nIs this for another developer to import?\nIs this for a teammate to run from the CLI?\nWhat is the smallest successful experience for that user?\n\n\nPurpose: connect architecture back to user-centered design.\nSuggested talk track: “A lot of repo confusion is really a product-definition problem. If we do not decide who the user is and how they should use the workflow, we drift into vague software.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#closing-thought",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#closing-thought",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Closing Thought",
-    "text": "Closing Thought\nLibraries can’t just run themselves. Good repos make that obvious.\n\nPurpose: end on one memorable sentence.\nSuggested talk track: “If people leave remembering one thing, I want it to be this: the repo should advertise its runnable path. If that path is obvious, a lot of other architecture decisions get easier.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2026-03-16_libraries_dont_run_themselves.html#discussion",
-    "href": "slides/2026-03-16_libraries_dont_run_themselves.html#discussion",
-    "title": "Libraries Don’t Run Themselves",
-    "section": "Discussion",
-    "text": "Discussion\n\nWhat repo in your world would benefit most from this cleanup?\nWhich anti-pattern shows up most often?\nWhat would make one of your current projects easier to hand off?\n\n\nPurpose: invite discussion tied to real work.\nSuggested talk track: “I would expect different teams to answer these differently. The useful part is not forcing identical structure everywhere. The useful part is making the runnable path explicit.”",
-    "crumbs": [
-      "Libraries Don't Run Themselves"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#what-is-a-unit-test",
-    "href": "slides/2025-04-24_python_testing_101.html#what-is-a-unit-test",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "What is a Unit Test?",
-    "text": "What is a Unit Test?\n\nA unit test checks that a small unit of code works as expected.\nUsually a single function or method.\nHelps you catch bugs early, refactor confidently, and build better software.",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#why-should-data-scientists-care",
-    "href": "slides/2025-04-24_python_testing_101.html#why-should-data-scientists-care",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Why Should Data Scientists Care?",
-    "text": "Why Should Data Scientists Care?\n\nPrevent breaking your analysis pipeline accidentally.\nAdd guardrails for complex logic (e.g., custom transforms).\nMake code easier to reuse and maintain.",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#unit-testing-workflow",
-    "href": "slides/2025-04-24_python_testing_101.html#unit-testing-workflow",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Unit Testing Workflow",
-    "text": "Unit Testing Workflow\n\nWrite failing test -&gt; Run with pytest (It should fail)\nWrite just enough code to pass -&gt; Re-run pytest\nSee it pass 🎉\nRefactor code if needed\nRepeat 🔁",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#best-practices",
-    "href": "slides/2025-04-24_python_testing_101.html#best-practices",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Best Practices",
-    "text": "Best Practices\n\n🧪 Test one case per test, keep them small!\n🔁 Test edge cases and common use\n🧼 Use clear naming: test_functionname_case\n📦 Structure code so logic is in testable functions (not in notebooks!)",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#code-structure-for-testing",
-    "href": "slides/2025-04-24_python_testing_101.html#code-structure-for-testing",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Code Structure for Testing",
-    "text": "Code Structure for Testing\nBefore testing: - Your code should live in a .py file, e.g. my_module.py - Tests should go in a separate file: test_my_module.py\nproject/\n├── my_module.py\n├── test_my_module.py",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#lets-write-a-failing-test",
-    "href": "slides/2025-04-24_python_testing_101.html#lets-write-a-failing-test",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Let’s Write a Failing Test",
-    "text": "Let’s Write a Failing Test\ntest_my_module.py:\nfrom my_module import multiply_by_two\n\ndef test_multiply_by_two():\n    assert multiply_by_two(3) == 6",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#run-it-with-pytest",
-    "href": "slides/2025-04-24_python_testing_101.html#run-it-with-pytest",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Run it with pytest",
-    "text": "Run it with pytest\npytest\nExpect output like:\n&gt;       assert multiply_by_two(3) == 6\nE       NameError: name 'multiply_by_two' is not defined\n⬆️ Good! The test is failing as expected.",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#write-just-enough-code-to-pass",
-    "href": "slides/2025-04-24_python_testing_101.html#write-just-enough-code-to-pass",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Write Just Enough Code to Pass",
-    "text": "Write Just Enough Code to Pass\nmy_module.py:\ndef multiply_by_two(x):\n    return x * 2\nRe-run pytest:\ncollected 1 item\ntest_my_module.py .                                    [100%]\n✅ Green means good!",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#common-anti-patterns-to-avoid",
-    "href": "slides/2025-04-24_python_testing_101.html#common-anti-patterns-to-avoid",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "Common Anti-Patterns to Avoid",
-    "text": "Common Anti-Patterns to Avoid\n🚫 Too much in one test - Hard to precisely understand what failed and why\n🚫 Testing implementation details - Tests should focus on what your function does and outputs, not how it does it\n🚫 Skipping tests for ‘just a script’ - Scripts evolve fast — Make testable functions early and part of your default workflow\n🚫 Functions that are hard to test - If a function: - Has side effects - Does too many things - Depends on global state\n➡️ It might need to be split into smaller pieces\n💡 If it’s hard to write a simple test, your function may need refactoring!",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-04-24_python_testing_101.html#whats-next",
-    "href": "slides/2025-04-24_python_testing_101.html#whats-next",
-    "title": "Python Testing 101: Writing Your First Unit Tests",
-    "section": "What’s Next?",
-    "text": "What’s Next?\n\nTry testing:\n\nEdge cases (0, negative numbers, empty lists, incorrect input types)\nYour own utility functions\n\nExplore:\n\nTest coverage (pytest-cov)\nMocks and temporary files",
-    "crumbs": [
-      "Python Testing 101: Writing Your First Unit Tests"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-1-write-a-test-red-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 1: Write a Test (Red Phase)",
-    "text": "Step 1: Write a Test (Red Phase)\n\nIdentify a small, testable unit of functionality.\nWrite a test that asserts the expected behavior.\nRun the test (it should fail since the implementation doesn’t exist yet).\n\n\nimport pytest\n\ndef test_addition():\n    assert add(2, 3) == 5  # Function doesn't exist yet",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-2-write-minimal-code-to-pass-the-test-green-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 2: Write Minimal Code to Pass the Test (Green Phase)",
-    "text": "Step 2: Write Minimal Code to Pass the Test (Green Phase)\n\nImplement only the necessary code to make the test pass.\n\n\ndef add(a, b):\n    return a + b\n\n\nRun the test again (it should pass now).",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
-    "href": "slides/2025-01-31_tdd_presentation.html#step-3-refactor-the-code-refactor-phase",
-    "title": "Test-Driven Development [TDD]",
-    "section": "Step 3: Refactor the Code (Refactor Phase)",
-    "text": "Step 3: Refactor the Code (Refactor Phase)\n\nClean up the implementation without changing behavior.\nEnsure all tests still pass after refactoring.\n\n\ndef add(a: int, b: int) -&gt; int:\n    return a + b  # Adding types",
-    "crumbs": [
-      "Test-Driven Development [TDD]"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#second-make-refresh",
-    "href": "slides/2026-01-27_build-data-pipelines.html#second-make-refresh",
-    "title": "Build Systems and Data Pipelines",
-    "section": "20 second make refresh",
-    "text": "20 second make refresh\noutput1: input1 input2\n  command\n\ninput2: sourceA sourceB\n  write_input2.sh\n\noutput is tracked against its dependencies output for one step can be a dependency for another",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#agenda",
-    "href": "slides/2026-01-27_build-data-pipelines.html#agenda",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Agenda",
-    "text": "Agenda\n\nBuild Systems\nData Pipelines\nImplications for our work\nDiscussion\n\n\nThere are only two hard things in Computer Science: cache invalidation and naming things.\n– Phil Karlton",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#build-system",
-    "href": "slides/2026-01-27_build-data-pipelines.html#build-system",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Build system",
-    "text": "Build system\nA build system is a tool (or library/package) for:\n\nDeclaring build “targets” (outputs)\nDefining the steps required to create those targets\nExecuting those steps\n\nit usually also includes a mechanism for caching:\n\nIdentifying what the inputs are to a step (i.e. code files)\nDetermining if the outputs are stale (outdated)\nDetermining what steps need to be re-run based on staleness",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#data-pipelines",
-    "href": "slides/2026-01-27_build-data-pipelines.html#data-pipelines",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Data Pipelines",
-    "text": "Data Pipelines\nA data pipeline system is a tool (or library/package) for:\n\nDeclaring build “targets” (outputs)\nDefining the steps required to create those targets\nExecuting those steps\n\nit usually also includes a mechanism for caching:\n\nIdentifying what the inputs are to a step (i.e. data, code files)\nDetermining if the outputs are stale (outdated)\nDetermining what steps need to be re-run based on staleness",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#task-runner",
-    "href": "slides/2026-01-27_build-data-pipelines.html#task-runner",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Task runner",
-    "text": "Task runner\nA task runner is a tool that runs tasks without caching. They may or may not support dependency resolution.\nExamples of task runners:\n\njust\nnpm run\nShell scripts\n\nA build system that ignores its caches can be used as a task runner",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#same-idea-different-names",
-    "href": "slides/2026-01-27_build-data-pipelines.html#same-idea-different-names",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Same idea, different names",
-    "text": "Same idea, different names\n\n\n\nBuild systems\nData pipelines\n\n\n\n\nTarget / artifact\nTable / dataset / object\n\n\nRule\nScript / transform / job\n\n\nDependency\nUpstream input\n\n\nIncremental rebuild\nIncremental refresh / backfill\n\n\nCache\nMaterialization / snapshot\n\n\nHermetic build\nReproducible run (pinned code + inputs)\n\n\nTest\nData quality check / invariant",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#same-graph-different-choices",
-    "href": "slides/2026-01-27_build-data-pipelines.html#same-graph-different-choices",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Same graph, different choices",
-    "text": "Same graph, different choices\n\n\n\nInvalidation\n\nTimestamps (make)\nContent hashes (Docker)\nFreshness windows (data pipelines)\n\nScheduling & execution\n\nLocal\nCI runners\nDistributed schedulers + compute engines\n\n\n\n\nDeterminism / hermeticity\n\nPinned toolchains + inputs\nExternal systems\nMutable/Immutable data\n\n\n\ndeterminism: Effectively, what is a declared dependency, vs. what is part of the environment\nDon’t linger too long on this slide\n\n\nWhat does “success” mean?\n\nBuild passes tests\nData passes invariants, freshness, and anomaly checks",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#enabling-latest",
-    "href": "slides/2026-01-27_build-data-pipelines.html#enabling-latest",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Enabling latest",
-    "text": "Enabling latest\nIf you treat data and code both as dependencies, you can very easily start to talk about the latest version of a data object (or dataset) in the same way you can talk about the latest version of an app or package\n\nfrequently (for us), code is what changes.\n\nHow often does relevant data update vs. codebase? Yearly? Weekly? Immediate?\n\nThis does not need to be a literal latest tag\n\n\nDrop a link to working build in Teams/Slack/etc.",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#enabling-versionspermalinks",
-    "href": "slides/2026-01-27_build-data-pipelines.html#enabling-versionspermalinks",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Enabling versions/permalinks",
-    "text": "Enabling versions/permalinks\nIf inputs and outputs (possibly caches) can be accessed independently, this can also enable versioning effectively\n\nCode inputs (git checkout v1.2.3)\nData inputs (/datasets/my-dataset/2026-01-01.csv)\nBuilt outputs\n\npermalink\nETag\nreport_2026-01-01.pdf\nindex-Cwp2LJ1J.js",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#continuous-publication",
-    "href": "slides/2026-01-27_build-data-pipelines.html#continuous-publication",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Continuous Publication",
-    "text": "Continuous Publication\n\nIf everything is a build, then everything can be a deploy\nIf it can be deployed, it could be deployed to PROD\n\nThe CI/CD pipeline is our Continuous Publication mechanism. It is possible to track latest and have up-to-date information, while still checking against tests, model expectations, invariants, and data quality checks.\nIt is also possible to mark old versions as inaccurate or deprecated\n\n⚠️ The information or analysis in this report are no longer sound. See an updated version at foo.rmi.org/1234\n\n\nThis idea can sound really scary to people. It’s important to have faith in your automated checks. It’s also possible to have human-in-the-loop approval steps",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#caching-and-archiving",
-    "href": "slides/2026-01-27_build-data-pipelines.html#caching-and-archiving",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Caching and archiving",
-    "text": "Caching and archiving\n\nIdentifying what to cache/store\n\nWhat is expensive to calculate? (Cache)\nWhat can we not re-create? (Archive)\nDo we have concerns about an upstream dependency changing history/going offline?\n\n\n\nWhat is cached often determines where Web page –&gt; CDN batch job dataset –&gt; Internal blob",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#tech-stack",
-    "href": "slides/2026-01-27_build-data-pipelines.html#tech-stack",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Tech Stack",
-    "text": "Tech Stack\n\nHow you want to handle dependencies determines what is the right tool\nWhat tool you’re using determines how you handle dependencies\n\nThese affect system design (what is in or out of a system boundary), sometimes invisibly",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#a-closer-look-at-make",
-    "href": "slides/2026-01-27_build-data-pipelines.html#a-closer-look-at-make",
-    "title": "Build Systems and Data Pipelines",
-    "section": "A closer look at make",
-    "text": "A closer look at make\nMake is a universal glue, and as such is worth examining as both a toy model and a well- and commonly-used tool.",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#language-specific-pipelines",
-    "href": "slides/2026-01-27_build-data-pipelines.html#language-specific-pipelines",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Language-specific pipelines",
-    "text": "Language-specific pipelines\nUsing lanugage-speficic pipelines (targets) gives an easy way to track both code objects and data as “inputs”, and add them to the dependency graph.\nIt also gives them better syntax (familiar to devs and often just more expressive/easier to use than make)\n\nautomatic dependency tracking of more of the environment",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-27_build-data-pipelines.html#babys-first-data-pipeline",
-    "href": "slides/2026-01-27_build-data-pipelines.html#babys-first-data-pipeline",
-    "title": "Build Systems and Data Pipelines",
-    "section": "Baby’s first data pipeline",
-    "text": "Baby’s first data pipeline\nhttps://github.com/IndianaCHE/Detailed-SSP-Reports/blob/master/run.R",
-    "crumbs": [
-      "Build Systems and Data Pipelines"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#why-were-here",
-    "href": "slides/2026-01-13_conventional_commits.html#why-were-here",
-    "title": "How to Commit Conventionally",
-    "section": "Why we’re here",
-    "text": "Why we’re here\nIn this session, we’ll walk through the Conventional Commits spec and why it’s useful in practice:\n\nclearer PR history\neasier changelogs\n(optionally) automated version bumps & releases",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#agenda",
-    "href": "slides/2026-01-13_conventional_commits.html#agenda",
-    "title": "How to Commit Conventionally",
-    "section": "Agenda",
-    "text": "Agenda\n\nWhat do Conventional Commits solve?\nThe spec (the minimum you need)\n“Breaking changes” + SemVer mapping\nCommon patterns (scopes, footers, PR merges)\nAutomated tooling\nResources\n\n\nIf your org uses squash merges, you still benefit: PR title becomes the “commit message.”",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#commit-messages-drift",
-    "href": "slides/2026-01-13_conventional_commits.html#commit-messages-drift",
-    "title": "How to Commit Conventionally",
-    "section": "Commit messages drift",
-    "text": "Commit messages drift\nWithout a shared convention, git history can easily become:\n\ninconsistent (“Fix stuff”, “update”, “WIP”)\nhard to scan in git log\npainful to turn into release notes\nambiguous for reviewers (“is this a feature or a fix?”)\n\n\nEmphasize: you’re not “policing,” you’re reducing cognitive load for future-you.",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#what-is-conventional-commits",
-    "href": "slides/2026-01-13_conventional_commits.html#what-is-conventional-commits",
-    "title": "How to Commit Conventionally",
-    "section": "What is Conventional Commits?",
-    "text": "What is Conventional Commits?\nA lightweight convention for commit messages that are:\n\nhuman-readable\nmachine-parseable\n\nIt “dovetails with SemVer” by making it easy to identify:\n\nfeatures\nfixes\nbreaking changes\n\n\nPoint to the spec later; for now focus on the shape and why it matters.",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#the-core-format",
-    "href": "slides/2026-01-13_conventional_commits.html#the-core-format",
-    "title": "How to Commit Conventionally",
-    "section": "The core format",
-    "text": "The core format\n&lt;type&gt;[optional scope][optional !]: &lt;description&gt;\n\n[optional body]\n\n[optional footer(s)]\nExamples:\n\nfeat: add portfolio export to CSV\nfix(api): handle empty scenario set\nrefactor!: drop legacy endpoint",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#types-pick-a-small-set",
-    "href": "slides/2026-01-13_conventional_commits.html#types-pick-a-small-set",
-    "title": "How to Commit Conventionally",
-    "section": "Types: pick a small set",
-    "text": "Types: pick a small set\nCommon, widely-used types:\n\nfeat — new user-visible behavior\nfix — bug fix\ndocs — documentation only\nrefactor — code change, no behavior change (ideally)\ntest — tests only\nchore — tooling, build, deps, housekeeping\nci — CI pipeline changes",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#scope",
-    "href": "slides/2026-01-13_conventional_commits.html#scope",
-    "title": "How to Commit Conventionally",
-    "section": "Scope",
-    "text": "Scope\nScopes are optional, but can help answer “where” a change is relevant, especially in larger codebases:\nExamples:\n\nfeat(ui): add scenario picker\nfix(db): prevent deadlock on upsert\ndocs(api): document auth header\n\nGood scopes are:\n\nsmall nouns or abbreviations (api, ui, db, auth, deps)\nstable over time\nnot personal (“jackson-fix”)",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#breaking-changes",
-    "href": "slides/2026-01-13_conventional_commits.html#breaking-changes",
-    "title": "How to Commit Conventionally",
-    "section": "Breaking changes",
-    "text": "Breaking changes\nUsing a “bang” (!) in the header indicates a breaking change:\n\nfeat!: remove v1 scenario fields\n\nIf you need to give more context, you can use a footer in the commit description:\nfeat!: remove v1 scenario fields\n\nBREAKING CHANGE: v1 fields were removed; migrate to v2 schema",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#conventional-commits---semver",
-    "href": "slides/2026-01-13_conventional_commits.html#conventional-commits---semver",
-    "title": "How to Commit Conventionally",
-    "section": "Conventional Commits -> SemVer",
-    "text": "Conventional Commits -&gt; SemVer\nThe common automated release mapping goes something like:\n\nfix -&gt; PATCH\nfeat -&gt; MINOR\n! or BREAKING CHANGE -&gt; MAJOR\n\nOther types need to be mapped appropriately. This is still just a convention (not magic) and requires engineers to buy into using the convention consistently.",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#example-a-good-conventional-commit",
-    "href": "slides/2026-01-13_conventional_commits.html#example-a-good-conventional-commit",
-    "title": "How to Commit Conventionally",
-    "section": "Example: a “good” conventional commit",
-    "text": "Example: a “good” conventional commit\nfix(auth): refresh tokens on 401\n\nPreviously, an expired token caused an infinite retry loop.\nNow we refresh once and surface an error if it fails.\n\nRefs: STIT-125, #823",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#migrating-from-meh-to-conventional",
-    "href": "slides/2026-01-13_conventional_commits.html#migrating-from-meh-to-conventional",
-    "title": "How to Commit Conventionally",
-    "section": "Migrating from “meh” to “conventional”",
-    "text": "Migrating from “meh” to “conventional”\n\nBefore: ignore stuff\nAfter: chore(git): add build artifacts to .gitignore",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#what-about-squash-merges",
-    "href": "slides/2026-01-13_conventional_commits.html#what-about-squash-merges",
-    "title": "How to Commit Conventionally",
-    "section": "What about Squash merges?",
-    "text": "What about Squash merges?\nIf the repo you are working on uses squash merges the PR title gets squashed into a commit message. Write the PR title as a conventional commit!\n\ne.g. PR title: feat(ui): add scenario picker",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#automated-tooling",
-    "href": "slides/2026-01-13_conventional_commits.html#automated-tooling",
-    "title": "How to Commit Conventionally",
-    "section": "Automated tooling",
-    "text": "Automated tooling\nConventional Commits are machine-parseable, so automation can reliably:\n\nValidate messages at commit / PR time\n→ catches missing type, malformed scope, or unclear descriptions early\nClassify changes from history\n→ groups commits into Features, Fixes, Docs, Chores, etc.\nGenerate release notes / changelogs\n→ produces consistent summaries straight from merged work\nDecide the next version (if you use SemVer)\n→ fix → patch, feat → minor, BREAKING CHANGE / ! → major\nCreate traceability links\n→ connect releases back to PRs/issues via structured footers",
-    "crumbs": [
-      "How to Commit Conventionally"
-    ]
-  },
-  {
-    "objectID": "slides/2026-01-13_conventional_commits.html#resources",
-    "href": "slides/2026-01-13_conventional_commits.html#resources",
-    "title": "How to Commit Conventionally",
-    "section": "Resources",
-    "text": "Resources\n\nConventional Commits spec: https://www.conventionalcommits.org/en/v1.0.0/\nSemantic Versioning (SemVer): https://semver.org/\ncommitlint (getting started): https://commitlint.js.org/guides/getting-started.html\nRelease Please: https://github.com/googleapis/release-please\nsemantic-release: https://github.com/semantic-release/semantic-release\nconventional-changelog: https://github.com/conventional-changelog/conventional-changelog",
-    "crumbs": [
-      "How to Commit Conventionally"
     ]
   }
 ]
