@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Alex Axthelm">
   <title>SPD's Brinner and Learn Series – Build Systems and Data Pipelines</title>
@@ -20,10 +20,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -201,7 +204,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Alex Axthelm 
+Alex Axthelm
 </div>
 </div>
 </div>
@@ -209,11 +212,11 @@ Alex Axthelm
 </section>
 <section id="second-make-refresh" class="slide level2">
 <h2>20 second <code>make</code> refresh</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource make number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>output1: input1 input2</span>
-<span id="cb1-2"><a></a>  command</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a>input2: sourceA sourceB</span>
-<span id="cb1-5"><a></a>  write_input2.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource make number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a aria-label="1"></a>output1: input1 input2</span>
+<span id="cb1-2"><a aria-label="2"></a>  command</span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a>input2: sourceA sourceB</span>
+<span id="cb1-5"><a aria-label="5"></a>  write_input2.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>output is tracked against its dependencies output for one step can be a dependency for another</p>
 <style type="text/css">
@@ -509,17 +512,17 @@ Alex Axthelm
 <section class="slide level2">
 
 <h3 id="syntax-overviewreminder">Syntax overview/reminder</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource make number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>site.tar: src/*</span>
-<span id="cb2-2"><a></a>  npm run build</span>
-<span id="cb2-3"><a></a></span>
-<span id="cb2-4"><a></a>report.pdf: report.qmd data.csv</span>
-<span id="cb2-5"><a></a>    quarto render report.qmd -o report.pdf</span>
-<span id="cb2-6"><a></a></span>
-<span id="cb2-7"><a></a>%.o : %.c</span>
-<span id="cb2-8"><a></a>        $(CC) -c $(CFLAGS) $&lt; -o $@</span>
-<span id="cb2-9"><a></a></span>
-<span id="cb2-10"><a></a>reports/sector_%.pdf: sector_report_template.qmd %.csv</span>
-<span id="cb2-11"><a></a>    quarto render $&lt; -o $@</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource make number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a aria-label="1"></a>site.tar: src/*</span>
+<span id="cb2-2"><a aria-label="2"></a>  npm run build</span>
+<span id="cb2-3"><a aria-label="3"></a></span>
+<span id="cb2-4"><a aria-label="4"></a>report.pdf: report.qmd data.csv</span>
+<span id="cb2-5"><a aria-label="5"></a>    quarto render report.qmd -o report.pdf</span>
+<span id="cb2-6"><a aria-label="6"></a></span>
+<span id="cb2-7"><a aria-label="7"></a>%.o : %.c</span>
+<span id="cb2-8"><a aria-label="8"></a>        $(CC) -c $(CFLAGS) $&lt; -o $@</span>
+<span id="cb2-9"><a aria-label="9"></a></span>
+<span id="cb2-10"><a aria-label="10"></a>reports/sector_%.pdf: sector_report_template.qmd %.csv</span>
+<span id="cb2-11"><a aria-label="11"></a>    quarto render $&lt; -o $@</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>See also: <a href="https://github.com/RMI/stitch/blob/main/Makefile">Stitch Makefile</a></p>
 <aside class="notes">
 <p>it’s been a long time for most people since they’ve actually looked at makefile make syntax isn’t particualrly fun to work in</p>

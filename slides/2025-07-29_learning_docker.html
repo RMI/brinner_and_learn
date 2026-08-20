@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Jackson Hoffart">
   <title>SPD's Brinner and Learn Series – Learning Docker</title>
@@ -20,10 +20,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -201,7 +204,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Jackson Hoffart 
+Jackson Hoffart
 </div>
 </div>
 </div>
@@ -314,12 +317,12 @@ Jackson Hoffart
 </section></section>
 <section id="dockerfile-the-recipe" class="title-slide slide level1 center">
 <h1>Dockerfile: The Recipe</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a></a><span class="kw">FROM</span> python:3.11-slim</span>
-<span id="cb1-2"><a></a><span class="kw">WORKDIR</span> /app</span>
-<span id="cb1-3"><a></a><span class="kw">COPY</span> requirements.txt .</span>
-<span id="cb1-4"><a></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
-<span id="cb1-5"><a></a><span class="kw">COPY</span> . .</span>
-<span id="cb1-6"><a></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"script.py"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a aria-label="1"></a><span class="kw">FROM</span> python:3.11-slim</span>
+<span id="cb1-2"><a aria-label="2"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb1-3"><a aria-label="3"></a><span class="kw">COPY</span> requirements.txt .</span>
+<span id="cb1-4"><a aria-label="4"></a><span class="kw">RUN</span> <span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb1-5"><a aria-label="5"></a><span class="kw">COPY</span> . .</span>
+<span id="cb1-6"><a aria-label="6"></a><span class="kw">CMD</span> [<span class="st">"python"</span>, <span class="st">"script.py"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>Goal: Show that defining a Docker image is just writing a simple file. Emphasize how readable and reproducible this is.</p>
 <style type="text/css">
@@ -337,8 +340,8 @@ Jackson Hoffart
 
 <section id="build-run-your-container" class="title-slide slide level1 center">
 <h1>Build &amp; Run Your Container</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">docker</span> build <span class="at">-t</span> my-python-app .</span>
-<span id="cb2-2"><a></a><span class="ex">docker</span> run my-python-app</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-label="1"></a><span class="ex">docker</span> build <span class="at">-t</span> my-python-app .</span>
+<span id="cb2-2"><a aria-label="2"></a><span class="ex">docker</span> run my-python-app</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment"><code>build</code>: creates an <strong>image</strong> from a <strong>Dockerfile</strong></li>
 <li class="fragment"><code>run</code>: launches the <strong>container</strong> using that <strong>image</strong></li>

@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Jackson Hoffart">
   <title>SPD's Brinner and Learn Series – Taming Your Terminal: Dotfiles &amp; GNU Stow</title>
@@ -20,10 +20,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -201,7 +204,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Jackson Hoffart 
+Jackson Hoffart
 </div>
 </div>
 </div>
@@ -279,21 +282,21 @@ Jackson Hoffart
 <ul>
 <li class="fragment">You keep “real” files in a repo like:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>~/dotfiles/</span>
-<span id="cb1-2"><a></a>  bash/.bashrc</span>
-<span id="cb1-3"><a></a>  bash/.aliases</span>
-<span id="cb1-4"><a></a>  git/.gitconfig</span>
-<span id="cb1-5"><a></a>  ghostty/.config/ghostty/config</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a aria-label="1"></a>~/dotfiles/</span>
+<span id="cb1-2"><a aria-label="2"></a>  bash/.bashrc</span>
+<span id="cb1-3"><a aria-label="3"></a>  bash/.aliases</span>
+<span id="cb1-4"><a aria-label="4"></a>  git/.gitconfig</span>
+<span id="cb1-5"><a aria-label="5"></a>  ghostty/.config/ghostty/config</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">Then you “stow” them into $HOME:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="bu">cd</span> ~/dotfiles</span>
-<span id="cb2-2"><a></a><span class="ex">stow</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">"</span> bash git ghostty</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-label="1"></a><span class="bu">cd</span> ~/dotfiles</span>
+<span id="cb2-2"><a aria-label="2"></a><span class="ex">stow</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">"</span> bash git ghostty</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">stow creates symlinks:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">~/.bashrc</span>  <span class="at">-</span><span class="op">&gt;</span> ~/dotfiles/bash/.bashrc</span>
-<span id="cb3-2"><a></a><span class="ex">~/.gitconfig</span> <span class="at">-</span><span class="op">&gt;</span> ~/dotfiles/git/.gitconfig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a aria-label="1"></a><span class="ex">~/.bashrc</span>  <span class="at">-</span><span class="op">&gt;</span> ~/dotfiles/bash/.bashrc</span>
+<span id="cb3-2"><a aria-label="2"></a><span class="ex">~/.gitconfig</span> <span class="at">-</span><span class="op">&gt;</span> ~/dotfiles/git/.gitconfig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="why-stow-is-nice-for-dotfiles" class="slide level2">
 <h2>Why Stow is nice for dotfiles</h2>
@@ -301,8 +304,8 @@ Jackson Hoffart
 <li class="fragment">Keeps <code>$HOME</code> clean → just symlinks</li>
 <li class="fragment">Easy to enable/disable groups:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">stow</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">"</span> bash</span>
-<span id="cb4-2"><a></a><span class="ex">stow</span> <span class="at">-D</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">"</span> bash   <span class="co"># unstow</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a aria-label="1"></a><span class="ex">stow</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">"</span> bash</span>
+<span id="cb4-2"><a aria-label="2"></a><span class="ex">stow</span> <span class="at">-D</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$HOME</span><span class="st">"</span> bash   <span class="co"># unstow</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">Encourages a modular layout:
 <ul>

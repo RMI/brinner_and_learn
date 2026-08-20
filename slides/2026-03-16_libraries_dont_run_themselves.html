@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Jackson Hoffart">
   <title>SPD's Brinner and Learn Series – Libraries Don’t Run Themselves</title>
@@ -20,10 +20,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -204,7 +207,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Jackson Hoffart 
+Jackson Hoffart
 </div>
 </div>
 </div>
@@ -266,10 +269,10 @@ Jackson Hoffart
 </section>
 <section id="one-example-repo-three-different-kinds-of-thing" class="slide level2">
 <h2>One Example Repo, Three Different Kinds of Thing</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>repo/</span>
-<span id="cb1-2"><a></a>  src/project/model.py</span>
-<span id="cb1-3"><a></a>  scripts/run_model.py</span>
-<span id="cb1-4"><a></a>  model-run --config configs/base.yaml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a aria-label="1"></a>repo/</span>
+<span id="cb1-2"><a aria-label="2"></a>  src/project/model.py</span>
+<span id="cb1-3"><a aria-label="3"></a>  scripts/run_model.py</span>
+<span id="cb1-4"><a aria-label="4"></a>  model-run --config configs/base.yaml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment"><code>src/project/model.py</code> is library code: reusable logic</li>
 <li class="fragment"><code>scripts/run_model.py</code> is a script: often one runnable task</li>
@@ -298,8 +301,8 @@ Jackson Hoffart
 <li class="fragment">Should never actually “do anything” just because it is imported</li>
 <li class="fragment">Unit tests should focus here, this is where stable behavior lives</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">def</span> run_model(records, factors, threshold):</span>
-<span id="cb2-2"><a></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="kw">def</span> run_model(records, factors, threshold):</span>
+<span id="cb2-2"><a aria-label="2"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>Purpose: define library in practical terms.</p>
 <p>Suggested talk track: “If I import your module to use one function, it should not suddenly pull data, write files, or parse command-line arguments. Libraries are building blocks.”</p>
@@ -322,11 +325,11 @@ Jackson Hoffart
 <li class="fragment">Often: Parses inputs, calls library code, writes outputs</li>
 <li class="fragment">Should stay thin so the logic is still reusable</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> main():</span>
-<span id="cb3-2"><a></a>    config <span class="op">=</span> load_config(...)</span>
-<span id="cb3-3"><a></a>    records <span class="op">=</span> load_inputs(config)</span>
-<span id="cb3-4"><a></a>    results <span class="op">=</span> run_model(records, ...)</span>
-<span id="cb3-5"><a></a>    write_outputs(results, config.output_dir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a><span class="kw">def</span> main():</span>
+<span id="cb3-2"><a aria-label="2"></a>    config <span class="op">=</span> load_config(...)</span>
+<span id="cb3-3"><a aria-label="3"></a>    records <span class="op">=</span> load_inputs(config)</span>
+<span id="cb3-4"><a aria-label="4"></a>    results <span class="op">=</span> run_model(records, ...)</span>
+<span id="cb3-5"><a aria-label="5"></a>    write_outputs(results, config.output_dir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>Purpose: explain script as the missing middle layer.</p>
 <p>Suggested talk track: “Scripts are often the first honest runnable thing in a project. They are not bad. They become a problem only when they silently become the whole architecture.”</p>
@@ -392,11 +395,11 @@ Jackson Hoffart
 <section id="the-common-modeling-pipeline" class="slide level2">
 <h2>The Common “Modeling” Pipeline</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a></a>flowchart LR</span>
-<span id="cb4-2"><a></a>    A[Entry point] --&gt; B[Load config]</span>
-<span id="cb4-3"><a></a>    B --&gt; C[Load input data]</span>
-<span id="cb4-4"><a></a>    C --&gt; D[Call model library]</span>
-<span id="cb4-5"><a></a>    D --&gt; E[Write outputs]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb4-2"><a aria-label="2"></a>    A[Entry point] --&gt; B[Load config]</span>
+<span id="cb4-3"><a aria-label="3"></a>    B --&gt; C[Load input data]</span>
+<span id="cb4-4"><a aria-label="4"></a>    C --&gt; D[Call model library]</span>
+<span id="cb4-5"><a aria-label="5"></a>    D --&gt; E[Write outputs]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -435,16 +438,16 @@ Jackson Hoffart
 <section id="model-code-configuration-data-and-outputs-are-distinct" class="slide level2">
 <h2>Model Code, Configuration, Data, and Outputs Are Distinct</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a></a>flowchart TB</span>
-<span id="cb5-2"><a></a>    code[Code&lt;br/&gt;Reusable logic]</span>
-<span id="cb5-3"><a></a>    config[Config&lt;br/&gt;Run instructions]</span>
-<span id="cb5-4"><a></a>    data[Input data&lt;br/&gt;Domain facts]</span>
-<span id="cb5-5"><a></a>    output[Outputs&lt;br/&gt;Results of the run]</span>
-<span id="cb5-6"><a></a></span>
-<span id="cb5-7"><a></a>    code --&gt; run((Run))</span>
-<span id="cb5-8"><a></a>    config --&gt; run</span>
-<span id="cb5-9"><a></a>    data --&gt; run</span>
-<span id="cb5-10"><a></a>    run --&gt; output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart TB</span>
+<span id="cb5-2"><a aria-label="2"></a>    code[Code&lt;br/&gt;Reusable logic]</span>
+<span id="cb5-3"><a aria-label="3"></a>    config[Config&lt;br/&gt;Run instructions]</span>
+<span id="cb5-4"><a aria-label="4"></a>    data[Input data&lt;br/&gt;Domain facts]</span>
+<span id="cb5-5"><a aria-label="5"></a>    output[Outputs&lt;br/&gt;Results of the run]</span>
+<span id="cb5-6"><a aria-label="6"></a></span>
+<span id="cb5-7"><a aria-label="7"></a>    code --&gt; run((Run))</span>
+<span id="cb5-8"><a aria-label="8"></a>    config --&gt; run</span>
+<span id="cb5-9"><a aria-label="9"></a>    data --&gt; run</span>
+<span id="cb5-10"><a aria-label="10"></a>    run --&gt; output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -491,10 +494,10 @@ Jackson Hoffart
 <div class="columns">
 <div class="column" style="width:48%;">
 <h3 id="config-file">Config file</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a></a><span class="fu">release_year</span><span class="kw">:</span><span class="at"> </span><span class="dv">2026</span></span>
-<span id="cb6-2"><a></a><span class="fu">portfolio_path</span><span class="kw">:</span><span class="at"> s3://team-data/portfolios/q1.parquet</span></span>
-<span id="cb6-3"><a></a><span class="fu">threshold</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.85</span></span>
-<span id="cb6-4"><a></a><span class="fu">output_dir</span><span class="kw">:</span><span class="at"> outputs/2026-q1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a aria-label="1"></a><span class="fu">release_year</span><span class="kw">:</span><span class="at"> </span><span class="dv">2026</span></span>
+<span id="cb6-2"><a aria-label="2"></a><span class="fu">portfolio_path</span><span class="kw">:</span><span class="at"> s3://team-data/portfolios/q1.parquet</span></span>
+<span id="cb6-3"><a aria-label="3"></a><span class="fu">threshold</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.85</span></span>
+<span id="cb6-4"><a aria-label="4"></a><span class="fu">output_dir</span><span class="kw">:</span><span class="at"> outputs/2026-q1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">Model run configuration</li>
 <li class="fragment">I/O data paths</li>
@@ -503,9 +506,9 @@ Jackson Hoffart
 </ul>
 </div><div class="column" style="width:48%;">
 <h3 id="input-data-file">Input data file</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>account_id, balance, sector, region</span>
-<span id="cb7-2"><a></a>1042, 1500000, cement, NA</span>
-<span id="cb7-3"><a></a>1043, 230000, steel, EU</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a aria-label="1"></a>account_id, balance, sector, region</span>
+<span id="cb7-2"><a aria-label="2"></a>1042, 1500000, cement, NA</span>
+<span id="cb7-3"><a aria-label="3"></a>1043, 230000, steel, EU</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">Domain input, facts or records</li>
 <li class="fragment">The “thing” being modeled</li>
@@ -608,22 +611,22 @@ Jackson Hoffart
 <h2>A “Healthy” Default Repo Shape</h2>
 <div class="columns">
 <div class="column" style="width:58%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a></a>repo/</span>
-<span id="cb8-2"><a></a>  src/project/</span>
-<span id="cb8-3"><a></a>    model.py</span>
-<span id="cb8-4"><a></a>    io.py</span>
-<span id="cb8-5"><a></a>    validation.py</span>
-<span id="cb8-6"><a></a>    app.py</span>
-<span id="cb8-7"><a></a>  scripts/</span>
-<span id="cb8-8"><a></a>    run_model.py</span>
-<span id="cb8-9"><a></a>  configs/</span>
-<span id="cb8-10"><a></a>    base.yaml</span>
-<span id="cb8-11"><a></a>  notebooks/</span>
-<span id="cb8-12"><a></a>    exploratory_analysis.ipynb</span>
-<span id="cb8-13"><a></a>  tests/</span>
-<span id="cb8-14"><a></a>    test_model.py</span>
-<span id="cb8-15"><a></a>  docs/</span>
-<span id="cb8-16"><a></a>    running.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a aria-label="1"></a>repo/</span>
+<span id="cb8-2"><a aria-label="2"></a>  src/project/</span>
+<span id="cb8-3"><a aria-label="3"></a>    model.py</span>
+<span id="cb8-4"><a aria-label="4"></a>    io.py</span>
+<span id="cb8-5"><a aria-label="5"></a>    validation.py</span>
+<span id="cb8-6"><a aria-label="6"></a>    app.py</span>
+<span id="cb8-7"><a aria-label="7"></a>  scripts/</span>
+<span id="cb8-8"><a aria-label="8"></a>    run_model.py</span>
+<span id="cb8-9"><a aria-label="9"></a>  configs/</span>
+<span id="cb8-10"><a aria-label="10"></a>    base.yaml</span>
+<span id="cb8-11"><a aria-label="11"></a>  notebooks/</span>
+<span id="cb8-12"><a aria-label="12"></a>    exploratory_analysis.ipynb</span>
+<span id="cb8-13"><a aria-label="13"></a>  tests/</span>
+<span id="cb8-14"><a aria-label="14"></a>    test_model.py</span>
+<span id="cb8-15"><a aria-label="15"></a>  docs/</span>
+<span id="cb8-16"><a aria-label="16"></a>    running.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:42%;">
 <ul>
 <li class="fragment"><code>src/</code> for reusable code</li>
@@ -652,11 +655,11 @@ Jackson Hoffart
 <h2>Tiny Demo Project</h2>
 <p>The live demo for this talk lives here:</p>
 <p><code>live_demos/2026-03-16_libraries_dont_run_themselves</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a></a>mini_house/</span>
-<span id="cb9-2"><a></a>  src/mini_house/tools.py</span>
-<span id="cb9-3"><a></a>  src/mini_house/app.py</span>
-<span id="cb9-4"><a></a>  scripts/frame_wall.py</span>
-<span id="cb9-5"><a></a>  pyproject.toml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a aria-label="1"></a>mini_house/</span>
+<span id="cb9-2"><a aria-label="2"></a>  src/mini_house/tools.py</span>
+<span id="cb9-3"><a aria-label="3"></a>  src/mini_house/app.py</span>
+<span id="cb9-4"><a aria-label="4"></a>  scripts/frame_wall.py</span>
+<span id="cb9-5"><a aria-label="5"></a>  pyproject.toml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">library: a tiny reusable “tool”</li>
 <li class="fragment">script: one part of the work</li>
