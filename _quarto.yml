@@ -41,6 +41,8 @@ website:
         target: libraries_dont_run_themselves
       - file: ./slides/2026-04-21_llms_for_software_development.qmd
         target: llms_for_software_development
+      - file: ./slides/2026-07-28_local_first.qmd
+        target: local_first
 
 format:
   html:
