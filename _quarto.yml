@@ -43,6 +43,8 @@ website:
         target: llms_for_software_development
       - file: ./slides/2026-07-28_local_first.qmd
         target: local_first
+      - file: ./slides/2026-08-25_etl_101.qmd
+        target: etl_101
 
 format:
   html:
