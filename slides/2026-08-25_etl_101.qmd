@@ -1,0 +1,650 @@
+---
+title: "ETL 101"
+subtitle: |
+  <span class="sub-line">Session <b>1 of 3</b> &nbsp;·&nbsp; ETL</span><br>
+  <span class="sub-line dim">Topic <b>1 of 7</b> &nbsp;·&nbsp; Design Patterns Series</span>
+author: "Jackson Hoffart"
+format:
+  revealjs:
+    incremental: false
+    transition: none
+    slide-number: true
+    overview: true
+    header-includes: |
+      <style>
+      /* title slide */
+      .reveal .subtitle .sub-line { display: inline-block; margin: 0.15em 0; font-size: 0.9em; }
+      .reveal .subtitle .sub-line.dim { opacity: 0.72; }
+
+      /* reveal.js default turns bold text blue on the dark theme — override */
+      .reveal strong, .reveal b { color: inherit; }
+
+      /* failure-mode motif: amber is used for nothing else in this deck */
+      .fail {
+        background: #FAEADC;
+        color: #1c1c1c;
+        border-left: 4px solid #B4551C;
+        border-radius: 6px;
+        padding: 0.65em 0.95em;
+        margin: 0.7em 0;
+      }
+      .fail p { margin: 0.35em 0; color: #1c1c1c; }
+      .fail strong, .fail b { color: #1c1c1c; }
+      .fail code { background: rgba(0,0,0,0.08); color: #1c1c1c; }
+      .lbl { color: #B4551C; font-weight: 700; }
+      .maps { color: #cdd6d3; font-size: 0.82em; margin-top: 0.6em; }
+      .maps strong, .maps b { color: #f0f0ee; }
+      .tier { color: #7FA99B; font-weight: 700; letter-spacing: 0.08em; font-size: 0.6em; }
+      .reveal table { font-size: 0.72em; }
+      </style>
+---
+
+## Design Pattern Series
+
+Today we're starting a series on Architectural Design Patterns. 7 topics overall, with 3 sessions per topic:
+
+1. **ETL** &larr; *we are here*
+2. Jobs & Queues
+3. Database Design
+4. API Design
+5. Frontend
+6. CI/CD & Deployment
+7. Capstone: how it all fits together
+
+---
+
+## The shape of every topic
+
+Every one of the 7 topics will get the same treatment, over 3 sessions:
+
+- **101**: building a shared vocabulary. What are we actually talking about?
+- **In Practice**: identifying common pitfalls, and which design patterns help.
+- **RMI Case Study**: demos of how we actually do it today.
+
+Today is a **ETL 101**. That means we plan to build a shared vocabulary, but not necessarily proficiency.
+
+::: {.notes}
+Set the meta-shape once. From topic 2 (Jobs & Queues 101) on, people will know what
+to expect from a "101" and what to expect from an "In Practice."
+
+Say out loud: this session is a map, not a tutorial. It sets expectations correctly
+and gives you cover to move fast.
+:::
+
+---
+
+## Quick poll
+
+::: {.r-fit-text}
+Who here has built or operated a "data pipeline" that needs to be re-run on some schedule?
+:::
+
+- Yearly? &nbsp; Monthly? &nbsp; Weekly? &nbsp; Nightly?
+- A python script you run on your local machine counts.
+- A spreadsheet you regenerate every year counts.
+
+::: {.notes}
+Purpose: surface that most of the room already does ETL; they just don't call it
+that. This reframes the session from "learning a new thing" to "naming a thing you
+already do," which is a much easier sell to the senior folks in the room.
+
+Note the hands: I'll come back to the "kinda crappy" and "local scripts" folks in
+Q&A, and follow up offline for Session 3 case-study candidates.
+:::
+
+---
+
+## There is no "right" way to build things
+
+> A pipeline that runs **once a year** and one that runs **once a second**
+> are both ETL, but they should look nothing alike.
+
+Most arguments about which ETL tool or pattern is "right" are really trade-offs around
+which **constraints** matter most.
+
+Once you know define those constraints very precisely, most of the design questions get easier to answer.
+
+::: {.notes}
+This is the through-line: what shape a pipeline should take depends on what you're
+constrained by. If someone asks "is Airflow better than dbt?" or "should we use Dagster?",
+the honest answer is almost always "for what cadence, at what stakes?"
+:::
+
+---
+
+## Different design considerations {.smaller}
+
+Some examples:
+
+| Once a year | Monthly | Weekly | Nightly | Hourly | Real-time |
+|-|-|-|-|-|-|
+| Regulatory filing | Utility bill | Gas price update | Satellite imagery processing | Weather forecast | Smart-meter / grid telemetry |
+
+<br>
+
+- The right pipeline for a yearly **filing** looks nothing like one for **live telemetry**
+- No pattern is "better" in general, constraints like cadence and stakes might tell you which one fits
+- Other constraints also contribute, liken: compute cost, data volume,
+team size, data sensitivity, data lineage requirements etc.
+
+---
+
+## So what actually is ETL?
+
+**Moving data from its source to where it can be useful (and reshaping it along the way).**
+
+- **E**xtract: pull it out of the source system.
+- **T**ransform: reshape it into some form that's useful to downstream users or systems.
+- **L**oad: put it where it can be easily accessed.
+
+::: {.notes}
+Keep the definition to one sentence. Every added qualifier now costs clarity later.
+
+Data warehouses and lakes get defined properly in the Database Design session. For today:
+"a place optimized for reading and analysis, rather than for running an app."
+:::
+
+---
+
+## Why does ETL exist at all?
+
+Two main reasons:
+
+- **Raw data is rarely shaped "right".** The source system was designed for *its* job,
+  not your use-case.
+- **You probably don't want to hit the source every time.** Partner APIs have rate limits,
+  files get moved, data can disappear, schemas drift, etc.
+
+::: {.notes}
+Source systems are optimized for serving an app or processing a transaction, not
+for being queried by ten other teams.
+:::
+
+---
+
+## A running example {.smaller}
+
+A partner exposes emissions data in an API; we want it summarized in a dashboard.
+
+- **Extract**: authenticate to the partner API, page through results, handle their rate limit.
+- **Transform**: normalize units (they report in kilotonnes, we standardize on tonnes),
+  map their facility IDs to ours, drop test records, validate that no value is negative.
+- **Load**: upsert into `emissions_by_facility`, keyed on facility + reporting period.
+
+::: {.notes}
+The example is deliberately banal so nobody gets distracted by the domain. The point is
+the shape. Walk it once, naming each stage. The kilotonnes/tonnes conversion reappears
+in the schema-on-read failure mode; plant it here so the payoff lands.
+:::
+
+---
+
+## Note: ETL vs. ELT {.smaller}
+
+Mostly a question of **where you put your compute**, and **how much raw history you keep**.
+
+|  | Order | Where transform happens | Choose when… |
+|-|-|-|-|
+| **ETL** | E &rarr; T &rarr; L | In a separate processing layer, before landing in the destination | • destination compute is expensive or limited<br>• sensitive data must be scrubbed before it lands<br>• storing raw is undesirable |
+| **ELT** | E &rarr; L &rarr; T | Inside the destination, using its own compute | • destination compute is cheap and elastic<br>• you want to keep raw so you can re-derive when logic changes<br>• multiple consumers need different views of the same source |
+
+ELT got popular when cloud warehouses (Snowflake, Databricks) made it cheap to load
+everything raw and transform later in SQL. For today: I'll say "ETL" and mean "either."
+
+::: {.notes}
+The underrated ELT advantage: you kept the raw data, so you can re-derive everything when
+the business logic changes. The same is possible under ETL, but more cumbersome:
+you may have to re-ask a partner for history they no longer have.
+
+Don't over-index. Most of the room won't remember the distinction in a week, and that's
+fine. The point of naming ELT is so nobody thinks I don't know it exists.
+:::
+
+---
+
+## Anatomy: **Extract** {.smaller}
+
+Pull data out of the source.
+
+- **Pull vs push**: does your pipeline reach out and grab data (poll an API, query a DB),
+  or does the source push at you (webhooks, event streams)?
+- **Full vs incremental**: pull the entire dataset every time, or only what changed?
+- **Source constraints**: rate limits, replica lag, lock contention on production DBs,
+  pagination quirks, schema drift you don't control.
+
+```python
+df = pd.read_json("https://api.partner.com/v1/emissions")
+```
+
+::: {.notes}
+Planting this forward reference is what makes the CDC slide land later. Do not skip it.
+:::
+
+---
+
+## Anatomy: **Transform** {.smaller}
+
+Reshape the raw pull into what downstream users actually want.
+
+- **Data cleaning**: nulls, encoding issues, malformed records, deduplication.
+- **Transforming and casting**: type coercion, parsing, reshaping fields.
+- **Joining and merging**: combining rows or columns across sources.
+- **Aggregation**: grouping and summarizing (sum, mean, count, rolling windows).
+- **Filtering and sorting**: keeping only the rows you need, in the order you need them.
+- **Data enrichment**: adding derived columns or joining reference data (e.g. facility metadata).
+- **Normalization**: standardizing units, time-zones, currencies, naming across sources.
+- **Validation**: enforcing business constraints; reject or quarantine bad rows
+  rather than silently loading them.
+
+```python
+df.groupby(["facility_id", "year"])["scope_1_tCO2e"].sum()
+```
+
+::: {.notes}
+These aren't a strict order; most pipelines interleave them. Validation is the one people
+skip. Reject or quarantine beats silently loading garbage.
+:::
+
+---
+
+## Anatomy: **Load** {.smaller}
+
+Put the reshaped data where downstream users (could be you) can read it.
+
+- **Full load / overwrite**: replace the destination table wholesale.
+  *Fits when consumers only ever want the current snapshot.*
+- **Append**: add new rows only.
+  *Fits when consumers query events over time and treat each row as immutable.*
+- **Upsert / merge**: insert new, update changed, based on a key.
+  *Fits when consumers want "current state per key" and don't need change history.*
+
+```python
+df.to_sql("emissions_by_facility", conn, if_exists="append", index=False)
+```
+
+::: {.notes}
+This is a common source of friction between pipeline owners and pipeline consumers,
+and it's usually decided backwards, by whatever was easiest to write.
+
+If the room only remembers one thing from anatomy, make it this.
+:::
+
+---
+
+## Core vocabulary {.smaller}
+
+- **Tier 1**: broadly useful across most data pipelines.
+  - *Idempotency · Backfill · Batch vs Streaming · Orchestration · Data quality*
+- **Tier 2**: become relevant as pipelines get bigger or broader (more data, more sources, longer history).
+  - *Latency vs Throughput · Partitioning · Schema-on-write/read · SCD · CDC · Lineage*
+
+::: {.notes}
+Recognition beats definition for this crowd. If time runs short, Tier 1 is the part that
+cannot be cut; Tier 2 can be a faster flyover.
+:::
+
+---
+
+## [TIER 1]{.tier} <br> Broadly useful across most pipelines
+
+*Idempotency · Backfill · Batch vs Streaming · Orchestration · Data quality*
+
+::: {.notes}
+Divider slide. Take a breath here; the room has been absorbing structure for
+fifteen minutes and this is where the useful part starts.
+:::
+
+---
+
+## Idempotency {.smaller}
+
+A pipeline run is idempotent if running it again with the same input produces the same
+result: no duplicated rows, no double-counted totals. It matters any time you might have
+to retry or backfill.
+
+::: {.fail}
+[Symptom:]{.lbl} *"The job failed halfway through, so I re-ran it, and now this
+facility's emissions are counted twice."*
+
+[That's:]{.lbl} a non-idempotent pipeline. One of the most common reasons numbers stop
+reconciling across runs.
+:::
+
+::: {.maps}
+**Maps to the requirement:** if a human or a scheduler might ever re-run this, it must be
+safe to re-run. Usually achieved by upserting on a stable key, or writing to a fresh
+partition and swapping it in atomically.
+:::
+
+::: {.notes}
+Idempotency is one of the words you most want people to walk out remembering. It comes
+back in every later topic (Jobs & Queues, API design, CI/CD).
+
+Pair this with the next slide deliberately: idempotency and backfill are the same
+problem from two directions. That pairing is what makes idempotency feel urgent rather
+than academic.
+:::
+
+---
+
+## Backfill {.smaller}
+
+Re-running a pipeline over historical data, e.g. because of a bug fix, a change in
+schema, or a changed business rule.
+
+::: {.fail}
+[Symptom:]{.lbl} *"We found and fixed the bad emissions factor calculation last week,
+but last year's dashboard numbers are still wrong."*
+
+[That's:]{.lbl} a fix that was never backfilled, or a pipeline that we don't trust enough
+to backfill.
+:::
+
+::: {.maps}
+**Maps to the requirement:** fixing forward is only half a fix. Non-idempotent pipelines
+make backfills dangerous, which means they don't happen, which means historical data
+quietly stays wrong.
+:::
+
+::: {.notes}
+Ask the room: has anyone here actually tested a backfill on a pipeline we own? The honest
+answer is usually no. That silence is the point.
+:::
+
+---
+
+## Batch vs Streaming (vs Micro-batch) {.smaller}
+
+- **Batch**: processed in discrete chunks on a schedule (hourly, nightly). Simple, easy to
+  reason about, higher latency.
+- **Streaming**: processed continuously as it arrives. Lower latency, meaningfully more
+  operational complexity.
+- **Micro-batch**: the practical middle ground: small batches every 1&ndash;5 min.
+  Usually what "real-time" actually means in production.
+
+::: {.fail}
+[Symptom:]{.lbl} *"Stakeholders keep saying the dashboard is out of date, but the
+pipeline runs fine every night."*
+
+[That's:]{.lbl} the pipeline doing exactly what it was told to do. The consumer expected
+fresher data than a nightly run gives them. Start with that conversation before you change
+the schedule.
+:::
+
+::: {.notes}
+Point back at the spectrum slide here. This is the vocabulary for the picture I put up in
+the cold open; gesture at it if it's still visible.
+
+Assume "ETL" means "batch pipeline" unless someone says otherwise; we're probably not
+building Twitter. Streaming comes back in Jobs & Queues where the event-driven model is
+central.
+:::
+
+---
+
+## Orchestration {.smaller}
+
+The system responsible for scheduling pipeline steps, managing dependencies, retrying
+failures, and alerting (Airflow, Dagster, Prefect, cloud-native schedulers). Distinct from
+the transformation logic itself.
+
+::: {.fail}
+[Symptom:]{.lbl} *"The pipeline didn't run last week because Sam was on leave."* Or:
+*"Step B started before step A finished, because we guessed at the cron times."*
+
+[That's:]{.lbl} missing orchestration. Whatever's currently scheduling the run —
+someone's calendar, a cron on a laptop, a person remembering — is doing the job of an
+orchestrator, badly.
+:::
+
+::: {.maps}
+**Maps to the requirement:** this is the direct answer to "what's stopping you from
+scheduling it?", and the bridge into Jobs & Queues (topic 2), where retries and
+dependencies get treated properly.
+:::
+
+::: {.notes}
+DAG = Directed Acyclic Graph. Don't unpack the acronym unless someone asks. The point:
+"there is a thing that decides run order and handles failure, and it has a name."
+:::
+
+---
+
+## Data quality / observability {.smaller}
+
+Monitoring for **freshness** (did it arrive on time?), **volume** (did row counts change
+unexpectedly?), **schema** (did a column vanish or change type?), and **distribution**
+(did values suddenly shift?).
+
+::: {.fail}
+[Symptom:]{.lbl} *"The partner API returned an empty response for three weeks. The job
+reported success every night. We found out when someone noticed the chart was flat."*
+
+[That's:]{.lbl} a pipeline with no observability. The scary part is that the job **succeeded**
+every night — a green run doesn't tell you the data is right.
+:::
+
+::: {.maps}
+**Maps to the requirement:** a pipeline that can fail silently will fail silently. The
+cheapest useful check is a row-count sanity bound; it catches a surprising share of real
+incidents.
+:::
+
+::: {.notes}
+This failure mode hits hard at RMI-style orgs because our outputs feed decisions and
+reports rather than user-facing product surfaces — bad data can sit in a report for
+months without anyone noticing.
+
+The moment to land is that the job succeeded and the data was still wrong.
+:::
+
+---
+
+## [TIER 2]{.tier} <br> As pipelines get bigger or broader
+
+*Latency vs Throughput · Partitioning · Schema-on-write/read · SCD · CDC · Lineage*
+
+These show up as data volume, source count, or history requirements increase.
+
+::: {.notes}
+Pace check: if you're behind schedule, this is the block to compress. Name each term,
+read the symptom, skip the "maps to" lines.
+:::
+
+---
+
+## Latency vs Throughput {.smaller}
+
+- **Latency**: time from an event happening to it being available downstream.
+- **Throughput**: volume of data processed per unit time.
+
+::: {.fail}
+[Symptom:]{.lbl} *"We batched the API calls to handle more records per run, and now
+each record takes twice as long to appear."*
+
+[That's:]{.lbl} the latency/throughput trade-off. Optimizing hard for one routinely costs
+the other.
+:::
+
+::: {.maps}
+**Maps to the requirement:** know which one your consumer actually cares about before
+optimizing. Returned to properly in Session 2.
+:::
+
+::: {.notes}
+Short slide: the trade-off gets its full treatment next session. The useful move
+here is just making people notice these are two different things that get conflated.
+:::
+
+---
+
+## Partitioning {.smaller}
+
+Splitting data (usually by date) into separate physical chunks so queries and reprocessing
+can target a subset instead of scanning everything.
+
+::: {.fail}
+[Symptom:]{.lbl} *"One year of data was bad, and fixing it meant reprocessing all
+twenty years."*
+
+[That's:]{.lbl} an unpartitioned dataset. Partitioning lets you reprocess just the affected
+slice instead of the whole table.
+:::
+
+::: {.maps}
+**Maps to the requirement:** partition on the dimension you'll most often need to
+*reprocess* by: usually time, and usually not the dimension you'd pick for query
+performance alone.
+:::
+
+::: {.notes}
+Tie back to backfill explicitly: partitioning is the thing that makes that
+problem survivable.
+:::
+
+---
+
+## Schema-on-write vs Schema-on-read {.smaller}
+
+- **Schema-on-write**: structure enforced at load time (traditional DBs, structured warehouses).
+- **Schema-on-read**: structure interpreted at query time; storage just holds raw or
+  semi-structured data (lakes, object storage).
+
+::: {.fail}
+[Symptom (schema-on-write):]{.lbl} *"The partner added a column and the whole job crashed."*
+
+[Symptom (schema-on-read):]{.lbl} *"The partner switched their units from kilotonnes to
+megatonnes. Nothing crashed. The numbers were just wrong for six months."*
+
+[That's:]{.lbl} the real trade-off between the two: **loud failures vs. silent ones**.
+Schema-on-write means you'll deal with the pipeline breaking whenever a source changes.
+Schema-on-read means it keeps running, and you might not notice the numbers are wrong
+until someone spots it downstream.
+:::
+
+::: {.notes}
+This is the payoff for the unit conversion we planted in the running example. Call that
+back explicitly.
+
+Both failure modes are real; you're picking which kind of pain you'd rather have.
+:::
+
+---
+
+## Slowly Changing Dimensions (SCD) {.smaller}
+
+Pattern for handling attribute values that change over time.
+
+- **Type 1**: overwrite, no history kept.
+- **Type 2**: new row per change with validity date ranges, full history.
+- **Type 3**: limited history via extra columns (e.g. "previous value").
+
+::: {.fail}
+[Symptom:]{.lbl} *"That plant changed ownership in 2022. We updated the owner field,
+and now every tonne it has ever emitted is attributed to the new owner."*
+
+[That's:]{.lbl} a Type 1 overwrite where the analysis needed Type 2.
+:::
+
+::: {.maps}
+**Maps to the requirement:** ask "will anyone ever need to know what this value *was* at a
+point in time?" If yes, you need Type 2. You can't reconstruct history you never stored.
+:::
+
+::: {.notes}
+Domain-relevant and memorable. Push the point that you can't recover history you never
+stored — that's what gets people to plan for Type 2 upfront.
+:::
+
+---
+
+## Change Data Capture (CDC) {.smaller}
+
+Detecting and extracting only rows that changed since last read, typically by reading the
+source database's transaction/replication log rather than re-querying the table. It's how
+most near-real-time pipelines pull from OLTP databases.
+
+::: {.fail}
+[Symptom:]{.lbl} *"A record was deleted at the source months ago. It's still sitting in
+our warehouse."*
+
+[That's:]{.lbl} timestamp-based incremental extraction, which can't see deletes: a row
+that's gone has no `updated_at` to find. Missing deletes is what usually pushes a team
+to adopt CDC.
+:::
+
+::: {.notes}
+Close the loop: this is the forward reference flagged back in the Extract section. Call
+back to it explicitly so the plant pays off.
+:::
+
+---
+
+## Data lineage {.smaller}
+
+The traceable path of data from source to destination: which pipeline produced this
+table, from which upstream sources, via which transformations.
+
+::: {.fail}
+[Symptom:]{.lbl} *"Someone renamed a column upstream. We found out which dashboards
+depended on it when their owners started complaining."*
+
+[That's:]{.lbl} missing lineage. You don't feel the gap when you're building the pipeline
+— you feel it every time someone asks "what will break if I change this?"
+:::
+
+::: {.maps}
+**Maps to the requirement:** lineage is what makes impact analysis possible: "if I
+change this, what breaks?" Returns in the capstone.
+:::
+
+::: {.notes}
+The build-vs-change distinction is the useful bit here: lineage costs nothing when you're
+writing the pipeline and everything when you're modifying it a year later.
+:::
+
+---
+
+## The one thing to remember
+
+> The shape of your pipeline should follow from your **constraints**,
+> not from copying the fanciest team's setup.
+
+No single tool or pattern wins in general. What actually decides it is **frequency**
+(how often does it run?) and **stakes** (how bad is it if it's wrong or late?).
+
+::: {.notes}
+Return to the spectrum slide first and ask the room to place their own pipeline on it,
+out loud if anyone will volunteer. Then land this.
+
+Restates the through-line from the "no right way" slide. Everything today (failure
+modes, tiers, batch-vs-stream) is a version of "your constraints dictate your shape."
+:::
+
+---
+
+## Discussion
+
+Primary prompts:
+
+- Where do we do **ETL vs ELT** today: deliberate choice, or historical accident?
+- Can anyone name a pipeline we own that is **not idempotent**? What happens if we have to backfill it?
+- What's an example of **schema-on-read vs schema-on-write** in something we operate today?
+
+Seed prompts if the room is quiet:
+
+- If your pipeline is a *little* crappy: **what scares you most about it?**
+- If you're on local scripts only: **what's stopping you from scheduling it?**
+- If you don't *think* you own a pipeline: **is there a spreadsheet you regenerate every quarter that… maybe is one?**
+
+If you have a story worth the case-study slot for Session 3, **grab me after.**
+
+::: {.notes}
+Give it 10&ndash;15 seconds of quiet before reaching for the seed prompts. The seed prompts
+lower the bar by inviting feelings rather than analysis.
+
+Q&A doubles as intel-gathering for Session 3; write the answers down. The pipeline
+people are most nervous about is usually the best teardown candidate: high engagement, and
+the audit produces something genuinely useful.
+:::
+
