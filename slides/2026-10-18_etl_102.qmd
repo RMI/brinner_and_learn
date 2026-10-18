@@ -1,0 +1,40 @@
+---
+title: "ETL 102"
+subtitle: |
+  <span class="sub-line">Session <b>1 of 3</b> &nbsp;·&nbsp; ETL</span><br>
+  <span class="sub-line dim">Topic <b>1 of 7</b> &nbsp;·&nbsp; Design Patterns Series</span>
+author: "Michael Barlow"
+format:
+  revealjs:
+    incremental: false
+    transition: none
+    slide-number: true
+    overview: true
+    header-includes: |
+      <style>
+      /* title slide */
+      .reveal .subtitle .sub-line { display: inline-block; margin: 0.15em 0; font-size: 0.9em; }
+      .reveal .subtitle .sub-line.dim { opacity: 0.72; }
+
+      /* reveal.js default turns bold text blue on the dark theme — override */
+      .reveal strong, .reveal b { color: inherit; }
+
+      /* failure-mode motif: amber is used for nothing else in this deck */
+      .fail {
+        background: #FAEADC;
+        color: #1c1c1c;
+        border-left: 4px solid #B4551C;
+        border-radius: 6px;
+        padding: 0.65em 0.95em;
+        margin: 0.7em 0;
+      }
+      .fail p { margin: 0.35em 0; color: #1c1c1c; }
+      .fail strong, .fail b { color: #1c1c1c; }
+      .fail code { background: rgba(0,0,0,0.08); color: #1c1c1c; }
+      .lbl { color: #B4551C; font-weight: 700; }
+      .maps { color: #cdd6d3; font-size: 0.82em; margin-top: 0.6em; }
+      .maps strong, .maps b { color: #f0f0ee; }
+      .tier { color: #7FA99B; font-weight: 700; letter-spacing: 0.08em; font-size: 0.6em; }
+      .reveal table { font-size: 0.72em; }
+      </style>
+---
