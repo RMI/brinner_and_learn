@@ -1,0 +1,665 @@
+---
+title: "ETL 102"
+subtitle: |
+  <span class="sub-line">Session <b>2 of 3</b> &nbsp;·&nbsp; ETL</span><br>
+  <span class="sub-line dim">Topic <b>1 of 7</b> &nbsp;·&nbsp; Design Patterns Series</span>
+author: "Michael Barlow"
+engine: markdown
+format:
+  revealjs:
+    incremental: false
+    transition: none
+    slide-number: true
+    overview: true
+    header-includes: |
+      <style>
+      /* title slide */
+      .reveal .subtitle .sub-line { display: inline-block; margin: 0.15em 0; font-size: 0.9em; }
+      .reveal .subtitle .sub-line.dim { opacity: 0.72; }
+
+      /* reveal.js default turns bold text blue on the dark theme — override */
+      .reveal strong, .reveal b { color: inherit; }
+
+      /* failure-mode motif: amber is used for nothing else in this deck */
+      .fail {
+        background: #FAEADC;
+        color: #1c1c1c;
+        border-left: 4px solid #B4551C;
+        border-radius: 6px;
+        padding: 0.65em 0.95em;
+        margin: 0.7em 0;
+      }
+      .fail p { margin: 0.35em 0; color: #1c1c1c; }
+      .fail strong, .fail b { color: #1c1c1c; }
+      .fail code { background: rgba(0,0,0,0.08); color: #1c1c1c; }
+      .lbl { color: #B4551C; font-weight: 700; }
+      .maps { color: #cdd6d3; font-size: 0.82em; margin-top: 0.6em; }
+      .maps strong, .maps b { color: #f0f0ee; }
+      .tier { color: #7FA99B; font-weight: 700; letter-spacing: 0.08em; font-size: 0.6em; }
+
+      /* section name, held above the slide title for every slide in a section */
+      .reveal section[data-topic]::before {
+        content: attr(data-topic);
+        display: block;
+        color: #7FA99B;
+        font-size: 0.5em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.3em;
+      }
+
+      .reveal table { font-size: 0.72em; }
+      </style>
+---
+
+## Where session 1 left off
+
+Session 1 built the vocabulary. Today is about patterns.
+
+- Patterns are (comparatively) easy
+- Recognizing which problems fit a pattern is harder
+- Principles first, then look at actual code
+
+::: {.notes}
+Handoff from Jackson, thirty seconds. Be honest that this is a detour. Lay the groundwork
+with a few principles instead of a catalogue of patterns. Flag that the second half is
+`stitch-etl` Alberta so nobody waits for a pattern list that never comes.
+:::
+
+---
+
+# Design background
+
+---
+
+## ETL systems are just software {data-topic="Design background"}
+
+Nothing about a pipeline makes it a different kind of software.
+
+- Typical "users" are other systems, or us: developers and admins
+- Fewer user-facing constraints than a GUI or a web app, but no special ones
+- Everything that applies to designing software applies here
+
+::: {.notes}
+Say it plainly and move on. Give the room permission to use ordinary design thinking
+instead of hunting for ETL-specific rules.
+:::
+
+---
+
+## "Design" vs "Architecture" {data-topic="Design background"}
+
+Treat them as the same thing today.
+
+- There is a distinction, but it's a topic for another session
+- Small SPD team with shared responsibilities
+
+::: {.notes}
+Thirty seconds. Say it once so nobody stops to argue terminology later.
+:::
+
+---
+
+## What is design? {data-topic="Design background"}
+
+> The decisions and elements that determine how software satisfies its
+> requirements within its constraints.
+
+Usually covers:
+
+- Components, and what each one is responsible for
+- Their interfaces and relationships
+- Algorithms and data representations
+- Policies for how the system runs and how it can change
+
+::: {.notes}
+The definition is broad on purpose. Don't read the bullets out. Pick two and give an ETL
+example of each.
+:::
+
+---
+
+## What design is not {data-topic="Design background"}
+
+- Diagrams and docs
+- Technology choices: framework, library, database engine
+- "Service oriented" or microservices
+- Cloud resources and infrastructure
+- Specific abstractions or patterns
+
+Any of these can express or support a design. None of them are one.
+
+::: {.notes}
+Fast slide. The list matters more than any single item on it. Expect pushback on
+microservices, and give that one about ten seconds.
+:::
+
+---
+
+## Every system has an architecture {data-topic="Design background"}
+
+Whether anyone intended one or not.
+
+- It's recursive: every component has its own
+- A system can follow very different principles than its parts
+- You can reason about one component without holding the whole system in your head
+
+::: {.notes}
+The recursive part makes the rest of the session usable. Nobody has to redesign a system
+to apply this to a single module.
+:::
+
+---
+
+## Running code, not documents {data-topic="Design background"}
+
+The running system shows the design. Files and docs only describe it.
+
+- Written descriptions drift from the system, and code drifts from what's deployed
+- Worth thinking about how objects and processes behave at runtime, not only how
+  modules are arranged
+- Also why application architecture and deployment architecture are separate questions
+
+::: {.notes}
+This one landed late while I was preparing, and it matters more than it looks.
+
+Title replaces "The design is what runs". Alternatives if this one doesn't land:
+"Where the design actually exists", or "Documentation drifts".
+:::
+
+---
+
+## Design is hard {data-topic="Design background"}
+
+- Mostly cost/benefit analysis, and not a precise one
+- Which trade-offs fit the requirements you actually have?
+- You get better at it by doing it, and by getting it wrong
+- AI still can't do it consistently. It needs the mushy meat parts
+
+::: {.callout-tip title="Opting out is still a choice"}
+Deciding not to think about design is a design decision. You just make it by default.
+:::
+
+::: {.notes}
+Last framing slide. Land the callout before the principles start.
+:::
+
+---
+
+# Idempotency
+
+---
+
+## What it means {data-topic="Idempotency"}
+
+A guarantee that calling something many times leaves the system in the same state
+as calling it once.
+
+- It's about the effect on state
+- It says nothing about the return value
+- Can be a behavioral guarantee, an interface expectation, or both
+
+::: {.notes}
+Sharpen it past session 1: calling something many times leaves system state the same as
+calling it once. It says nothing about the return value. People usually get that second
+half wrong.
+:::
+
+---
+
+## !!! {data-topic="Idempotency"}
+
+::: {.callout-warning title="Devil in the (implementation) details"}
+- Asymmetry between what callers expect and what's implemented
+- Nothing actually enforces the guarantee
+- A `GET` handler can write to the database on every request
+- A `__setitem__` can append to a list every time you assign the same key
+```python
+ class MyClass:
+     def __setitem__(self, key, val):
+          self._keys.append(key)
+          self._data_dict[key] = val
+```
+Breaking a convention makes your code harder to use, even when it works.
+:::
+
+::: {.notes}
+Idempotency is a convention that callers design against, and nothing stops you from
+breaking it. Facetious tone here.
+:::
+
+---
+
+## Familiar examples {data-topic="Idempotency"}
+
+Idempotent
+
+- `set.add`, `dict.update`, `min()`/`max()`, `TaskGroup.cancel()`
+- HTTP `GET`, `HEAD`, `OPTIONS`, `PUT`, `DELETE`
+- Terraform, Bicep
+- Sorting, mostly
+
+Not
+
+- `list.append`
+- HTTP `POST`, `PATCH` (mostly)
+- Most functions you'll write
+
+::: {.notes}
+Idempotent: `set.add`, `dict.update`, `min`/`max`, HTTP `GET`/`PUT`/`DELETE`, Bicep and
+Terraform. Not: `list.append`, `POST`, `PATCH`, and most functions you write. Aim for
+recognition rather than definitions. Code block of short Python examples.
+:::
+
+---
+
+## In SQL {data-topic="Idempotency"}
+
+Already idempotent:
+
+```sql
+SELECT ...
+UPDATE ... WHERE ...
+DELETE ... WHERE ...
+```
+
+Made idempotent on purpose:
+
+```sql
+CREATE OR REPLACE ...
+... IF NOT EXISTS
+INSERT ... ON CONFLICT ... DO UPDATE
+```
+
+::: {.notes}
+Idempotent without effort: `SELECT`, and `UPDATE`/`DELETE` with a `WHERE`. Made idempotent
+on purpose: `CREATE OR REPLACE`, `IF NOT EXISTS`, `INSERT ... ON CONFLICT ... DO UPDATE`.
+Most directly useful slide in the section for this audience. Needs a SQL block.
+:::
+
+---
+
+## Effect on calling code {.smaller data-topic="Idempotency"}
+
+Not idempotent, so the caller cleans up first:
+
+```python
+res = save_names(db, names)
+while res is False:
+    for name in names:
+        if db.get(table="users", name=name):
+            db.delete(table="users", name=name)
+    adjust_names(names)
+    res = save_names(db, names)
+```
+
+Idempotent:
+
+```python
+res = save_names_idempotent(db, names)
+while res is False:
+    adjust_names(names)
+    res = save_names_idempotent(db, names)
+```
+
+::: {.notes}
+A guarantee at the boundary removes branching from every caller. Walk the non-idempotent
+`save_names` first so the cleanup loop in the caller is visible, then the idempotent
+version where that loop disappears. Complexity moved, it didn't vanish.
+
+Needs both `save_names` blocks from the script, side by side if they fit.
+:::
+
+---
+
+## Trade-offs {data-topic="Idempotency"}
+
+- Usually harder to implement. That's the main cost
+- Weigh the effort against what the rest of the system has to absorb
+- Some callers handle non-idempotent calls fine. Some don't
+- You can always offer both
+
+For anything bigger than a single script, I'd lean towards it.
+
+::: {.notes}
+Usually harder to implement. Weigh the extra effort against what downstream components can
+absorb. For anything bigger than a single script, lean toward it.
+:::
+
+---
+
+# Information hiding
+
+---
+
+## What it means {data-topic="Information hiding"}
+
+Hiding decisions and implementation details from other components.
+
+- Callers depend on what something does, not how it does it
+- Narrows what you have to think about while designing
+- The implementation can change without the callers changing
+
+::: {.notes}
+Keeping implementation decisions private from other components. Central idea of the
+session. It narrows what you have to hold in your head while designing, which is most of
+the value.
+:::
+
+---
+
+## Delaying decisions {data-topic="Information hiding"}
+
+::: {.callout-tip title="Procrastination, but on purpose"}
+Keep a choice reversible and you get to make it later, with more information.
+:::
+
+- You might know early that you'll use Postgres
+- You usually don't know the schema
+- Hide it behind an interface and the schema can land late
+
+::: {.notes}
+If a design keeps a choice reversible, you decide later with more information. Database
+schemas are hard to change, so hiding the schema behind an interface buys time to learn
+more before committing.
+:::
+
+---
+
+## `persistence.py` {data-topic="Information hiding"}
+
+```python
+# persistence.py
+def get_user(user_id): ...
+def query_landfills(region): ...
+def upsert_reservoir_data(rows): ...
+def merge_oil_fields(fields): ...
+```
+
+- Nothing upstream knows how any of this is stored
+- CSVs and text files early, a database later
+- Can grow into a package: file system, JSON, a database, blob storage
+
+::: {.notes}
+Stub the interface other components call: `get_user()`, `query_landfills()`,
+`upsert_reservoir_data()`. Callers don't depend on how data is stored. CSVs now, Postgres
+later, without touching anything upstream. Needs the stub module as a code block.
+:::
+
+---
+
+## External data providers {data-topic="Information hiding"}
+
+```python
+class GEMExtractionClient: ...
+class CCReservoirsAPI: ...
+```
+
+- Providers change response formats, auth, rate limits
+- When C&C changes theirs, one class changes
+- Everything downstream stays put
+
+::: {.notes}
+`GEMExtractionClient`, `CCReservoirsAPI`. When a provider changes its response format,
+auth, or rate limiting, exactly one module changes.
+:::
+
+---
+
+## Trade-offs {data-topic="Information hiding"}
+
+- Mostly added effort while designing, not while writing code
+- Compartmentalizing is awkward until you've done it a few times
+
+Of the four, I think this one has the fewest trade-offs and the widest use.
+Especially when refactoring.
+
+::: {.notes}
+Mostly attention during design, and compartmentalizing is awkward at first. Of the four,
+this has the fewest trade-offs and the widest use, especially while refactoring.
+:::
+
+---
+
+# Single responsibility
+
+---
+
+## What it means {data-topic="Single responsibility"}
+
+> Gather together the things that change for the same reasons.
+> Separate things that change for different reasons.
+
+- A guide for grouping capabilities, not a rule about size
+- Closely related to information hiding: the details you hide are usually
+  the reasons something changes
+
+::: {.notes}
+A guide for grouping capabilities, not a rule about size. Close to information hiding: the
+decisions you hide are usually the reasons something changes.
+:::
+
+---
+
+## Not "do one thing" {data-topic="Single responsibility"}
+
+It usually gets read as:
+
+- "A function or class should do one thing"
+- "Do one thing and do it well"
+
+Neither is the point. Group by *why* something changes, not by how much it does.
+
+::: {.notes}
+The common misreading. "A function should do one thing" and the Unix philosophy are
+different claims. Group by reason for change, not by how many things a function does.
+:::
+
+---
+
+## Splitting `persistence.py` {data-topic="Single responsibility"}
+
+One module, until two reasons to change show up:
+
+```python
+persistence/
+    files.py      # changes when formats or paths change
+    database.py   # changes when the schema or engine changes
+```
+
+- Split on reasons, not on line count
+- The interface callers use doesn't have to change
+
+::: {.notes}
+Reuse the earlier example. It starts as one module. It splits when file access and database
+access begin changing for different reasons, not because it got long. Needs before/after
+code blocks.
+:::
+
+---
+
+## Modules and packages {data-topic="Single responsibility"}
+
+In Python, modules and packages already give you the boundary.
+
+- Pick any module and ask what makes it change
+- You don't have to get it right up front
+- Look at what changed together over the last year
+
+::: {.notes}
+Python modules and packages already give you boundaries to examine. You don't have to
+apply it everywhere at once. Look at what changed together over the last year to decide
+whether something should split.
+:::
+
+---
+
+## Trade-offs {data-topic="Single responsibility"}
+
+- More subjective than the others
+- Depends on the domain, and on what else the component touches
+- Two reasonable people will disagree about where a split goes
+
+::: {.notes}
+More subjective than the others and more dependent on domain and on a component's
+relationships. Hardest of the four to argue about productively in review.
+:::
+
+---
+
+# Dependency inversion
+
+---
+
+## What it means {data-topic="Dependency inversion"}
+
+> All code should depend on stable abstractions or interfaces.
+
+```python
+class ExtractClient(Protocol):
+    def fetch(self, since: date) -> list[dict]: ...
+```
+
+- Information hiding taken as far as it goes
+- A `Protocol` has no implementation details in it at all
+
+::: {.notes}
+Depend on abstractions that rarely change. A `Protocol` carries no implementation details
+at all. Keep this short and let the examples carry it.
+:::
+
+---
+
+## Provider schemas in core logic {data-topic="Dependency inversion"}
+
+::: {.callout-warning title="A common way this goes wrong"}
+An external API's field names and types show up in the module holding your business rules.
+Core logic now depends on a decision made outside the organization.
+:::
+
+::: {.notes}
+The rest of the session keeps coming back to this failure, and it's probably sitting in a
+repo someone in the room owns.
+:::
+
+---
+
+## Dependencies and control flow {data-topic="Dependency inversion"}
+
+- Control flow often dictates a dependency: A creates a B and calls it
+- When B is more abstract than A, leave it alone
+- When A is the higher level component, insert an interface to flip it
+
+They aren't always opposed. You invert most often on writes and responses,
+where data flows outward.
+
+::: {.notes}
+Dependencies and control flow don't always run opposite each other. Control flow often
+dictates a dependency: A depends on B so it can create one and call its methods. When B is
+more abstract than A, nothing needs inverting. You invert by inserting an interface when A
+is the higher level component. That shows up most on writes and responses, where data
+flows outward.
+:::
+
+---
+
+## Orchestrating with interfaces {data-topic="Dependency inversion"}
+
+```python
+class Orchestrator:
+    def __init__(self, extract: ExtractClient, store: Store):
+        self.extract = extract
+        self.store = store
+```
+
+- `GEMClient` and `CCReservoirsClient` both satisfy `ExtractClient`
+- The orchestrator never names either one
+- If the implementations are idempotent, it carries less retry logic
+
+::: {.notes}
+The orchestrator depends on interfaces rather than concrete classes. Show two extract
+client implementations against one interface, and one implementation for the others.
+Idempotent implementations mean the orchestrator carries less retry and error handling.
+Needs a code block.
+:::
+
+---
+
+## Inverting a dependency {data-topic="Dependency inversion"}
+
+Before, `pipeline` depends on `handlers`:
+
+```python
+# pipeline.py
+from handlers import CsvInputHandler
+```
+
+After, `pipeline` declares what it needs:
+
+```python
+# pipeline.py
+class InputSource(Protocol):
+    def rows(self) -> Iterator[dict]: ...
+```
+
+Now `handlers` depends on `pipeline`. The arrow flipped.
+
+::: {.notes}
+Before: the high level component depends on the input handler. After: the high level
+component declares the interface, and the dependency points from the low level component
+inward. Needs before/after code blocks.
+:::
+
+---
+
+## Trade-offs {data-topic="Dependency inversion"}
+
+- More code, and more indirection to read through
+- Easiest of the four to overdo
+- Worth it at boundaries you expect to change. Not everywhere
+
+::: {.notes}
+Code volume and indirection. The one principle here that's easy to overshoot, so say that
+rather than selling it.
+:::
+
+---
+
+# Wrapping up
+
+---
+
+## What to take away {data-topic="Wrapping up"}
+
+> Before you implement or change a component, decide how callers should use it,
+> what they must be able to assume, and what they should be insulated from.
+
+::: {.notes}
+This is what contains changes, makes results easier to check, and makes an unfamiliar repo
+easier to navigate. On a small team, recognizing the same boundaries and guarantees across
+projects lets us move between each other's work.
+:::
+
+---
+
+## Up next: `stitch-etl` Alberta {data-topic="Wrapping up"}
+
+- Where these show up, and where they don't
+- What I'd do differently
+
+::: {.notes}
+Handoff to the second half. The principles above are abstract on purpose. Now we see
+whether they hold up in production code. Set up what to watch for instead of summarizing
+again.
+:::
+
+---
+
+## References {data-topic="Wrapping up"}
+
+- Parnas, [On the Criteria To Be Used in Decomposing Systems into Modules](https://www.cs.lafayette.edu/~gexia/cs301/resources/parnas.html)
+
+::: {.notes}
+Leave up during discussion.
+:::

@@ -45,6 +45,8 @@ website:
         target: local_first
       - file: ./slides/2026-08-25_etl_101.qmd
         target: etl_101
+      - file: ./slides/2026-10-18_etl_102.qmd
+        target: etl_102
 
 format:
   html:
