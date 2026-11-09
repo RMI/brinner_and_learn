@@ -47,6 +47,8 @@ website:
         target: etl_101
       - file: ./slides/2026-10-18_etl_102.qmd
         target: etl_102
+      - file: ./slides/2026-11-03_queues.qmd
+        target: queues
 
 format:
   html:
